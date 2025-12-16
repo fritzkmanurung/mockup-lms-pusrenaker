@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Admin Pusat | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Animasi untuk modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-animation {
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        .modal-content-animation {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c7d2fe;
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a5b4fc;
+        }
+        
+        /* Hover effect untuk table rows */
+        .table-row-hover:hover {
+            background-color: #f8fafc;
+            transition: background-color 0.2s ease;
+        }
+        
+        /* Status badge animation */
+        .status-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .status-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Checkbox custom */
+        .custom-checkbox:checked {
+            background-color: #6366f1;
+            border-color: #6366f1;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb-item:not(:last-child)::after {
+            content: "/";
+            margin: 0 8px;
+            color: #9ca3af;
+        }
+        
+        /* Responsive table */
+        @media (max-width: 768px) {
+            .table-responsive {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .action-buttons {
+                flex-wrap: nowrap;
+                gap: 4px;
+            }
+            
+            .action-buttons button {
+                padding: 4px 6px;
+                font-size: 0.75rem;
+            }
+            
+            .action-buttons i {
+                font-size: 0.875rem;
+            }
+            
+            .avatar-container {
+                min-width: 32px;
+            }
+            
+            .admin-name {
+                min-width: 120px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .search-filter-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .bulk-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .header-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .pagination-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .action-buttons {
+                flex-direction: column;
+                gap: 2px;
+            }
+            
+            .action-buttons button {
+                width: 32px;
+                height: 32px;
+                justify-content: center;
+            }
+            
+            .admin-info-mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+        
+        /* Loading animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Mobile optimized */
+        .mobile-hidden {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-hidden {
+                display: table-cell;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center"><button data-drawer-toggle="sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg
+                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
+                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Super Admin</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="../user/settings.html" class="block p-2 hover:bg-purple-200 rounded">Pengaturan</a>
+                        </li>
+                        <li><a href="../../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg>
+                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            </a>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin-pusat/index.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Manajemen Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
+
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-6" aria-label="Breadcrumb">
+                <ol class="breadcrumb flex flex-wrap items-center text-sm text-gray-600">
+                    <li class="breadcrumb-item">
+                        <a href="../index.html" class="hover:text-indigo-600 transition-colors">
+                            <i class="fas fa-home mr-1"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="text-gray-900 font-medium">Manajemen Admin</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Manajemen Admin Pusat</h1>
+                </div>
+                <a href="../admin-pusat/create.html"
+                    class="flex items-center bg-indigo-600 text-white px-4 py-2.5 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm hover:shadow-md w-full sm:w-auto justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Tambah Admin
+                </a>
+            </div>
+
+            <!-- Filter dan Pencarian -->
+            <div class="bg-white rounded-lg shadow-sm border p-4 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 search-filter-container">
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <div class="relative">
+                            <select id="filter-status" class="pl-9 pr-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full">
+                                <option value="">Semua Status</option>
+                                <option value="aktif">Aktif</option>
+                                <option value="nonaktif">Nonaktif</option>
+                            </select>
+                            <i class="fas fa-filter text-gray-400 absolute left-3 top-3.5"></i>
+                        </div>
+                        
+                        <button id="reset-filter" class="bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg text-sm hover:bg-gray-200 transition-colors">
+                            <i class="fas fa-redo-alt mr-2"></i> Reset Filter
+                        </button>
+                    </div>
+                    
+                    <div class="relative w-full md:w-64">
+                        <input type="text" id="search-admin" placeholder="Cari nama, email, atau telepon..."
+                            class="pl-10 pr-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full">
+                        <i class="fas fa-search text-gray-400 absolute left-3 top-3.5"></i>
+                    </div>
+                </div>
+                
+                <!-- Bulk Actions -->
+                <div id="bulk-actions" class="hidden mt-4 pt-4 border-t bulk-actions">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-700 mr-3">
+                                <span id="selected-count">0</span> admin dipilih
+                            </span>
+                            <button id="select-all" class="text-sm text-indigo-600 hover:text-indigo-800">
+                                Pilih Semua
+                            </button>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            <button id="btn-bulk-activate" class="text-sm bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg hover:bg-emerald-100 transition-colors">
+                                <i class="fas fa-user-check mr-1"></i> Aktifkan
+                            </button>
+                            <button id="btn-bulk-deactivate" class="text-sm bg-amber-50 text-amber-700 px-3 py-1.5 rounded-lg hover:bg-amber-100 transition-colors">
+                                <i class="fas fa-user-slash mr-1"></i> Nonaktifkan
+                            </button>
+                            <button id="btn-bulk-delete" class="text-sm bg-red-50 text-red-700 px-3 py-1.5 rounded-lg hover:bg-red-100 transition-colors">
+                                <i class="fas fa-trash-alt mr-1"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="bg-white rounded-lg shadow-sm border overflow-hidden">
+                <div class="p-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 table-header">
+                    <div>
+                        <h2 class="font-semibold text-gray-700">Daftar Admin Pusat</h2>
+                        <p class="text-sm text-gray-500 mt-1">Total: <span id="total-admin">10</span> admin</p>
+                    </div>
+                    <div class="flex items-center gap-2 header-buttons">
+                        <button id="btn-export" class="text-gray-600 hover:text-indigo-600 p-2 rounded-lg hover:bg-gray-100" title="Ekspor Data">
+                            <i class="fas fa-download"></i>
+                            <span class="ml-1 hidden sm:inline">Ekspor</span>
+                        </button>
+                        <button id="btn-print" class="text-gray-600 hover:text-indigo-600 p-2 rounded-lg hover:bg-gray-100" title="Cetak">
+                            <i class="fas fa-print"></i>
+                            <span class="ml-1 hidden sm:inline">Cetak</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto table-responsive custom-scrollbar">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-4 md:px-6 py-3 w-10">
+                                    <input type="checkbox" id="select-all-checkbox" class="custom-checkbox w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500">
+                                </th>
+                                <th scope="col" class="px-4 md:px-6 py-3">Admin</th>
+                                <th scope="col" class="px-4 md:px-6 py-3 mobile-hidden">Kontak</th>
+                                <th scope="col" class="px-4 md:px-6 py-3">Status</th>
+                                <th scope="col" class="px-4 md:px-6 py-3 mobile-hidden">Terakhir Aktif</th>
+                                <th scope="col" class="px-4 md:px-6 py-3 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                            <!-- Data akan diisi oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex flex-col sm:flex-row items-center justify-between p-4 border-t bg-gray-50 pagination-container">
+                    <div class="mb-4 sm:mb-0">
+                        <p class="text-sm text-gray-700">
+                            Menampilkan <span class="font-semibold text-gray-900">1-10</span> dari <span class="font-semibold text-gray-900" id="total-admin-pagination">10</span> Admin
+                        </p>
+                        <p class="text-xs text-gray-500 mt-1">10 data per halaman</p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-1 mb-4 sm:mb-0">
+                        <button id="prev-page" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100">
+                            <i class="fas fa-chevron-left mr-1 text-xs"></i> <span class="hidden sm:inline">Prev</span>
+                        </button>
+                        <button class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-indigo-600 border border-indigo-600">
+                            1
+                        </button>
+                        <button class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            2
+                        </button>
+                        <span class="px-2 text-gray-500">...</span>
+                        <button class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            5
+                        </button>
+                        <button id="next-page" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100">
+                            <span class="hidden sm:inline">Next</span> <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                    
+                    <div>
+                        <select id="page-size" class="text-sm border rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option>10 per halaman</option>
+                            <option>25 per halaman</option>
+                            <option>50 per halaman</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi (Aktifkan/Nonaktifkan/Hapus) -->
+    <div id="modal-konfirmasi" class="hidden fixed inset-0 z-50 overflow-y-auto modal-animation">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-content-animation">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" id="confirm-icon">
+                            <!-- Ikon akan diisi oleh JavaScript -->
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="confirm-title">Konfirmasi</h3>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-700" id="confirm-message">
+                                    <!-- Pesan akan diisi oleh JavaScript -->
+                                </p>
+                                <div id="confirm-details" class="mt-3 p-3 bg-gray-50 rounded-lg">
+                                    <!-- Detail tambahan akan diisi oleh JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="btn-confirm-yes" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+                        <!-- Teks tombol akan diisi oleh JavaScript -->
+                    </button>
+                    <button type="button" id="btn-confirm-no" class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Admin (10 data)
+        const adminData = [
+            {
+                id: 1,
+                name: "Sarah Putri",
+                email: "sarah.putri@kemnaker.go.id",
+                phone: "+62 812-3456-7890",
+                avatar: "SP",
+                avatarColor: "indigo",
+                status: "aktif",
+                lastActive: "1 jam yang lalu",
+                lastActiveDetail: "Dari Jakarta",
+                joinDate: "09 Des 2025",
+                adminId: "ADM-001",
+                role: "Admin Pusat",
+                totalActivities: 247
+            },
+            {
+                id: 2,
+                name: "Agus Wijaya",
+                email: "agus.wijaya@kemnaker.go.id",
+                phone: "+62 813-9876-5432",
+                avatar: "AW",
+                avatarColor: "purple",
+                status: "aktif",
+                lastActive: "Hari ini, 08:45",
+                lastActiveDetail: "Dari Bandung",
+                joinDate: "01 Nov 2025",
+                adminId: "ADM-002",
+                role: "Admin Pusat",
+                totalActivities: 189
+            },
+            {
+                id: 3,
+                name: "Budi Santoso",
+                email: "budi.santoso@kemnaker.go.id",
+                phone: "+62 821-1122-3344",
+                avatar: "BS",
+                avatarColor: "gray",
+                status: "nonaktif",
+                lastActive: "2 minggu yang lalu",
+                lastActiveDetail: "Terakhir dari Surabaya",
+                joinDate: "15 Okt 2025",
+                adminId: "ADM-003",
+                role: "Admin Pusat",
+                totalActivities: 45
+            },
+            {
+                id: 4,
+                name: "Rina Dewi",
+                email: "rina.dewi@kemnaker.go.id",
+                phone: "+62 878-5566-7788",
+                avatar: "RD",
+                avatarColor: "blue",
+                status: "aktif",
+                lastActive: "30 menit yang lalu",
+                lastActiveDetail: "Dari Yogyakarta",
+                joinDate: "05 Jan 2026",
+                adminId: "ADM-004",
+                role: "Admin Pusat",
+                totalActivities: 132
+            },
+            {
+                id: 5,
+                name: "Hendra Kurniawan",
+                email: "hendra.kurniawan@kemnaker.go.id",
+                phone: "+62 811-2233-4455",
+                avatar: "HK",
+                avatarColor: "green",
+                status: "aktif",
+                lastActive: "Kemarin, 14:20",
+                lastActiveDetail: "Dari Medan",
+                joinDate: "20 Feb 2026",
+                adminId: "ADM-005",
+                role: "Admin Pusat",
+                totalActivities: 98
+            },
+            {
+                id: 6,
+                name: "Siti Rahayu",
+                email: "siti.rahayu@kemnaker.go.id",
+                phone: "+62 822-3344-5566",
+                avatar: "SR",
+                avatarColor: "pink",
+                status: "aktif",
+                lastActive: "3 jam yang lalu",
+                lastActiveDetail: "Dari Semarang",
+                joinDate: "10 Mar 2026",
+                adminId: "ADM-006",
+                role: "Admin Pusat",
+                totalActivities: 76
+            },
+            {
+                id: 7,
+                name: "Fajar Pratama",
+                email: "fajar.pratama@kemnaker.go.id",
+                phone: "+62 833-4455-6677",
+                avatar: "FP",
+                avatarColor: "orange",
+                status: "nonaktif",
+                lastActive: "1 bulan yang lalu",
+                lastActiveDetail: "Terakhir dari Malang",
+                joinDate: "25 Mar 2026",
+                adminId: "ADM-007",
+                role: "Admin Pusat",
+                totalActivities: 23
+            },
+            {
+                id: 8,
+                name: "Maya Indah",
+                email: "maya.indah@kemnaker.go.id",
+                phone: "+62 844-5566-7788",
+                avatar: "MI",
+                avatarColor: "teal",
+                status: "aktif",
+                lastActive: "5 menit yang lalu",
+                lastActiveDetail: "Dari Bali",
+                joinDate: "05 Apr 2026",
+                adminId: "ADM-008",
+                role: "Admin Pusat",
+                totalActivities: 154
+            },
+            {
+                id: 9,
+                name: "Rizki Ananda",
+                email: "rizki.ananda@kemnaker.go.id",
+                phone: "+62 855-6677-8899",
+                avatar: "RA",
+                avatarColor: "cyan",
+                status: "aktif",
+                lastActive: "Hari ini, 10:15",
+                lastActiveDetail: "Dari Makassar",
+                joinDate: "15 Apr 2026",
+                adminId: "ADM-009",
+                role: "Admin Pusat",
+                totalActivities: 87
+            },
+            {
+                id: 10,
+                name: "Dewi Lestari",
+                email: "dewi.lestari@kemnaker.go.id",
+                phone: "+62 866-7788-9900",
+                avatar: "DL",
+                avatarColor: "rose",
+                status: "aktif",
+                lastActive: "12 jam yang lalu",
+                lastActiveDetail: "Dari Palembang",
+                joinDate: "20 Apr 2026",
+                adminId: "ADM-010",
+                role: "Admin Pusat",
+                totalActivities: 112
+            }
+        ];
+
+        // State untuk seleksi
+        let selectedAdmins = new Set();
+        let currentAdminId = null;
+        let currentAction = null;
+
+        // Initialize table
+        function initializeTable() {
+            const tableBody = document.getElementById('admin-table-body');
+            tableBody.innerHTML = '';
+            
+            adminData.forEach(admin => {
+                const statusClass = admin.status === 'aktif' 
+                    ? 'bg-emerald-100 text-emerald-800' 
+                    : 'bg-red-100 text-red-800';
+                const statusIcon = admin.status === 'aktif' 
+                    ? 'fa-circle text-emerald-500' 
+                    : 'fa-circle text-red-500';
+                const statusText = admin.status === 'aktif' ? 'Aktif' : 'Nonaktif';
+                
+                const avatarColorClass = `bg-${admin.avatarColor}-100 text-${admin.avatarColor}-600`;
+                
+                // Tentukan tombol aksi berdasarkan status
+                let actionButtons = '';
+                
+                if (admin.status === 'aktif') {
+                    // Untuk admin aktif: Lihat, Edit, Nonaktifkan
+                    actionButtons = `
+                        <a href="../admin-pusat/show.html?id=${admin.id}" class="text-indigo-600 hover:text-indigo-900 p-1.5 md:p-2 rounded-lg hover:bg-indigo-50 transition-colors" title="Lihat Detail">
+                            <i class="fas fa-eye text-sm md:text-base"></i>
+                        </a>
+                        <a href="../admin-pusat/edit.html?id=${admin.id}" class="text-blue-600 hover:text-blue-900 p-1.5 md:p-2 rounded-lg hover:bg-blue-50 transition-colors" title="Edit">
+                            <i class="fas fa-edit text-sm md:text-base"></i>
+                        </a>
+                        <button onclick="toggleStatus(${admin.id})" class="text-amber-600 hover:text-amber-900 p-1.5 md:p-2 rounded-lg hover:bg-amber-50 transition-colors" title="Nonaktifkan">
+                            <i class="fas fa-user-slash text-sm md:text-base"></i>
+                        </button>
+                    `;
+                } else {
+                    // Untuk admin nonaktif: Lihat, Aktifkan, Hapus
+                    actionButtons = `
+                        <a href="../admin-pusat/show.html?id=${admin.id}" class="text-indigo-600 hover:text-indigo-900 p-1.5 md:p-2 rounded-lg hover:bg-indigo-50 transition-colors" title="Lihat Detail">
+                            <i class="fas fa-eye text-sm md:text-base"></i>
+                        </a>
+                        <button onclick="toggleStatus(${admin.id})" class="text-emerald-600 hover:text-emerald-900 p-1.5 md:p-2 rounded-lg hover:bg-emerald-50 transition-colors" title="Aktifkan">
+                            <i class="fas fa-user-check text-sm md:text-base"></i>
+                        </button>
+                        <button onclick="deleteAdmin(${admin.id})" class="text-red-600 hover:text-red-900 p-1.5 md:p-2 rounded-lg hover:bg-red-50 transition-colors" title="Hapus">
+                            <i class="fas fa-trash-alt text-sm md:text-base"></i>
+                        </button>
+                    `;
+                }
+                
+                const row = document.createElement('tr');
+                row.className = 'bg-white border-b table-row-hover';
+                row.id = `admin-row-${admin.id}`;
+                row.innerHTML = `
+                    <td class="px-4 md:px-6 py-4">
+                        <input type="checkbox" data-admin-id="${admin.id}" class="admin-checkbox custom-checkbox w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500">
+                    </td>
+                    <td class="px-4 md:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="avatar-container h-8 w-8 md:h-10 md:w-10 rounded-full ${avatarColorClass} flex items-center justify-center font-bold text-sm md:text-base mr-3">
+                                ${admin.avatar}
+                            </div>
+                            <div class="admin-info-mobile">
+                                <div class="font-medium text-gray-900 admin-name">${admin.name}</div>
+                                <div class="text-xs text-gray-500 md:hidden">${admin.email}</div>
+                                <div class="text-xs text-gray-500 md:hidden">${admin.phone}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 md:px-6 py-4 mobile-hidden">
+                        <div class="font-medium truncate max-w-xs">${admin.email}</div>
+                        <div class="text-xs text-gray-500 mt-1">${admin.phone}</div>
+                    </td>
+                    <td class="px-4 md:px-6 py-4">
+                        <span class="status-badge ${statusClass} text-xs font-semibold px-3 py-1.5 rounded-full inline-flex items-center">
+                            <i class="fas ${statusIcon} text-xs mr-1.5"></i>
+                            ${statusText}
+                        </span>
+                    </td>
+                    <td class="px-4 md:px-6 py-4 mobile-hidden">
+                        <div class="font-medium">${admin.lastActive}</div>
+                        <div class="text-xs text-gray-500">${admin.lastActiveDetail}</div>
+                    </td>
+                    <td class="px-4 md:px-6 py-4">
+                        <div class="flex justify-center gap-1 md:gap-2 action-buttons">
+                            ${actionButtons}
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Initialize checkbox listeners
+            document.querySelectorAll('.admin-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelection);
+            });
+            
+            updateBulkActions();
+        }
+
+        // Update selection state
+        function updateSelection() {
+            const checkboxes = document.querySelectorAll('.admin-checkbox');
+            selectedAdmins.clear();
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedAdmins.add(parseInt(checkbox.dataset.adminId));
+                }
+            });
+            
+            // Update select all checkbox
+            const selectAllCheckbox = document.getElementById('select-all-checkbox');
+            selectAllCheckbox.checked = selectedAdmins.size === adminData.length;
+            selectAllCheckbox.indeterminate = selectedAdmins.size > 0 && selectedAdmins.size < adminData.length;
+            
+            updateBulkActions();
+        }
+
+        // Update bulk actions visibility
+        function updateBulkActions() {
+            const bulkActions = document.getElementById('bulk-actions');
+            const selectedCount = document.getElementById('selected-count');
+            
+            selectedCount.textContent = selectedAdmins.size;
+            
+            if (selectedAdmins.size > 0) {
+                bulkActions.classList.remove('hidden');
+            } else {
+                bulkActions.classList.add('hidden');
+            }
+        }
+
+        // Toggle status (aktif/nonaktif)
+        function toggleStatus(adminId) {
+            const admin = adminData.find(a => a.id === adminId);
+            if (!admin) return;
+            
+            currentAdminId = adminId;
+            currentAction = admin.status === 'aktif' ? 'nonaktifkan' : 'aktifkan';
+            
+            const confirmModal = document.getElementById('modal-konfirmasi');
+            const icon = document.getElementById('confirm-icon');
+            const title = document.getElementById('confirm-title');
+            const message = document.getElementById('confirm-message');
+            const details = document.getElementById('confirm-details');
+            const confirmBtn = document.getElementById('btn-confirm-yes');
+            
+            if (admin.status === 'aktif') {
+                // Nonaktifkan
+                icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-amber-100';
+                icon.innerHTML = '<i class="fas fa-user-slash text-amber-600"></i>';
+                title.textContent = 'Nonaktifkan Admin';
+                message.textContent = `Apakah Anda yakin ingin menonaktifkan admin ${admin.name}?`;
+                details.innerHTML = `
+                    <p class="text-sm"><strong>Admin:</strong> ${admin.name}</p>
+                    <p class="text-sm"><strong>Email:</strong> ${admin.email}</p>
+                    <p class="text-sm mt-2 text-amber-600"><i class="fas fa-exclamation-triangle mr-1"></i> Admin tidak akan dapat mengakses sistem hingga diaktifkan kembali.</p>
+                `;
+                confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-amber-600 text-base font-medium text-white hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:ml-3 sm:w-auto sm:text-sm';
+                confirmBtn.textContent = 'Nonaktifkan';
+            } else {
+                // Aktifkan
+                icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-emerald-100';
+                icon.innerHTML = '<i class="fas fa-user-check text-emerald-600"></i>';
+                title.textContent = 'Aktifkan Admin';
+                message.textContent = `Apakah Anda yakin ingin mengaktifkan admin ${admin.name}?`;
+                details.innerHTML = `
+                    <p class="text-sm"><strong>Admin:</strong> ${admin.name}</p>
+                    <p class="text-sm"><strong>Email:</strong> ${admin.email}</p>
+                    <p class="text-sm mt-2 text-emerald-600"><i class="fas fa-check-circle mr-1"></i> Admin akan dapat mengakses sistem kembali.</p>
+                `;
+                confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:ml-3 sm:w-auto sm:text-sm';
+                confirmBtn.textContent = 'Aktifkan';
+            }
+            
+            openModal('modal-konfirmasi');
+        }
+
+        // Delete admin
+        function deleteAdmin(adminId) {
+            const admin = adminData.find(a => a.id === adminId);
+            if (!admin) return;
+            
+            currentAdminId = adminId;
+            currentAction = 'hapus';
+            
+            const confirmModal = document.getElementById('modal-konfirmasi');
+            const icon = document.getElementById('confirm-icon');
+            const title = document.getElementById('confirm-title');
+            const message = document.getElementById('confirm-message');
+            const details = document.getElementById('confirm-details');
+            const confirmBtn = document.getElementById('btn-confirm-yes');
+            
+            icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100';
+            icon.innerHTML = '<i class="fas fa-trash-alt text-red-600"></i>';
+            title.textContent = 'Hapus Admin';
+            message.textContent = `Apakah Anda yakin ingin menghapus admin ${admin.name} secara permanen?`;
+            details.innerHTML = `
+                <p class="text-sm"><strong>Admin:</strong> ${admin.name}</p>
+                <p class="text-sm"><strong>Email:</strong> ${admin.email}</p>
+                <p class="text-sm"><strong>ID Admin:</strong> ${admin.adminId}</p>
+                <p class="text-sm mt-2 text-red-600 font-medium"><i class="fas fa-exclamation-triangle mr-1"></i> Tindakan ini tidak dapat dibatalkan!</p>
+                <p class="text-sm text-red-600">Semua data admin akan dihapus dari sistem.</p>
+            `;
+            confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm';
+            confirmBtn.textContent = 'Hapus Permanen';
+            
+            openModal('modal-konfirmasi');
+        }
+
+        // Open modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : 
+                          type === 'error' ? 'bg-red-100 text-red-800 border-red-200' : 
+                          'bg-blue-100 text-blue-800 border-blue-200';
+            const icon = type === 'success' ? 'fa-check-circle' : 
+                        type === 'error' ? 'fa-exclamation-circle' : 
+                        'fa-info-circle';
+            
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 ${bgColor} px-4 py-3 rounded-lg shadow-lg z-50 flex items-center max-w-sm border transition-all transform translate-x-full`;
+            notification.innerHTML = `
+                <i class="fas ${icon} mr-3"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0');
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTable();
+            
+            // Navbar dropdown
+            document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+                document.getElementById('dropdown-user').classList.toggle('hidden');
+            });
+
+            // Sidebar toggle
+            document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
+                document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.getElementById('dropdown-user');
+                const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+
+            // Select all checkbox
+            document.getElementById('select-all-checkbox').addEventListener('change', function() {
+                const checkboxes = document.querySelectorAll('.admin-checkbox');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+                updateSelection();
+            });
+
+            // Select all button
+            document.getElementById('select-all').addEventListener('click', function() {
+                const checkboxes = document.querySelectorAll('.admin-checkbox');
+                const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+                
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = !allSelected;
+                });
+                updateSelection();
+            });
+
+            // Bulk actions
+            document.getElementById('btn-bulk-activate').addEventListener('click', function() {
+                if (selectedAdmins.size === 0) {
+                    showNotification('Pilih admin terlebih dahulu!', 'error');
+                    return;
+                }
+                
+                const names = Array.from(selectedAdmins).map(id => {
+                    const admin = adminData.find(a => a.id === id);
+                    return admin ? admin.name : '';
+                }).filter(name => name !== '');
+                
+                showNotification(`Mengaktifkan ${selectedAdmins.size} admin: ${names.join(', ')}`, 'info');
+            });
+
+            document.getElementById('btn-bulk-deactivate').addEventListener('click', function() {
+                if (selectedAdmins.size === 0) {
+                    showNotification('Pilih admin terlebih dahulu!', 'error');
+                    return;
+                }
+                
+                const names = Array.from(selectedAdmins).map(id => {
+                    const admin = adminData.find(a => a.id === id);
+                    return admin ? admin.name : '';
+                }).filter(name => name !== '');
+                
+                showNotification(`Menonaktifkan ${selectedAdmins.size} admin: ${names.join(', ')}`, 'info');
+            });
+
+            document.getElementById('btn-bulk-delete').addEventListener('click', function() {
+                if (selectedAdmins.size === 0) {
+                    showNotification('Pilih admin terlebih dahulu!', 'error');
+                    return;
+                }
+                
+                showNotification(`Menghapus ${selectedAdmins.size} admin secara permanen...`, 'info');
+            });
+
+            // Search functionality
+            document.getElementById('search-admin').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const rows = document.querySelectorAll('#admin-table-body tr');
+                
+                let visibleCount = 0;
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                document.getElementById('total-admin-pagination').textContent = visibleCount;
+            });
+
+            // Filter status
+            document.getElementById('filter-status').addEventListener('change', function() {
+                const status = this.value;
+                const rows = document.querySelectorAll('#admin-table-body tr');
+                
+                let visibleCount = 0;
+                
+                rows.forEach(row => {
+                    if (status === '') {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        const statusText = row.querySelector('.status-badge').textContent.toLowerCase().trim();
+                        if (statusText === status) {
+                            row.style.display = '';
+                            visibleCount++;
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+                
+                document.getElementById('total-admin-pagination').textContent = visibleCount;
+            });
+
+            // Reset filter
+            document.getElementById('reset-filter').addEventListener('click', function() {
+                document.getElementById('filter-status').value = '';
+                document.getElementById('search-admin').value = '';
+                const rows = document.querySelectorAll('#admin-table-body tr');
+                rows.forEach(row => row.style.display = '');
+                document.getElementById('total-admin-pagination').textContent = adminData.length;
+            });
+
+            // Confirm action
+            document.getElementById('btn-confirm-yes').addEventListener('click', function() {
+                const admin = adminData.find(a => a.id === currentAdminId);
+                if (!admin) return;
+                
+                if (currentAction === 'nonaktifkan') {
+                    admin.status = 'nonaktif';
+                    showNotification(`Admin ${admin.name} berhasil dinonaktifkan!`, 'success');
+                } else if (currentAction === 'aktifkan') {
+                    admin.status = 'aktif';
+                    showNotification(`Admin ${admin.name} berhasil diaktifkan!`, 'success');
+                } else if (currentAction === 'hapus') {
+                    // Simulasi penghapusan
+                    const index = adminData.findIndex(a => a.id === currentAdminId);
+                    if (index > -1) {
+                        adminData.splice(index, 1);
+                        showNotification(`Admin ${admin.name} berhasil dihapus!`, 'success');
+                        initializeTable();
+                        document.getElementById('total-admin').textContent = adminData.length;
+                        document.getElementById('total-admin-pagination').textContent = adminData.length;
+                    }
+                }
+                
+                closeModal('modal-konfirmasi');
+                
+                // Refresh table jika ada perubahan
+                if (currentAction !== 'hapus') {
+                    initializeTable();
+                }
+                
+                currentAdminId = null;
+                currentAction = null;
+            });
+
+            // Confirm no button
+            document.getElementById('btn-confirm-no').addEventListener('click', function() {
+                closeModal('modal-konfirmasi');
+            });
+
+            // Export button
+            document.getElementById('btn-export').addEventListener('click', function() {
+                showNotification('Mengekspor data admin...', 'info');
+            });
+
+            // Print button
+            document.getElementById('btn-print').addEventListener('click', function() {
+                window.print();
+            });
+
+            // Page navigation
+            document.getElementById('prev-page').addEventListener('click', function() {
+                showNotification('Navigasi ke halaman sebelumnya', 'info');
+            });
+
+            document.getElementById('next-page').addEventListener('click', function() {
+                showNotification('Navigasi ke halaman berikutnya', 'info');
+            });
+
+            // Page size change
+            document.getElementById('page-size').addEventListener('change', function() {
+                showNotification(`Mengubah tampilan menjadi ${this.value}`, 'info');
+            });
+        });
+    </script>
+</body>
+
+</html>

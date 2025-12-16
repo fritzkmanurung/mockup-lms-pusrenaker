@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursus Saya | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center"><button data-drawer-toggle="sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg class="w-8 h-8 text-indigo-600"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
+                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Budi Santoso</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <!-- Menu Profile -->
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg>
+                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            </a>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../courses/my-courses.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
+                        <svg class="w-5 h-5 text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 4h12M6 4v16M6 20h12M6 20H5m13 0h1m-1 0V4m0 0h1M6 4H5M9 8h1v1H9V8Zm5 0h1v1h-1V8Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Kursus Saya</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Katalog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../library/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Perpustakaan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Penyusunan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-6">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-6" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html"
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
+                            <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">My Courses</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Filter Tabs -->
+            <div class="mb-6">
+                <div class="border-b border-gray-200">
+                    <nav class="flex space-x-8">
+                        <button onclick="filterCourses('all')" data-filter="all"
+                            class="filter-tab border-b-2 border-indigo-600 text-indigo-600 py-3 px-1 text-sm font-semibold">Semua
+                            Kursus (6)</button>
+                        <button onclick="filterCourses('belum-selesai')" data-filter="belum-selesai"
+                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-3 px-1 text-sm font-medium transition-colors">Belum
+                            Selesai (4)</button>
+                        <button onclick="filterCourses('sudah-selesai')" data-filter="sudah-selesai"
+                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-3 px-1 text-sm font-medium transition-colors">Sudah
+                            Selesai (2)</button>
+                        <button onclick="filterCourses('sertifikat')" data-filter="sertifikat"
+                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-3 px-1 text-sm font-medium transition-colors">Sertifikat
+                            (2)</button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Courses Grid -->
+            <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Course Card 1 -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/react/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">65%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">React & TypeScript Masterclass</h3>
+                        <p class="text-sm text-gray-600 mb-4">Dr. Ahmad Wijaya</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>12 dari 18 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/nodejs/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">53%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Node.js Backend Development</h3>
+                        <p class="text-sm text-gray-600 mb-4">Prof. Siti Nurhaliza</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>8 dari 15 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 53%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div data-status="sudah-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/python/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-600">Selesai</span>
+                            <span class="text-xs text-gray-500">100%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Python untuk Data Science</h3>
+                        <p class="text-sm text-gray-600 mb-4">Dr. Budi Rahardjo</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>20 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-emerald-600 text-white py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">Lihat
+                            Detail Kursus</button>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/flutter/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">35%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Flutter Mobile Development</h3>
+                        <p class="text-sm text-gray-600 mb-4">Ir. Andi Prasetyo</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>7 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 5 -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/docker/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">20%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Docker & Kubernetes</h3>
+                        <p class="text-sm text-gray-600 mb-4">M. Rizki Fauzi, M.Kom</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>3 dari 15 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 6 -->
+                <div data-status="sudah-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/ui/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-600">Selesai</span>
+                            <span class="text-xs text-gray-500">100%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">UI/UX Design Fundamentals</h3>
+                        <p class="text-sm text-gray-600 mb-4">Dra. Maria Santika</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>16 dari 16 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-emerald-600 text-white py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">Lihat
+                            Detail Kursus</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Grid -->
+            <div id="certificates-grid" class="hidden grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Certificate 1 -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <!-- Certificate Image -->
+                    <img src="https://picsum.photos/seed/cert-python/600/400" alt="Sertifikat Python untuk Data Science"
+                        class="w-full h-48 object-cover">
+
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 text-lg mb-4">Python untuk Data Science</h3>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Tanggal Selesai</p>
+                                <p class="text-sm font-semibold text-gray-900">15 Nov 2024</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">No. Sertifikat</p>
+                                <p class="text-sm font-semibold text-gray-900">CERT-2024-001</p>
+                            </div>
+                        </div>
+
+                        <button onclick="downloadCertificate('Python untuk Data Science', 'CERT-2024-001')"
+                            class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Unduh Sertifikat
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <!-- Certificate Image -->
+                    <img src="https://picsum.photos/seed/cert-uiux/600/400" alt="Sertifikat UI/UX Design Fundamentals"
+                        class="w-full h-48 object-cover">
+
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 text-lg mb-4">UI/UX Design Fundamentals</h3>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Tanggal Selesai</p>
+                                <p class="text-sm font-semibold text-gray-900">20 Nov 2024</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">No. Sertifikat</p>
+                                <p class="text-sm font-semibold text-gray-900">CERT-2024-002</p>
+                            </div>
+                        </div>
+
+                        <button onclick="downloadCertificate('UI/UX Design Fundamentals', 'CERT-2024-002')"
+                            class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Unduh Sertifikat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter courses function
+        function filterCourses(filter) {
+            const coursesGrid = document.getElementById('courses-grid');
+            const certificatesGrid = document.getElementById('certificates-grid');
+            const courseCards = document.querySelectorAll('.course-card');
+            const filterTabs = document.querySelectorAll('.filter-tab');
+
+            // Update active tab styling
+            filterTabs.forEach(tab => {
+                if (tab.dataset.filter === filter) {
+                    tab.classList.remove('border-transparent', 'text-gray-500', 'font-medium');
+                    tab.classList.add('border-indigo-600', 'text-indigo-600', 'font-semibold');
+                } else {
+                    tab.classList.remove('border-indigo-600', 'text-indigo-600', 'font-semibold');
+                    tab.classList.add('border-transparent', 'text-gray-500', 'font-medium');
+                }
+            });
+
+            // Show/hide appropriate content
+            if (filter === 'sertifikat') {
+                coursesGrid.classList.add('hidden');
+                certificatesGrid.classList.remove('hidden');
+                certificatesGrid.classList.add('grid');
+            } else {
+                certificatesGrid.classList.add('hidden');
+                certificatesGrid.classList.remove('grid');
+                coursesGrid.classList.remove('hidden');
+
+                // Filter course cards
+                courseCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.status === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Download certificate function
+        function downloadCertificate(courseName, certNumber) {
+            // In a real application, this would trigger a download of the actual certificate PDF
+            // For now, we'll simulate the download
+            alert(`Mengunduh Sertifikat:\nKursus: ${courseName}\nNo. Sertifikat: ${certNumber}`);
+
+            // Simulate download (in production, this would be a real PDF file from server)
+            console.log(`Downloading certificate: ${certNumber} for course: ${courseName}`);
+
+            // You can implement actual download here, for example:
+            // window.location.href = `/api/certificates/download/${certNumber}`;
+        }
+
+
+        // Toggle dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', function () {
+            document.getElementById('dropdown-user').classList.toggle('hidden');
+        });
+
+        // Toggle sidebar
+        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown-user');
+            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+            if (dropdown && button && !button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

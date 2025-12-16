@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Superadmin | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Animasi untuk card */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Gradien untuk statistik */
+        .gradient-indigo {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        
+        .gradient-emerald {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+        
+        .gradient-amber {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        
+        .gradient-rose {
+            background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c7d2fe;
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a5b4fc;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb-item:not(:last-child)::after {
+            content: "/";
+            margin: 0 8px;
+            color: #9ca3af;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .breadcrumb {
+                font-size: 0.875rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card-title {
+                font-size: 1.125rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Progress bar animation */
+        @keyframes progress-animation {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: var(--progress-width);
+            }
+        }
+        
+        .progress-bar {
+            animation: progress-animation 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center"><button data-drawer-toggle="sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg
+                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
+                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Super Admin</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <!-- Menu Profile -->
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="../user/settings.html" class="block p-2 hover:bg-purple-200 rounded">Pengaturan</a>
+                        </li>
+                        <li><a href="../../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg>
+                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            </a>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin-pusat/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Manajemen Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
+
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-6" aria-label="Breadcrumb">
+                <ol class="breadcrumb flex flex-wrap items-center text-sm text-gray-600">
+                    <li class="breadcrumb-item">
+                        <a href="../index.html" class="hover:text-indigo-600 transition-colors">
+                            <i class="fas fa-home mr-1"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="text-gray-900 font-medium">Dashboard</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Quick Stats Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8 stats-grid">
+                <!-- Total Admin Pusat -->
+                <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Total Admin Pusat</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mt-1">12</h3>
+                        </div>
+                        <div class="p-2 md:p-3 rounded-full gradient-indigo">
+                            <i class="fas fa-users text-white text-base md:text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t">
+                        <div class="flex items-center text-xs md:text-sm">
+                            <span class="text-green-600 font-medium flex items-center">
+                                <i class="fas fa-arrow-up mr-1 text-xs"></i> 2 baru
+                            </span>
+                            <span class="text-gray-400 mx-2">•</span>
+                            <span class="text-gray-500">Bulan ini</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Admin Aktif -->
+                <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Admin Aktif</p>
+                            <h3 class="text-2xl font-bold text-emerald-600 mt-1">10</h3>
+                        </div>
+                        <div class="p-2 md:p-3 rounded-full gradient-emerald">
+                            <i class="fas fa-user-check text-white text-base md:text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="progress-bar bg-emerald-500 h-2 rounded-full" style="--progress-width: 83%"></div>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-2">83% dari total</div>
+                    </div>
+                </div>
+                
+                <!-- Admin Nonaktif -->
+                <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Admin Nonaktif</p>
+                            <h3 class="text-2xl font-bold text-amber-600 mt-1">2</h3>
+                        </div>
+                        <div class="p-2 md:p-3 rounded-full gradient-amber">
+                            <i class="fas fa-user-slash text-white text-base md:text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="progress-bar bg-amber-500 h-2 rounded-full" style="--progress-width: 17%"></div>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-2">17% dari total</div>
+                    </div>
+                </div>
+                
+                <!-- Aktivitas Admin -->
+                <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <div>
+                            <p class="text-sm text-gray-500 font-medium">Aktivitas Admin</p>
+                            <h3 class="text-2xl font-bold text-rose-600 mt-1">247</h3>
+                        </div>
+                        <div class="p-2 md:p-3 rounded-full gradient-rose">
+                            <i class="fas fa-chart-line text-white text-base md:text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t">
+                        <div class="flex items-center text-xs md:text-sm">
+                            <span class="text-rose-600 font-medium flex items-center">
+                                <i class="fas fa-fire mr-1 text-xs"></i> Tinggi
+                            </span>
+                            <span class="text-gray-400 mx-2">•</span>
+                            <span class="text-gray-500">Hari ini</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Event Penting -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 h-full">
+                        <div class="flex items-center justify-between mb-4 md:mb-6">
+                            <div>
+                                <h2 class="text-lg md:text-xl font-bold text-gray-900 card-title">Event Penting Terkini</h2>
+                                <p class="text-sm text-gray-500 mt-1">Monitor aktivitas sistem dan admin</p>
+                            </div>
+                            <a href="#" class="text-sm text-indigo-600 hover:underline font-medium">Lihat Semua Log</a>
+                        </div>
+                        
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                        <i class="fas fa-cog text-sm md:text-base"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                        <p class="font-semibold text-gray-900 truncate">Update Konfigurasi Integrasi</p>
+                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">10m lalu</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Konfigurasi API Key KCLC diperbarui oleh Superadmin.</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-gray-500">Oleh: <span class="font-medium">Super Admin</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                        <i class="fas fa-user-plus text-sm md:text-base"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                        <p class="font-semibold text-gray-900 truncate">Admin Pusat Baru</p>
+                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">2h lalu</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Admin "Sarah Putri" ditambahkan ke sistem.</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-gray-500">Email: <span class="font-medium">sarah.putri@kemnaker.go.id</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+                                        <i class="fas fa-exclamation-triangle text-sm md:text-base"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                        <p class="font-semibold text-gray-900 truncate">Peringatan Sistem</p>
+                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">5h lalu</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Penggunaan resource server mencapai 85%.</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-amber-600 font-medium">Diperlukan monitoring</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                        <i class="fas fa-key text-sm md:text-base"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                        <p class="font-semibold text-gray-900 truncate">Reset Password Admin</p>
+                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">1d lalu</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Password admin "Agus Wijaya" telah direset.</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-gray-500">Oleh: <span class="font-medium">Sistem</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t">
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <p class="text-sm text-gray-500">Total event hari ini: <span class="font-medium text-gray-900">8 event</span></p>
+                                <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium px-4 py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors w-full sm:w-auto text-center">
+                                    <i class="fas fa-history mr-2"></i> Muat Ulang Event
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 card-title">Aksi Cepat</h2>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 quick-actions">
+                        <a href="../admin-pusat/index.html" class="bg-indigo-50 border border-indigo-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-indigo-100 transition-colors card-hover">
+                            <div class="p-2 md:p-3 rounded-full bg-indigo-100 text-indigo-600 mb-2 md:mb-3">
+                                <i class="fas fa-user-plus text-base md:text-lg"></i>
+                            </div>
+                            <p class="font-medium text-gray-900 text-sm md:text-base">Tambah Admin</p>
+                            <p class="text-xs text-gray-500 mt-1">Buat akun baru</p>
+                        </a>
+                        
+                        <button onclick="exportData()" class="bg-emerald-50 border border-emerald-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-emerald-100 transition-colors card-hover">
+                            <div class="p-2 md:p-3 rounded-full bg-emerald-100 text-emerald-600 mb-2 md:mb-3">
+                                <i class="fas fa-file-export text-base md:text-lg"></i>
+                            </div>
+                            <p class="font-medium text-gray-900 text-sm md:text-base">Ekspor Data</p>
+                            <p class="text-xs text-gray-500 mt-1">Laporan admin</p>
+                        </button>
+                        
+                        <button onclick="openSettings()" class="bg-amber-50 border border-amber-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-amber-100 transition-colors card-hover">
+                            <div class="p-2 md:p-3 rounded-full bg-amber-100 text-amber-600 mb-2 md:mb-3">
+                                <i class="fas fa-cog text-base md:text-lg"></i>
+                            </div>
+                            <p class="font-medium text-gray-900 text-sm md:text-base">Pengaturan</p>
+                            <p class="text-xs text-gray-500 mt-1">Konfigurasi sistem</p>
+                        </button>
+                        
+                        <button onclick="viewActivityLogs()" class="bg-purple-50 border border-purple-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-purple-100 transition-colors card-hover">
+                            <div class="p-2 md:p-3 rounded-full bg-purple-100 text-purple-600 mb-2 md:mb-3">
+                                <i class="fas fa-history text-base md:text-lg"></i>
+                            </div>
+                            <p class="font-medium text-gray-900 text-sm md:text-base">Log Aktivitas</p>
+                            <p class="text-xs text-gray-500 mt-1">Monitor admin</p>
+                        </button>
+                    </div>
+                    
+                    <!-- Ringkasan Aktivitas -->
+                    <div class="mt-6 md:mt-8 pt-6 border-t">
+                        <h3 class="font-medium text-gray-900 mb-3 md:mb-4">Ringkasan Aktivitas</h3>
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm mr-3">
+                                        SP
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Sarah Putri</p>
+                                        <p class="text-xs text-gray-500">Login terakhir: 1 jam lalu</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm mr-3">
+                                        AW
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Agus Wijaya</p>
+                                        <p class="text-xs text-gray-500">Login terakhir: 3 jam lalu</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm mr-3">
+                                        BS
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Budi Santoso</p>
+                                        <p class="text-xs text-gray-500">Login terakhir: 2 minggu</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded-full">Nonaktif</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 md:mt-6">
+                            <a href="../admin-pusat/index.html" class="block text-center text-indigo-600 hover:text-indigo-800 text-sm font-medium py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors">
+                                <i class="fas fa-arrow-right mr-2"></i> Kelola Semua Admin
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 mb-6">
+                <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 card-title">Statistik Detail</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mr-3">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Login Hari Ini</p>
+                                <p class="font-bold text-gray-900 text-xl">8 Admin</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Rata-rata: 10 login/hari</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 rounded-lg bg-emerald-50 text-emerald-600 mr-3">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Aksi Dilakukan</p>
+                                <p class="font-bold text-gray-900 text-xl">47 Aksi</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Hari ini (hingga saat ini)</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mr-3">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Rata-rata Waktu</p>
+                                <p class="font-bold text-gray-900 text-xl">3.2 menit</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Per sesi admin</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Toggle dropdown menu
+        document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+            document.getElementById('dropdown-user').classList.toggle('hidden');
+        });
+
+        // Toggle sidebar on mobile
+        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
+            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown-user');
+            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Quick action functions
+        function exportData() {
+            showNotification('Mempersiapkan ekspor data admin...', 'info');
+            setTimeout(() => {
+                showNotification('Data admin berhasil diekspor!', 'success');
+            }, 1500);
+        }
+        
+        function openSettings() {
+            showNotification('Membuka halaman pengaturan...', 'info');
+            // In real app, redirect to settings page
+            // window.location.href = '../user/settings.html';
+        }
+        
+        function viewActivityLogs() {
+            showNotification('Membuka log aktivitas admin...', 'info');
+            // In real app, redirect to activity logs page
+        }
+        
+        // Notification function
+        function showNotification(message, type) {
+            const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800';
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+            
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 ${bgColor} px-4 py-3 rounded-lg shadow-lg z-50 flex items-center max-w-sm`;
+            notification.innerHTML = `
+                <i class="fas ${icon} mr-3"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Load event button
+        document.querySelector('.fa-history').closest('button').addEventListener('click', function() {
+            showNotification('Memuat ulang event...', 'info');
+            this.disabled = true;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memuat...';
+            
+            setTimeout(() => {
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-history mr-2"></i> Muat Ulang Event';
+                showNotification('Event berhasil dimuat ulang!', 'success');
+            }, 1500);
+        });
+        
+        // Card click animations
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (this.tagName === 'A') return; // Skip if it's already a link
+                
+                // Add click effect
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+        
+        // Initialize progress bar animations
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+            // Set initial width for animation
+            const width = bar.style.getPropertyValue('--progress-width');
+            bar.style.width = '0%';
+            
+            // Trigger animation after a small delay
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 300);
+        });
+        
+        // Responsive adjustments
+        function handleResize() {
+            const isMobile = window.innerWidth < 640;
+            const cards = document.querySelectorAll('.stats-grid > div');
+            
+            if (isMobile) {
+                cards.forEach(card => {
+                    card.classList.add('text-center');
+                });
+            } else {
+                cards.forEach(card => {
+                    card.classList.remove('text-center');
+                });
+            }
+        }
+        
+        // Initial call and event listener
+        handleResize();
+        window.addEventListener('resize', handleResize);
+    </script>
+</body>
+
+</html>

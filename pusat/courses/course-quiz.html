@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Modul 2 | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <h1 class="text-lg font-semibold">Quiz: Component Composition</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div id="timer"
+                        class="flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg font-semibold">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span id="time-left">15:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 pb-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Quiz Info -->
+            <div id="quiz-intro" class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white mb-6">
+                <h2 class="text-3xl font-bold mb-4">Quiz Modul 2: Component Composition</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                            <path fill-rule="evenodd"
+                                d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <p class="text-indigo-100 text-sm">Total Soal</p>
+                            <p class="font-bold text-lg">10 Pertanyaan</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <p class="text-indigo-100 text-sm">Waktu</p>
+                            <p class="font-bold text-lg">15 Menit</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <p class="text-indigo-100 text-sm">Passing Score</p>
+                            <p class="font-bold text-lg">70%</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="startQuiz()"
+                    class="w-full md:w-auto px-8 py-3 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors font-bold text-lg">
+                    Mulai Quiz Sekarang →
+                </button>
+            </div>
+
+            <!-- Quiz Questions (Hidden Initially) -->
+            <div id="quiz-container" class="hidden">
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-medium">Progress</span>
+                        <span id="quiz-progress">Pertanyaan <span id="current-question">1</span> dari 10</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                            style="width: 10%"></div>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="bg-white rounded-lg p-8 shadow-sm mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6" id="question-text">Apa itu Render Props pattern
+                        dalam React?</h3>
+                    <div class="space-y-3" id="options-container">
+                        <!-- Options will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-between">
+                    <button onclick="previousQuestion()" id="prev-btn"
+                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                        disabled>
+                        ← Sebelumnya
+                    </button>
+                    <button onclick="nextQuestion()" id="next-btn"
+                        class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                        Selanjutnya →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results (Hidden Initially) -->
+            <div id="quiz-results" class="hidden">
+                <div class="bg-white rounded-lg p-8 shadow-lg text-center">
+                    <div id="result-icon" class="mx-auto mb-6"></div>
+                    <h2 id="result-title" class="text-3xl font-bold mb-4"></h2>
+                    <p id="result-message" class="text-gray-600 mb-6"></p>
+
+                    <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mb-8">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-600">Skor Anda</p>
+                            <p id="result-score" class="text-2xl font-bold text-indigo-600"></p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-600">Benar</p>
+                            <p id="result-correct" class="text-2xl font-bold text-emerald-600"></p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-600">Salah</p>
+                            <p id="result-wrong" class="text-2xl font-bold text-red-600"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="reviewAnswers()"
+                            class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                            Tinjau Jawaban
+                        </button>
+                        <button onclick="continueToNext()" id="continue-btn"
+                            class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                            Lanjut ke Modul Berikutnya →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data
+        const quizData = [
+            {
+                question: "Apa itu Render Props pattern dalam React?",
+                options: [
+                    "Pattern untuk mengatur state dalam component",
+                    "Teknik untuk berbagi code dengan menggunakan prop yang berupa function",
+                    "Cara untuk mengoptimasi rendering component",
+                    "Method untuk handling events"
+                ],
+                correct: 1
+            },
+            {
+                question: "Manakah yang merupakan keuntungan utama dari Render Props?",
+                options: [
+                    "Meningkatkan performa aplikasi",
+                    "Mengurangi ukuran bundle",
+                    "Memungkinkan code reusability dan composition",
+                    "Mempermudah CSS styling"
+                ],
+                correct: 2
+            },
+            {
+                question: "Bagaimana cara menggunakan Render Props?",
+                options: [
+                    "Dengan passing function sebagai prop yang mengembalikan React element",
+                    "Dengan menggunakan lifecycle methods",
+                    "Dengan membuat HOC (Higher Order Component)",
+                    "Dengan menggunakan Redux"
+                ],
+                correct: 0
+            },
+            {
+                question: "Apa perbedaan utama antara Render Props dan HOC?",
+                options: [
+                    "Render Props lebih cepat daripada HOC",
+                    "HOC menggunakan function composition, Render Props menggunakan component composition",
+                    "Render Props hanya bisa digunakan di Class Component",
+                    "Tidak ada perbedaan"
+                ],
+                correct: 1
+            },
+            {
+                question: "Kapan sebaiknya menggunakan Render Props?",
+                options: [
+                    "Ketika perlu berbagi stateful logic antar components",
+                    "Ketika ingin membuat animation",
+                    "Ketika membuat form validation",
+                    "Ketika menggunakan CSS modules"
+                ],
+                correct: 0
+            },
+            {
+                question: "Apa yang dimaksud dengan 'children as function' pattern?",
+                options: [
+                    "Menggunakan HOC untuk wrapping children",
+                    "Variasi dari Render Props dimana children adalah function",
+                    "Cara untuk mengoptimasi child components",
+                    "Pattern untuk lazy loading"
+                ],
+                correct: 1
+            },
+            {
+                question: "Manakah contoh penggunaan Render Props yang benar?",
+                options: [
+                    "<Mouse render={mouse => <Cat mouse={mouse}/>}/>",
+                    "<Mouse><Cat /></Mouse>",
+                    "<Mouse value={cat}/>",
+                    "<Mouse cat={<Cat />}/>"
+                ],
+                correct: 0
+            },
+            {
+                question: "Apa kelemahan dari Render Props?",
+                options: [
+                    "Tidak bisa digunakan dengan Hooks",
+                    "Dapat menyebabkan 'wrapper hell' atau nesting yang dalam",
+                    "Hanya bisa digunakan sekali per component",
+                    "Tidak support TypeScript"
+                ],
+                correct: 1
+            },
+            {
+                question: "Bagaimana Render Props berhubungan dengan Hooks?",
+                options: [
+                    "Hooks menggantikan semua use case Render Props",
+                    "Render Props tidak bisa digunakan bersama Hooks",
+                    "Hooks menyederhanakan banyak use case Render Props, tapi keduanya tetap berguna",
+                    "Tidak ada hubungannya"
+                ],
+                correct: 2
+            },
+            {
+                question: "Apa yang harus diperhatikan saat menggunakan Render Props?",
+                options: [
+                    "Harus selalu menggunakan arrow function",
+                    "Perhatikan performa karena bisa membuat re-render tidak perlu",
+                    "Hanya bisa passing satu prop",
+                    "Harus menggunakan shouldComponentUpdate"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let timerInterval;
+        let timeLeft = 900; // 15 minutes in seconds
+
+        function startQuiz() {
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('time-left').textContent =
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const question = quizData[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('progress-bar').style.width =
+                ((currentQuestionIndex + 1) / quizData.length * 100) + '%';
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const isSelected = userAnswers[currentQuestionIndex] === index;
+                const button = document.createElement('button');
+                button.className = `w-full text-left p-4 border-2 rounded-lg transition-all ${isSelected
+                    ? 'border-indigo-600 bg-indigo-50'
+                    : 'border-gray-200 hover:border-indigo-300 hover:bg-gray-50'
+                    }`;
+                button.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-indigo-600 bg-indigo-600' : 'border-gray-300'
+                    }">
+                            ${isSelected ? '<div class="w-3 h-3 bg-white rounded-full"></div>' : ''}
+                        </div>
+                        <span class="flex-1">${option}</span>
+                    </div>
+                `;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').textContent =
+                currentQuestionIndex === quizData.length - 1 ? 'Selesai' : 'Selanjutnya →';
+        }
+
+        function selectAnswer(index) {
+            userAnswers[currentQuestionIndex] = index;
+            showQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+
+            let correct = 0;
+            quizData.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const score = Math.round((correct / quizData.length) * 100);
+            const passed = score >= 70;
+
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-results').classList.remove('hidden');
+
+            const resultIcon = document.getElementById('result-icon');
+            if (passed) {
+                resultIcon.innerHTML = `
+                    <div class="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
+                        <svg class="w-12 h-12 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                `;
+                document.getElementById('result-title').textContent = 'Selamat! Anda Lulus! 🎉';
+                document.getElementById('result-title').className = 'text-3xl font-bold mb-4 text-emerald-600';
+                document.getElementById('result-message').textContent = 'Anda telah berhasil menyelesaikan quiz ini dengan nilai yang memuaskan.';
+                document.getElementById('continue-btn').classList.remove('hidden');
+            } else {
+                resultIcon.innerHTML = `
+                    <div class="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                        <svg class="w-12 h-12 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                `;
+                document.getElementById('result-title').textContent = 'Belum Berhasil';
+                document.getElementById('result-title').className = 'text-3xl font-bold mb-4 text-red-600';
+                document.getElementById('result-message').textContent = 'Jangan menyerah! Pelajari kembali materi dan coba lagi.';
+                document.getElementById('continue-btn').classList.add('hidden');
+            }
+
+            document.getElementById('result-score').textContent = score + '%';
+            document.getElementById('result-correct').textContent = correct + '/10';
+            document.getElementById('result-wrong').textContent = (quizData.length - correct) + '/10';
+        }
+
+        function reviewAnswers() {
+            alert('Fitur review jawaban akan segera hadir!');
+        }
+
+        function continueToNext() {
+            window.location.href = '../courses/classroom.html';
+        }
+    </script>
+</body>
+
+</html>

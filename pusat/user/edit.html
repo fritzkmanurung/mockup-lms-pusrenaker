@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profil | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center"><button data-drawer-toggle="sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg></button><a href="../dashboard/index.html" class="flex ms-2"><svg
+                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
+                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Budi Santoso</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <!-- Menu Profile -->
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="../user/settings.html" class="block p-2 hover:bg-purple-200 rounded">Pengaturan</a>
+                        </li>
+                        <li><a href="../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200"><a href="#"
+                class="flex items-center ps-2.5 mb-5"><svg class="w-8 h-8 text-indigo-600" fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg><span
+                    class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span></a>
+            <ul class="space-y-2 font-medium">
+                <li><a href="../dashboard/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg><span class="ms-3">Dashboard</span></a></li>
+                <li><a href="../courses/../courses/my-courses.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 4h12M6 4v16M6 20h12M6 20H5m13 0h1m-1 0V4m0 0h1M6 4H5M9 8h1v1H9V8Zm5 0h1v1h-1V8Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z" />
+                        </svg><span class="flex-1 ms-3 whitespace-nowrap">Kursus Saya</span></a></li>
+                <li><a href="../courses/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
+                        </svg><span class="flex-1 ms-3 whitespace-nowrap">Katalog</span></a></li>
+                <li><a href="../dashboard/assignments.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
+                        </svg><span class="flex-1 ms-3 whitespace-nowrap">Tugas</span><span
+                            class="inline-flex items-center justify-center w-5 h-5 ms-2 text-xs font-medium text-red-600 bg-red-100 border border-red-200 rounded-full">3</span></a>
+                </li>
+                <li><a href="../library/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023" />
+                        </svg><span class="flex-1 ms-3 whitespace-nowrap">Perpustakaan</span></a></li>
+                <li><a href="../support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group"><svg
+                            class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg><span class="flex-1 ms-3 whitespace-nowrap">Bantuan</span></a></li>
+            </ul>
+        </div>
+    </aside>
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-6 max-w-4xl mx-auto">
+            <div class="mb-6 flex items-center gap-4"><a href="../user/profile.html"
+                    class="p-2 hover:bg-gray-200 rounded-lg transition-colors"><svg class="w-6 h-6" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg></a>
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Edit Profil ✏️</h1>
+                    <p class="text-gray-500">Perbarui informasi pribadi Anda</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Foto Profil</h2>
+                <div class="flex items-center gap-6"><img
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff&size=120"
+                        class="w-24 h-24 rounded-full">
+                    <div class="flex-1">
+                        <p class="text-sm text-gray-600 mb-3">Upload foto profil baru. Ukuran maksimal 2MB. Format: JPG,
+                            PNG</p>
+                        <div class="flex gap-2"><button
+                                class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium">Upload
+                                Foto</button><button
+                                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="space-y-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Informasi Pribadi</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Nama Depan *</label><input
+                                type="text" value="Budi"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Nama Belakang *</label><input
+                                type="text" value="Santoso"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required></div>
+                    </div>
+                    <div class="mt-6"><label class="block text-sm font-medium text-gray-700 mb-2">Username
+                            *</label><input type="text" value="budisantoso"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            required></div>
+                    <div class="mt-6"><label class="block text-sm font-medium text-gray-700 mb-2">Bio</label><textarea
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            placeholder="Ceritakan tentang diri Anda...">Passionate learner | Web Developer | Tech Enthusiast</textarea>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Informasi Kontak</h2>
+                    <div class="space-y-6">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Email *</label><input
+                                type="email" value="budi.santoso@edulearn.com"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label><input
+                                type="tel" value="+62 812 3456 7890"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Lokasi</label><input
+                                type="text" value="Jakarta, Indonesia"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Sosial Media</h2>
+                    <div class="sp ace-y-6">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">LinkedIn</label>
+                            <div class="flex"><span
+                                    class="inline-flex items-center px-4 text-sm text-gray-600 bg-gray-50 border border-r-0 border-gray-300 rounded-l-lg">linkedin.com/in/</span><input
+                                    type="text" value="budisantoso"
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">GitHub</label>
+                            <div class="flex"><span
+                                    class="inline-flex items-center px-4 text-sm text-gray-600 bg-gray-50 border border-r-0 border-gray-300 rounded-l-lg">github.com/</span><input
+                                    type="text" value="budisantoso"
+                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Website/Portfolio</label><input
+                                type="url" value="https://budisantoso.dev"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 justify-end pt-6 border-t border-gray-200"><a
+                        href="../user/profile.html"
+                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors">Batal</a><button
+                        type="submit"
+                        class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors">Simpan
+                        Perubahan</button></div>
+            </form>
+        </div>
+    </div>
+    <script>document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', () => document.getElementById('dropdown-user').classList.toggle('hidden')); document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full'));</script>
+</body>
+
+</html>

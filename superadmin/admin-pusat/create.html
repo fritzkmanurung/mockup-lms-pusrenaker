@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Admin Baru | EduLearn</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb-item:not(:last-child)::after {
+            content: "/";
+            margin: 0 8px;
+            color: #9ca3af;
+        }
+        
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form styling */
+        .form-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #6366f1;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-section {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .action-buttons button, .action-buttons a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .form-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+        
+        /* Loading animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Password strength indicator */
+        .password-strength-weak {
+            background-color: #f87171;
+        }
+        
+        .password-strength-medium {
+            background-color: #fbbf24;
+        }
+        
+        .password-strength-strong {
+            background-color: #10b981;
+        }
+        
+        /* Custom checkbox */
+        .custom-checkbox:checked {
+            background-color: #6366f1;
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center"><button data-drawer-toggle="sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg
+                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
+                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Super Admin</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="../user/settings.html" class="block p-2 hover:bg-purple-200 rounded">Pengaturan</a>
+                        </li>
+                        <li><a href="../../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg>
+                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            </a>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin-pusat/index.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Manajemen Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
+
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-6" aria-label="Breadcrumb">
+                <ol class="breadcrumb flex flex-wrap items-center text-sm text-gray-600">
+                    <li class="breadcrumb-item">
+                        <a href="../index.html" class="hover:text-indigo-600 transition-colors">
+                            <i class="fas fa-home mr-1"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="../admin-pusat/index.html" class="hover:text-indigo-600 transition-colors">
+                            Manajemen Admin
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="text-gray-900 font-medium">Tambah Admin Baru</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 form-header">
+                <div class="flex items-center gap-3">
+                    <a href="../admin-pusat/index.html" class="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Tambah Admin Pusat Baru</h1>
+                        <p class="text-gray-500">Isi formulir di bawah untuk menambahkan admin baru</p>
+                    </div>
+                </div>
+                
+                <!-- Progress Indicator -->
+                <div class="flex items-center gap-2">
+                    <div class="h-2 w-24 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-indigo-600 rounded-full" style="width: 100%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600">1/1</span>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 mb-6 card-hover">
+                <form id="admin-create-form">
+                    <!-- Informasi Pribadi -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2 rounded-lg bg-indigo-100 text-indigo-600">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Informasi Pribadi</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 form-grid">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Nama Lengkap <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="nama" name="nama" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                    placeholder="Masukkan nama lengkap">
+                                <p class="text-xs text-gray-500 mt-2">Contoh: Sarah Putri</p>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Email <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                    placeholder="contoh@kemnaker.go.id">
+                                <p class="text-xs text-gray-500 mt-2">Harus menggunakan domain kemnaker.go.id</p>
+                            </div>
+                            
+                            <div>
+                                <label for="telepon" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Nomor Telepon <span class="text-red-500">*</span>
+                                </label>
+                                <input type="tel" id="telepon" name="telepon" required
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                    placeholder="+62 812-3456-7890">
+                                <p class="text-xs text-gray-500 mt-2">Format: +62 xxx-xxxx-xxxx</p>
+                            </div>
+                            
+                            <div>
+                                <label for="jabatan" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Jabatan
+                                </label>
+                                <input type="text" id="jabatan" name="jabatan"
+                                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                    placeholder="Contoh: Staff Administrasi">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informasi Akun -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2 rounded-lg bg-blue-100 text-blue-600">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Informasi Akun</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 form-grid">
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Password <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="password" name="password" required
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                        placeholder="Masukkan password">
+                                    <button type="button" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                                        onclick="togglePassword('password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs text-gray-500">Kekuatan password:</span>
+                                        <span id="password-strength-text" class="text-xs font-medium">-</span>
+                                    </div>
+                                    <div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="password-strength-bar" class="h-full rounded-full" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2">Minimal 8 karakter, kombinasi huruf dan angka</p>
+                            </div>
+                            
+                            <div>
+                                <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Konfirmasi Password <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="confirm_password" name="confirm_password" required
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                        placeholder="Konfirmasi password">
+                                    <button type="button" class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                                        onclick="togglePassword('confirm_password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div id="password-match" class="hidden mt-2">
+                                    <p class="text-xs text-red-500 flex items-center">
+                                        <i class="fas fa-times-circle mr-1"></i> Password tidak cocok
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="md:col-span-2">
+                                <label for="admin_id" class="block text-sm font-medium text-gray-700 mb-2">
+                                    ID Admin
+                                </label>
+                                <div class="flex gap-3">
+                                    <input type="text" id="admin_id" name="admin_id"
+                                        class="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                        placeholder="ADM-001" readonly>
+                                    <button type="button" id="generate-id" class="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                                        <i class="fas fa-sync-alt mr-2"></i> Generate ID
+                                    </button>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2">ID akan digenerate otomatis</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pengaturan Tambahan -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2 rounded-lg bg-amber-100 text-amber-600">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Pengaturan Tambahan</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="send_welcome_email" name="send_welcome_email" 
+                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                <label for="send_welcome_email" class="ml-2 block text-sm text-gray-700">
+                                    Kirim email selamat datang ke admin baru
+                                </label>
+                            </div>
+                            <p class="text-xs text-gray-500 ml-6">Admin akan menerima email dengan instruksi login</p>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="require_password_change" name="require_password_change" 
+                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="require_password_change" class="ml-2 block text-sm text-gray-700">
+                                    Wajibkan perubahan password saat login pertama
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="activate_account" name="activate_account" 
+                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                <label for="activate_account" class="ml-2 block text-sm text-gray-700">
+                                    Aktifkan akun segera setelah dibuat
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informasi Role -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2 rounded-lg bg-purple-100 text-purple-600">
+                                <i class="fas fa-user-tag"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Role dan Izin Akses</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Role <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                    <div class="relative">
+                                        <input type="radio" id="role_admin" name="role" value="admin_pusat" 
+                                            class="hidden peer" checked>
+                                        <label for="role_admin" 
+                                            class="flex flex-col p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-colors">
+                                            <div class="flex items-center mb-2">
+                                                <div class="p-2 rounded-lg bg-indigo-100 text-indigo-600 mr-3">
+                                                    <i class="fas fa-user-cog"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-900">Admin Pusat</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600">Akses penuh ke semua fitur admin</p>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="relative">
+                                        <input type="radio" id="role_viewer" name="role" value="viewer" 
+                                            class="hidden peer">
+                                        <label for="role_viewer" 
+                                            class="flex flex-col p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-colors">
+                                            <div class="flex items-center mb-2">
+                                                <div class="p-2 rounded-lg bg-gray-100 text-gray-600 mr-3">
+                                                    <i class="fas fa-eye"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-900">Viewer</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600">Hanya dapat melihat, tidak dapat mengubah</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Izin Khusus
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="permission_export" name="permission_export" 
+                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                        <label for="permission_export" class="ml-2 block text-sm text-gray-700">
+                                            Ekspor Data
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="permission_manage_users" name="permission_manage_users" 
+                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                        <label for="permission_manage_users" class="ml-2 block text-sm text-gray-700">
+                                            Kelola Pengguna
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="permission_reports" name="permission_reports" 
+                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                        <label for="permission_reports" class="ml-2 block text-sm text-gray-700">
+                                            Akses Laporan
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="permission_settings" name="permission_settings" 
+                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                        <label for="permission_settings" class="ml-2 block text-sm text-gray-700">
+                                            Pengaturan Sistem
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3 action-buttons form-section">
+                        <button type="submit" id="btn-submit" class="inline-flex items-center bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
+                            <i class="fas fa-save mr-2"></i>
+                            Simpan Admin Baru
+                        </button>
+                        
+                        <button type="button" id="btn-preview" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+                            <i class="fas fa-eye mr-2"></i>
+                            Preview
+                        </button>
+                        
+                        <a href="../admin-pusat/index.html" class="inline-flex items-center bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors shadow-sm">
+                            <i class="fas fa-times mr-2"></i>
+                            Batal
+                        </a>
+                        
+                        <button type="button" id="btn-reset" class="inline-flex items-center bg-amber-100 text-amber-700 px-6 py-3 rounded-lg hover:bg-amber-200 transition-colors shadow-sm">
+                            <i class="fas fa-redo mr-2"></i>
+                            Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Informasi Tambahan -->
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 md:p-6">
+                <div class="flex items-start gap-3">
+                    <div class="p-2 rounded-lg bg-blue-100 text-blue-600 mt-1">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-2">Informasi Penting</h4>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
+                                <span>Pastikan email menggunakan domain <strong>kemnaker.go.id</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
+                                <span>Password harus minimal 8 karakter dan mengandung kombinasi huruf dan angka</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
+                                <span>Admin baru akan menerima email konfirmasi jika opsi tersebut dipilih</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
+                                <span>Role <strong>Admin Pusat</strong> memiliki akses penuh ke semua fitur sistem</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar dropdown
+            document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+                document.getElementById('dropdown-user').classList.toggle('hidden');
+            });
+
+            // Sidebar toggle
+            document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
+                document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.getElementById('dropdown-user');
+                const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+
+            // Generate admin ID
+            document.getElementById('generate-id').addEventListener('click', function() {
+                const randomNum = Math.floor(Math.random() * 1000) + 1;
+                const adminId = `ADM-${randomNum.toString().padStart(3, '0')}`;
+                document.getElementById('admin_id').value = adminId;
+                showNotification(`ID admin baru: ${adminId}`, 'info');
+            });
+
+            // Auto-generate ID on page load
+            document.getElementById('generate-id').click();
+
+            // Toggle password visibility
+            window.togglePassword = function(inputId) {
+                const input = document.getElementById(inputId);
+                const icon = input.nextElementSibling.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            };
+
+            // Check password strength
+            document.getElementById('password').addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
+
+            // Check password match
+            document.getElementById('confirm_password').addEventListener('input', function() {
+                checkPasswordMatch();
+            });
+
+            // Reset form
+            document.getElementById('btn-reset').addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin mereset form? Semua data yang telah diisi akan hilang.')) {
+                    document.getElementById('admin-create-form').reset();
+                    document.getElementById('generate-id').click();
+                    showNotification('Form berhasil direset', 'info');
+                }
+            });
+
+            // Preview button
+            document.getElementById('btn-preview').addEventListener('click', function() {
+                const nama = document.getElementById('nama').value;
+                const email = document.getElementById('email').value;
+                
+                if (!nama || !email) {
+                    showNotification('Harap isi nama dan email terlebih dahulu', 'error');
+                    return;
+                }
+                
+                showNotification(`Preview data untuk ${nama} (${email})`, 'info');
+                // In real app, this would open a preview modal
+            });
+
+            // Form submission
+            document.getElementById('admin-create-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Show loading
+                const submitBtn = document.getElementById('btn-submit');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Menyimpan...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Get form data
+                    const formData = {
+                        nama: document.getElementById('nama').value,
+                        email: document.getElementById('email').value,
+                        telepon: document.getElementById('telepon').value,
+                        jabatan: document.getElementById('jabatan').value,
+                        admin_id: document.getElementById('admin_id').value,
+                        role: document.querySelector('input[name="role"]:checked').value,
+                        send_welcome_email: document.getElementById('send_welcome_email').checked,
+                        require_password_change: document.getElementById('require_password_change').checked,
+                        activate_account: document.getElementById('activate_account').checked
+                    };
+                    
+                    console.log('Form data:', formData);
+                    
+                    showNotification(`Admin ${formData.nama} berhasil ditambahkan!`, 'success');
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Redirect to admin list after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = '../admin-pusat/index.html';
+                    }, 2000);
+                }, 1500);
+            });
+
+            // Show notification
+            function showNotification(message, type = 'info') {
+                const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : 
+                              type === 'error' ? 'bg-red-100 text-red-800 border-red-200' : 
+                              'bg-blue-100 text-blue-800 border-blue-200';
+                const icon = type === 'success' ? 'fa-check-circle' : 
+                            type === 'error' ? 'fa-exclamation-circle' : 
+                            'fa-info-circle';
+                
+                const notification = document.createElement('div');
+                notification.className = `fixed top-20 right-4 ${bgColor} px-4 py-3 rounded-lg shadow-lg z-50 flex items-center max-w-sm border transition-all transform translate-x-full`;
+                notification.innerHTML = `
+                    <i class="fas ${icon} mr-3"></i>
+                    <span>${message}</span>
+                `;
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.classList.remove('translate-x-full');
+                    notification.classList.add('translate-x-0');
+                }, 10);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('translate-x-0');
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            // Check password strength
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                const strengthBar = document.getElementById('password-strength-bar');
+                const strengthText = document.getElementById('password-strength-text');
+                
+                if (password.length >= 8) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                let width = 0;
+                let color = '';
+                let text = '';
+                
+                switch(strength) {
+                    case 0:
+                    case 1:
+                        width = 20;
+                        color = 'password-strength-weak';
+                        text = 'Lemah';
+                        break;
+                    case 2:
+                    case 3:
+                        width = 50;
+                        color = 'password-strength-medium';
+                        text = 'Sedang';
+                        break;
+                    case 4:
+                        width = 75;
+                        color = 'password-strength-medium';
+                        text = 'Cukup';
+                        break;
+                    case 5:
+                        width = 100;
+                        color = 'password-strength-strong';
+                        text = 'Kuat';
+                        break;
+                }
+                
+                strengthBar.style.width = `${width}%`;
+                strengthBar.className = `h-full rounded-full ${color}`;
+                strengthText.textContent = text;
+                strengthText.className = `text-xs font-medium ${
+                    strength <= 2 ? 'text-red-600' : 
+                    strength <= 4 ? 'text-amber-600' : 
+                    'text-emerald-600'
+                }`;
+            }
+
+            // Check password match
+            function checkPasswordMatch() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm_password').value;
+                const matchDiv = document.getElementById('password-match');
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    matchDiv.classList.remove('hidden');
+                    return false;
+                } else {
+                    matchDiv.classList.add('hidden');
+                    return true;
+                }
+            }
+
+            // Validate form
+            function validateForm() {
+                const nama = document.getElementById('nama').value;
+                const email = document.getElementById('email').value;
+                const telepon = document.getElementById('telepon').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm_password').value;
+                
+                // Check required fields
+                if (!nama || !email || !telepon || !password || !confirmPassword) {
+                    showNotification('Harap isi semua field yang wajib diisi!', 'error');
+                    return false;
+                }
+                
+                // Check email domain
+                if (!email.endsWith('@kemnaker.go.id')) {
+                    showNotification('Email harus menggunakan domain @kemnaker.go.id', 'error');
+                    return false;
+                }
+                
+                // Check password match
+                if (!checkPasswordMatch()) {
+                    showNotification('Password dan konfirmasi password tidak cocok!', 'error');
+                    return false;
+                }
+                
+                // Check password strength
+                if (password.length < 8) {
+                    showNotification('Password minimal 8 karakter!', 'error');
+                    return false;
+                }
+                
+                return true;
+            }
+        });
+    </script>
+</body>
+
+</html>
