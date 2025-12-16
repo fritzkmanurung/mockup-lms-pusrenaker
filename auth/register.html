@@ -6,6 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Akun - SIAPKerja ID</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar for Webkit Browsers */
+        .scrollable-form::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollable-form::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .scrollable-form::-webkit-scrollbar-thumb {
+            background: #14b8a6;
+            border-radius: 10px;
+        }
+
+        .scrollable-form::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+    </style>
 </head>
 
 <body class="bg-white">
@@ -41,142 +61,171 @@
 
                     <!-- Card Form - Floating on top left -->
                     <div class="absolute top-8 left-10 md:top-12 md:left-12 z-20 w-full max-w-md">
-                        <div class="bg-white rounded-2xl border-2 border-gray-200 p-8 md:p-10 backdrop-blur-sm">
-                            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
-                                Pendaftaran Akun
-                            </h1>
-                            <p class="text-gray-600 text-sm mb-6">
-                                Sudah memiliki akun?
-                                <a href="login.html" class="text-teal-500 hover:text-teal-600 font-bold">Masuk</a>
-                            </p>
-
-                            <!-- Step 1: KTP & Name -->
-                            <div id="step1" class="space-y-4">
-                                <!-- KTP Input -->
-                                <div>
-                                    <label for="ktp" class="block text-xs font-bold text-gray-900 mb-1.5">
-                                        Nomor Induk Kependudukan (No. KTP)
-                                    </label>
-                                    <input type="text" id="ktp" placeholder="Masukkan nomor induk kependudukan"
-                                        class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
-                                </div>
-
-                                <!-- Name Input -->
-                                <div>
-                                    <label for="nama" class="block text-xs font-bold text-gray-900 mb-1.5">
-                                        Nama lengkap
-                                    </label>
-                                    <input type="text" id="nama" placeholder="Masukkan nama lengkap"
-                                        class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
-                                </div>
-
-                                <!-- Submit Button -->
-                                <button onclick="goToStep2()"
-                                    class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 text-sm shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40">
-                                    Berikutnya
-                                </button>
-
-                                <!-- Privacy Policy -->
-                                <p class="text-xs text-gray-600 text-center leading-relaxed">
-                                    Dengan melakukan pendaftaran, saya setuju dengan
-                                    <a href="#" class="text-teal-500 hover:text-teal-600">Kebijakan Privasi</a>
-                                    dan
-                                    <a href="#" class="text-teal-500 hover:text-teal-600">Syarat & Ketentuan</a>
-                                    Kemnaker RI.
+                        <div class="bg-white rounded-2xl border-2 border-gray-200 backdrop-blur-sm flex flex-col"
+                            style="max-height: 600px; height: auto;">
+                            <!-- Fixed Header -->
+                            <div class="p-8 md:p-6 pb-0">
+                                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+                                    Pendaftaran Akun
+                                </h1>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Sudah memiliki akun?
+                                    <a href="login.html" class="text-teal-500 hover:text-teal-600 font-bold">Masuk</a>
                                 </p>
+
+                                <!-- Back Button for Step 2 -->
+                                <button id="backButton" onclick="goToStep1()" type="button"
+                                    class="hidden items-center gap-2 text-gray-600 hover:text-gray-900 font-semibold text-sm transition-colors mb-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Kembali
+                                </button>
                             </div>
 
-                            <!-- Step 2: Email, Phone & Password -->
-                            <div id="step2" class="space-y-4 hidden">
-                                <!-- Email Input -->
-                                <div>
-                                    <label for="email" class="block text-xs font-bold text-gray-900 mb-1.5">
-                                        Alamat Email
-                                    </label>
-                                    <input type="email" id="email" placeholder="Contoh: iqbal@domain.com"
-                                        class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
-                                </div>
-
-                                <!-- Phone Input -->
-                                <div>
-                                    <label for="phone" class="block text-xs font-bold text-gray-900 mb-1.5">
-                                        Nomor Handphone
-                                    </label>
-                                    <input type="tel" id="phone" placeholder="Contoh: 081288488955"
-                                        class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
-                                </div>
-
-                                <!-- Password Input -->
-                                <div>
-                                    <label for="password" class="block text-xs font-bold text-gray-900 mb-1.5">
-                                        Password
-                                    </label>
-                                    <div class="relative">
-                                        <input type="password" id="password" placeholder=""
-                                            oninput="validatePassword()"
-                                            class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition pr-10">
-                                        <button type="button" onclick="togglePassword()"
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                            <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </button>
+                            <!-- Scrollable Form Container -->
+                            <div class="scrollable-form flex-1 overflow-y-auto px-8 md:px-6"
+                                style="scrollbar-width: thin; scrollbar-color: #14b8a6 #f1f5f9;">
+                                <!-- Step 1: KTP & Name -->
+                                <div id="step1" class="space-y-4">
+                                    <!-- KTP Input -->
+                                    <div>
+                                        <label for="ktp" class="block text-xs font-bold text-gray-900 mb-1.5">
+                                            Nomor Induk Kependudukan (No. KTP)
+                                        </label>
+                                        <input type="text" id="ktp" placeholder="Masukkan nomor induk kependudukan"
+                                            class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
                                     </div>
 
-                                    <!-- Password Requirements -->
-                                    <div class="mt-3 space-y-2">
-                                        <div id="req-length" class="flex items-center gap-2 text-xs text-gray-500">
-                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <circle cx="10" cy="10" r="10" opacity="0.3"/>
-                                            </svg>
-                                            <span>Minimal 8 karakter</span>
-                                        </div>
-                                        <div id="req-lowercase" class="flex items-center gap-2 text-xs text-gray-500">
-                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <circle cx="10" cy="10" r="10" opacity="0.3"/>
-                                            </svg>
-                                            <span>Terdapat minimal satu huruf kecil</span>
-                                        </div>
-                                        <div id="req-uppercase" class="flex items-center gap-2 text-xs text-gray-500">
-                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <circle cx="10" cy="10" r="10" opacity="0.3"/>
-                                            </svg>
-                                            <span>Terdapat minimal satu huruf besar</span>
-                                        </div>
-                                        <div id="req-number" class="flex items-center gap-2 text-xs text-gray-500">
-                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <circle cx="10" cy="10" r="10" opacity="0.3"/>
-                                            </svg>
-                                            <span>Terdapat minimal satu angka</span>
-                                        </div>
-                                        <div id="req-symbol" class="flex items-center gap-2 text-xs text-gray-500">
-                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <circle cx="10" cy="10" r="10" opacity="0.3"/>
-                                            </svg>
-                                            <span>Terdapat salah satu simbol: ! @ # $ % ^ & *</span>
-                                        </div>
+                                    <!-- Name Input -->
+                                    <div>
+                                        <label for="nama" class="block text-xs font-bold text-gray-900 mb-1.5">
+                                            Nama lengkap
+                                        </label>
+                                        <input type="text" id="nama" placeholder="Masukkan nama lengkap"
+                                            class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
                                     </div>
+
+                                    <!-- Submit Button -->
+                                    <button onclick="goToStep2()"
+                                        class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 text-sm shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40">
+                                        Berikutnya
+                                    </button>
+
+                                    <!-- Privacy Policy -->
+                                    <p class="text-xs text-gray-600 text-center leading-relaxed pb-6">
+                                        Dengan melakukan pendaftaran, saya setuju dengan
+                                        <a href="#" class="text-teal-500 hover:text-teal-600">Kebijakan Privasi</a>
+                                        dan
+                                        <a href="#" class="text-teal-500 hover:text-teal-600">Syarat & Ketentuan</a>
+                                        Kemnaker RI.
+                                    </p>
                                 </div>
 
-                                <!-- Register Button -->
-                                <button onclick="handleRegister()"
-                                    class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 text-sm shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40">
-                                    Daftar Sekarang
-                                </button>
+                                <!-- Step 2: Email, Phone & Password -->
+                                <div id="step2" class="space-y-4 hidden">
+                                    <!-- Email Input -->
+                                    <div>
+                                        <label for="email" class="block text-xs font-bold text-gray-900 mb-1.5">
+                                            Alamat Email
+                                        </label>
+                                        <input type="email" id="email" placeholder="Contoh: iqbal@domain.com"
+                                            class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                                    </div>
 
-                                <!-- Privacy Policy -->
-                                <p class="text-xs text-gray-600 text-center leading-relaxed">
-                                    Dengan melakukan pendaftaran, saya setuju dengan
-                                    <a href="#" class="text-teal-500 hover:text-teal-600">Kebijakan Privasi</a>
-                                    dan
-                                    <a href="#" class="text-teal-500 hover:text-teal-600">Syarat & Ketentuan</a>
-                                    Kemnaker RI.
-                                </p>
+                                    <!-- Phone Input -->
+                                    <div>
+                                        <label for="phone" class="block text-xs font-bold text-gray-900 mb-1.5">
+                                            Nomor Handphone
+                                        </label>
+                                        <input type="tel" id="phone" placeholder="Contoh: 081288488955"
+                                            class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                                    </div>
+
+                                    <!-- Password Input -->
+                                    <div>
+                                        <label for="password" class="block text-xs font-bold text-gray-900 mb-1.5">
+                                            Password
+                                        </label>
+                                        <div class="relative">
+                                            <input type="password" id="password" placeholder=""
+                                                oninput="validatePassword()"
+                                                class="w-full px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition pr-10">
+                                            <button type="button" onclick="togglePassword()"
+                                                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                                <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <!-- Password Requirements -->
+                                        <div class="mt-3 space-y-2">
+                                            <div id="req-length" class="flex items-center gap-2 text-xs text-gray-500">
+                                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                                </svg>
+                                                <span>Minimal 8 karakter</span>
+                                            </div>
+                                            <div id="req-lowercase"
+                                                class="flex items-center gap-2 text-xs text-gray-500">
+                                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                                </svg>
+                                                <span>Terdapat minimal satu huruf kecil</span>
+                                            </div>
+                                            <div id="req-uppercase"
+                                                class="flex items-center gap-2 text-xs text-gray-500">
+                                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                                </svg>
+                                                <span>Terdapat minimal satu huruf besar</span>
+                                            </div>
+                                            <div id="req-number" class="flex items-center gap-2 text-xs text-gray-500">
+                                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                                </svg>
+                                                <span>Terdapat minimal satu angka</span>
+                                            </div>
+                                            <div id="req-symbol" class="flex items-center gap-2 text-xs text-gray-500">
+                                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                                </svg>
+                                                <span>Terdapat salah satu simbol: ! @ # $ % ^ & *</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Register Button -->
+                                    <button onclick="handleRegister()"
+                                        class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 text-sm shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40">
+                                        Daftar Sekarang
+                                    </button>
+
+                                    <!-- Privacy Policy -->
+                                    <p class="text-xs text-gray-600 text-center leading-relaxed pb-8">
+                                        Dengan melakukan pendaftaran, saya setuju dengan
+                                        <a href="#" class="text-teal-500 hover:text-teal-600">Kebijakan Privasi</a>
+                                        dan
+                                        <a href="#" class="text-teal-500 hover:text-teal-600">Syarat & Ketentuan</a>
+                                        Kemnaker RI.
+                                    </p>
+                                </div>
                             </div>
 
-                            <!-- Help Center Link -->
-                            <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                            <!-- Fixed Footer -->
+                            <div class="px-8 md:px-10 py-3 border-t border-gray-200 text-center">
                                 <a href="#" class="text-sm text-gray-600 hover:text-teal-500 font-bold transition">
                                     Kunjungi Pusat Bantuan
                                 </a>
@@ -219,12 +268,26 @@
             // Hide step 1, show step 2
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step2').classList.remove('hidden');
+
+            // Show back button
+            document.getElementById('backButton').classList.remove('hidden');
+            document.getElementById('backButton').classList.add('flex');
+        }
+
+        function goToStep1() {
+            // Show step 1, hide step 2
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+
+            // Hide back button
+            document.getElementById('backButton').classList.add('hidden');
+            document.getElementById('backButton').classList.remove('flex');
         }
 
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eyeIcon');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />';
@@ -236,27 +299,27 @@
 
         function validatePassword() {
             const password = document.getElementById('password').value;
-            
+
             // Check minimum length (8 characters)
             const hasLength = password.length >= 8;
             updateRequirement('req-length', hasLength);
-            
+
             // Check lowercase
             const hasLowercase = /[a-z]/.test(password);
             updateRequirement('req-lowercase', hasLowercase);
-            
+
             // Check uppercase
             const hasUppercase = /[A-Z]/.test(password);
             updateRequirement('req-uppercase', hasUppercase);
-            
+
             // Check number
             const hasNumber = /\d/.test(password);
             updateRequirement('req-number', hasNumber);
-            
+
             // Check symbol
             const hasSymbol = /[!@#$%^&*]/.test(password);
             updateRequirement('req-symbol', hasSymbol);
-            
+
             return hasLength && hasLowercase && hasUppercase && hasNumber && hasSymbol;
         }
 
@@ -294,7 +357,8 @@
             formData.password = password;
 
             console.log('Registration completed:', formData);
-            alert('Pendaftaran berhasil!');
+            // Redirect to portal dashboard
+            window.location.href = '../portal-dashboard.html';
         }
     </script>
 </body>
