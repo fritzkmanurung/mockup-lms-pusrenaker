@@ -1,218 +1,700 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Dashboard</title>
+    <title>Pusrenaker - Pusat Rencana dan Ketenagakerjaan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #64748b, #475569);
+            border-radius: 10px;
+            border: 2px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #475569, #334155);
+            transform: scale(1.1);
+        }
+
+        /* Custom Cursor - Pen */
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23334155" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>'), auto;
+        }
+
+        button,
+        a {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2.5"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>'), pointer;
+        }
+
+        /* Educational Background Pattern */
+        body {
+            background-color: #ffffff;
+            background-image:
+                /* Math formulas pattern */
+                url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-family='Arial' font-size='14' fill='%23e2e8f0' opacity='0.3'%3Ex²+y²%3C/text%3E%3Ctext x='10' y='70' font-family='Arial' font-size='12' fill='%23cbd5e1' opacity='0.3'%3E∫dx%3C/text%3E%3C/svg%3E"),
+                /* Book icons */
+                url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20 L60 20 L60 60 L20 60 Z' fill='none' stroke='%23e2e8f0' stroke-width='2' opacity='0.2'/%3E%3Cline x1='40' y1='20' x2='40' y2='60' stroke='%23cbd5e1' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E"),
+                /* Grid */
+                linear-gradient(90deg, rgba(226, 232, 240, 0.1) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(226, 232, 240, 0.1) 1px, transparent 1px);
+            background-size: 200px 200px, 150px 150px, 50px 50px, 50px 50px;
+            background-position: 0 0, 100px 100px, 0 0, 0 0;
+        }
+
+        /* Animated Background Elements */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(-5px, -20px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(-10px, -10px) rotate(3deg);
+            }
+        }
+
+        @keyframes floatReverse {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-10px, 10px) rotate(-5deg);
+            }
+
+            50% {
+                transform: translate(5px, 20px) rotate(5deg);
+            }
+
+            75% {
+                transform: translate(10px, 10px) rotate(-3deg);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100px) rotate(-10deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100px) rotate(10deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         @keyframes fadeInUp {
             from {
+                transform: translateY(50px);
                 opacity: 0;
-                transform: translateY(30px);
             }
+
             to {
-                opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse-slow {
-            0%, 100% {
                 opacity: 1;
             }
-            50% {
-                opacity: 0.5;
+        }
+
+        @keyframes writeAnimation {
+            0% {
+                stroke-dashoffset: 1000;
+                opacity: 0;
             }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+
+        @keyframes bookFlip {
+
+            0%,
+            100% {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+
+            50% {
+                transform: perspective(1000px) rotateY(15deg);
+            }
+        }
+
+        @keyframes pulse3D {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Entrance Animations */
+        .animate-slide-in-left {
+            animation: slideInFromLeft 1s ease-out forwards;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInFromRight 1s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
         .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
+        /* 3D Hover Effects */
+        .card-3d {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            position: relative;
         }
 
-        .animate-pulse-slow {
-            animation: pulse-slow 2s ease-in-out infinite;
+        .card-3d:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.05);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
-        .btn-dashboard {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            border-radius: inherit;
         }
 
-        .btn-dashboard:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        .card-3d:hover::before {
+            transform: translateX(100%);
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Button 3D Effect */
+        .btn-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
         }
 
-        .gradient-overlay {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: inherit;
+            transform: translateZ(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateZ(20px) scale(1.05);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animated Icons */
+        .icon-container {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .card-3d:hover .icon-container {
+            transform: rotateY(360deg) scale(1.2);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(100, 116, 139, 0.4);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+        }
+
+        /* Stats counter animation */
+        .stat-number {
+            transition: all 0.5s ease;
+        }
+
+        .stat-card:hover .stat-number {
+            transform: scale(1.2);
+            color: #ffffff;
+        }
+
+        /* Illustration animations */
+        .animate-book {
+            animation: bookFlip 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .animate-write {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: writeAnimation 4s ease-in-out infinite;
+        }
+
+        /* Parallax effect */
+        .parallax-bg {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Glow effect on hover */
+        .glow-on-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-on-hover::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .glow-on-hover:hover::after {
+            opacity: 1;
+        }
+
+        /* Hero title animation */
+        @keyframes titleGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
+                    0 0 20px rgba(0, 0, 0, 0.05);
+            }
+
+            50% {
+                text-shadow: 0 0 20px rgba(0, 0, 0, 0.15),
+                    0 0 40px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .title-glow {
+            animation: titleGlow 3s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 overflow-x-hidden">
-    <!-- Background Decoration -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-        <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 1s;"></div>
-        <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-slate-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="relative min-h-screen flex items-center justify-center px-4 py-12">
-        <div class="max-w-5xl w-full">
-            <!-- Header Section -->
-            <div class="text-center mb-12 animate-fade-in-up">
-                <div class="inline-block mb-4">
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-xl animate-pulse-slow">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+<body class="min-h-screen overflow-x-hidden">
+    <!-- Fixed Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo/Brand -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                     </div>
+                    <span class="text-xl font-bold text-gray-900">PUSRENAKER</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-                    Portal Dashboard
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center gap-3">
+                    <a href="auth/login.html"
+                        class="px-6 py-2.5 text-gray-700 hover:text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200">
+                        Sign In
+                    </a>
+                    <a href="auth/register.html"
+                        class="btn-3d bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 hover:from-gray-800 hover:to-gray-900 text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg glow-on-hover transition-all duration-200">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animated Floating Particles -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="particle" style="left: 10%; animation-duration: 15s; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-duration: 18s; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-duration: 20s; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-duration: 16s; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 50%; animation-duration: 19s; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 60%; animation-duration: 17s; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-duration: 21s; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 80%; animation-duration: 15s; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 90%; animation-duration: 18s; animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Floating Educational Icons -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none opacity-10">
+        <svg class="absolute top-20 left-10 w-20 h-20 text-gray-400" style="animation: float 8s ease-in-out infinite;"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+        </svg>
+        <svg class="absolute top-40 right-20 w-24 h-24 text-gray-300"
+            style="animation: floatReverse 10s ease-in-out infinite;" fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+        </svg>
+        <svg class="absolute bottom-32 left-1/4 w-16 h-16 text-gray-400"
+            style="animation: float 7s ease-in-out infinite; animation-delay: 2s;" fill="currentColor"
+            viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" />
+        </svg>
+        <svg class="absolute top-1/2 right-1/4 w-18 h-18 text-gray-300"
+            style="animation: floatReverse 9s ease-in-out infinite; animation-delay: 1s;" fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+        </svg>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative min-h-screen flex items-center justify-center px-4 py-12 pt-24 parallax-bg" id="hero">
+        <div class="max-w-6xl w-full z-10">
+            <!-- Header -->
+            <div class="text-center mb-12 animate-bounce-in">
+                <div class="inline-block mb-6 relative">
+                    <div class="w-24 h-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 rounded-3xl flex items-center justify-center shadow-2xl glow-on-hover"
+                        style="animation: pulse3D 3s ease-in-out infinite;">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full"
+                        style="animation: pulse3D 2s ease-in-out infinite; animation-delay: 0.5s;"></div>
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-bold text-gray-900 mb-4 tracking-tight title-glow">
+                    PUSRENAKER
                 </h1>
-                <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-                    Pilih akses dashboard sesuai dengan peran Anda untuk memulai perjalanan mengelola sistem
+                <p class="text-xl md:text-2xl text-gray-700 font-semibold mb-3 animate-fade-in-up"
+                    style="animation-delay: 0.3s;">
+                    Pusat Rencana dan Ketenagakerjaan
                 </p>
-            </div>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-8 animate-fade-in-up"
+                    style="animation-delay: 0.5s;">
+                    Platform pembelajaran terintegrasi untuk pengembangan kompetensi dan keterampilan profesional
+                </p>
 
-            <!-- Buttons Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Button 1: SuperAdmin -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard SuperAdmin</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Akses penuh kontrol sistem</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 2: Admin Pusat -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-slate-700 hover:to-slate-900 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-800 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-slate-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard Admin Pusat</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Kelola tingkat nasional</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 3: Admin Provinsi -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-emerald-600 hover:to-teal-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard Admin Provinsi</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Koordinasi tingkat provinsi</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 4: Admin Kab/Kota -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-amber-600 hover:to-orange-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-amber-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard Admin Kab/Kota</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Manajemen wilayah lokal</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 5: Ketua Tim -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.5s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-rose-600 hover:to-pink-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-rose-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard Ketua Tim</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Pimpin dan pantau tim</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 6: Anggota Tim -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.6s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-indigo-600 hover:to-blue-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard Anggota Tim</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Kontribusi dalam tim</p>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Button 7: User Biasa -->
+                <!-- CTA Button with 3D Effect -->
                 <div class="animate-fade-in-up" style="animation-delay: 0.7s;">
-                    <button class="btn-dashboard w-full bg-white hover:bg-gradient-to-r hover:from-gray-600 hover:to-slate-600 rounded-2xl p-6 shadow-lg border-2 border-slate-200 hover:border-transparent group">
-                        <div class="flex flex-col items-center text-center space-y-3">
-                            <div class="w-16 h-16 bg-gradient-to-br from-gray-500 to-slate-600 rounded-xl flex items-center justify-center group-hover:bg-white transition-all">
-                                <svg class="w-8 h-8 text-white group-hover:text-gray-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-white transition-colors">Dashboard User Biasa</h3>
-                            <p class="text-sm text-slate-600 group-hover:text-white transition-colors">Akses dasar pengguna</p>
-                        </div>
+                    <button
+                        class="btn-3d bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 hover:from-gray-800 hover:to-gray-900 text-white font-bold px-12 py-5 rounded-full shadow-2xl inline-flex items-center gap-3 group glow-on-hover">
+                        <span class="relative z-10">Mulai Perjalanan Belajar</span>
+                        <svg class="w-6 h-6 relative z-10 group-hover:translate-x-2 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Call to Action -->
-            <div class="text-center mt-12 animate-fade-in-up" style="animation-delay: 0.8s;">
-                <p class="text-slate-600 mb-4">
-                    <span class="inline-block animate-pulse">✨</span> 
-                    Mulai perjalanan Anda dengan memilih dashboard yang sesuai
-                </p>
-                <p class="text-sm text-slate-500">
-                    Setiap dashboard dirancang khusus untuk kebutuhan peran Anda
+            <!-- Learning Animation Illustration with 3D Effect -->
+            <div class="mb-16 animate-scale-in" style="animation-delay: 0.9s;">
+                <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 border-2 border-gray-100 glow-on-hover"
+                    style="transform-style: preserve-3d;">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <!-- Left: Animated Book with 3D -->
+                        <div class="flex-1 relative">
+                            <svg class="w-full h-48 animate-book" viewBox="0 0 200 160" fill="none"
+                                style="filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+                                <rect x="20" y="20" width="160" height="120" rx="8" fill="#f8fafc" stroke="#64748b"
+                                    stroke-width="3" />
+                                <rect x="100" y="20" width="3" height="120" fill="#cbd5e1" />
+                                <line x1="40" y1="50" x2="90" y2="50" stroke="#475569" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <line x1="40" y1="70" x2="90" y2="70" stroke="#475569" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <line x1="40" y1="90" x2="85" y2="90" stroke="#475569" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="110" y1="50" x2="160" y2="50" stroke="#475569" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <line x1="110" y1="70" x2="160" y2="70" stroke="#475569" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <line x1="110" y1="90" x2="155" y2="90" stroke="#475569" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <circle cx="65" cy="115" r="10" fill="#1e293b" />
+                            </svg>
+                        </div>
+
+                        <!-- Right: Animated Pen Writing with 3D -->
+                        <div class="flex-1 relative">
+                            <svg class="w-full h-48" viewBox="0 0 200 160" fill="none"
+                                style="filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+                                <rect x="20" y="40" width="160" height="100" rx="4" fill="white" stroke="#e2e8f0"
+                                    stroke-width="3" />
+                                <line x1="40" y1="60" x2="180" y2="60" stroke="#f1f5f9" stroke-width="2" />
+                                <line x1="40" y1="80" x2="180" y2="80" stroke="#f1f5f9" stroke-width="2" />
+                                <line x1="40" y1="100" x2="180" y2="100" stroke="#f1f5f9" stroke-width="2" />
+                                <line x1="40" y1="120" x2="180" y2="120" stroke="#f1f5f9" stroke-width="2" />
+                                <path class="animate-write" d="M40 60 L110 60" stroke="#1e293b" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <path class="animate-write" d="M40 80 L150 80" stroke="#1e293b" stroke-width="3"
+                                    stroke-linecap="round" style="animation-delay: 0.5s;" />
+                                <path class="animate-write" d="M40 100 L95 100" stroke="#1e293b" stroke-width="3"
+                                    stroke-linecap="round" style="animation-delay: 1s;" />
+                                <!-- Pen with 3D effect -->
+                                <g style="animation: float 3s ease-in-out infinite; animation-delay: 0.5s;">
+                                    <line x1="145" y1="95" x2="157" y2="83" stroke="#1e293b" stroke-width="4"
+                                        stroke-linecap="round" />
+                                    <circle cx="142" cy="98" r="3" fill="#1e293b" />
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features - 3D Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="card-3d bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center animate-slide-in-left"
+                    style="animation-delay: 0.2s;">
+                    <div
+                        class="icon-container w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm mb-2">Video Learning</h3>
+                    <p class="text-xs text-gray-500">Materi audiovisual HD</p>
+                </div>
+
+                <div class="card-3d bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center animate-slide-in-left"
+                    style="animation-delay: 0.4s;">
+                    <div
+                        class="icon-container w-12 h-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm mb-2">E-Module</h3>
+                    <p class="text-xs text-gray-500">Bahan bacaan digital</p>
+                </div>
+
+                <div class="card-3d bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center animate-slide-in-right"
+                    style="animation-delay: 0.6s;">
+                    <div
+                        class="icon-container w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm mb-2">Quiz & Test</h3>
+                    <p class="text-xs text-gray-500">Evaluasi berkala</p>
+                </div>
+
+                <div class="card-3d bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center animate-slide-in-right"
+                    style="animation-delay: 0.8s;">
+                    <div
+                        class="icon-container w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-sm mb-2">Sertifikat</h3>
+                    <p class="text-xs text-gray-500">Pengakuan resmi</p>
+                </div>
+            </div>
+
+            <!-- Stats Section with 3D -->
+            <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl p-10 md:p-14 shadow-2xl mb-12 glow-on-hover animate-fade-in-up"
+                style="animation-delay: 1s; transform-style: preserve-3d;">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="stat-card transform hover:scale-110 transition-all duration-300">
+                        <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2">12K+</div>
+                        <div class="text-gray-400 text-sm font-medium">Peserta Aktif</div>
+                    </div>
+                    <div class="stat-card transform hover:scale-110 transition-all duration-300">
+                        <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2">200+</div>
+                        <div class="text-gray-400 text-sm font-medium">Kursus Tersedia</div>
+                    </div>
+                    <div class="stat-card transform hover:scale-110 transition-all duration-300">
+                        <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2">98%</div>
+                        <div class="text-gray-400 text-sm font-medium">Tingkat Selesai</div>
+                    </div>
+                    <div class="stat-card transform hover:scale-110 transition-all duration-300">
+                        <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2">4.9</div>
+                        <div class="text-gray-400 text-sm font-medium">Rating Pengguna</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action with 3D -->
+            <div class="text-center animate-fade-in-up" style="animation-delay: 1.2s;">
+                <div class="bg-white/95 backdrop-blur-sm rounded-3xl p-10 shadow-2xl border-2 border-gray-100 max-w-3xl mx-auto glow-on-hover"
+                    style="transform-style: preserve-3d;">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Siap Meningkatkan Kompetensi?</h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Bergabung sekarang dan akses ratusan program pelatihan berkualitas yang dirancang khusus untuk
+                        pengembangan karir Anda
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button
+                            class="btn-3d bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-bold px-10 py-4 rounded-full shadow-xl glow-on-hover">
+                            Daftar Gratis
+                        </button>
+                        <button
+                            class="btn-3d bg-white hover:bg-gray-50 text-gray-900 font-bold px-10 py-4 rounded-full border-3 border-gray-900 shadow-xl glow-on-hover">
+                            Lihat Program
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-gray-500 mt-8 text-base animate-pulse">
+                    💡 Investasi terbaik adalah investasi untuk pengembangan diri
                 </p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const hero = document.getElementById('hero');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            hero.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // 3D card tilt effect
+        document.querySelectorAll('.card-3d').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.05)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
+
 </html>
