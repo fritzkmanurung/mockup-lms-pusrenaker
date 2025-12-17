@@ -25,8 +25,8 @@
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="/pusat/index.html" class="flex ms-2"><svg
-                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg class="w-8 h-8 text-indigo-600"
+                            fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
                         </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
@@ -63,10 +63,10 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/pusat/index.html"
+                    <a href="../index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="../susun/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -98,6 +98,37 @@
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
                     </a>
+                </li>
+                <li>
+                    <button type="button" data-dropdown-toggle="dropdown-pelaporan"
+                        class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap text-left">Pelaporan</span>
+                        <svg class="w-3 h-3 transition-transform dropdown-arrow" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-pelaporan" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../laporan/index.html"
+                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
+                                Dashboard RTK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../laporan/list.html"
+                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
+                                Daftar RTKN
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="../support/help.html"
@@ -122,7 +153,7 @@
             <nav class="flex mb-3 aria-label=" Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="/pusat/index.html"
+                        <a href="../index.html"
                             class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -267,6 +298,14 @@
         // Sidebar toggle
         document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
             document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        });
+
+        // Toggle Pelaporan dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
+            const dropdown = document.getElementById('dropdown-pelaporan');
+            const arrow = this.querySelector('.dropdown-arrow');
+            dropdown.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-180');
         });
 
         // Toggle password visibility

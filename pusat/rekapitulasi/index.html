@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan RTKN | EduLearn - Platform E-Learning Terbaik</title>
+    <title>Rekapitulasi Provinsi | EduLearn - Platform E-Learning Terbaik</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -19,10 +20,6 @@
         }
 
         /* DataTables Custom Styling */
-        .dataTables_wrapper {
-            padding: 0;
-        }
-
         table.dataTable thead th {
             background-color: #f9fafb;
             color: #374151;
@@ -42,46 +39,22 @@
             background-color: #f9fafb;
         }
 
-        .dataTables_filter input {
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            margin-left: 0.5rem;
-            font-size: 0.875rem;
+        .dt-buttons {
+            margin-bottom: 1rem;
         }
 
-        .dataTables_filter input:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-        }
-
-        .dataTables_length select {
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            margin: 0 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .paginate_button {
-            padding: 0.5rem 0.75rem !important;
-            margin: 0 0.25rem !important;
-            border-radius: 0.375rem !important;
-            border: 1px solid #d1d5db !important;
-            background-color: white !important;
-            color: #374151 !important;
-        }
-
-        .paginate_button:hover {
-            background-color: #f3f4f6 !important;
-            border-color: #9ca3af !important;
-        }
-
-        .paginate_button.current {
+        .dt-button {
             background-color: #6366f1 !important;
             color: white !important;
-            border-color: #6366f1 !important;
+            border: none !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.5rem !important;
+            margin-right: 0.5rem !important;
+            font-size: 0.875rem !important;
+        }
+
+        .dt-button:hover {
+            background-color: #4f46e5 !important;
         }
     </style>
 </head>
@@ -147,10 +120,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./index.html"
-                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <a href="../susun/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
                         </svg>
@@ -241,7 +215,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Penyusunan</span>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Rekapitulasi</span>
                         </div>
                     </li>
                 </ol>
@@ -249,22 +223,16 @@
 
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKN</h2>
-                    <a href="./create.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        Create Project
-                    </a>
+                <div class="mb-4">
+                    <h2 class="text-lg font-semibold text-gray-900">Rekapitulasi Provinsi</h2>
+                    <p class="text-sm text-gray-600 mt-1">Data peserta pembelajaran per provinsi</p>
                 </div>
-                <table id="projectsTable" class="display" style="width:100%">
+                <table id="provinsiTable" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Project Name</th>
-                            <th>Nama Ketua Tim</th>
+                            <th>Nama Provinsi</th>
+                            <th>Jumlah</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -275,26 +243,6 @@
             </div>
         </div>
     </div>
-
-    <!-- PDF Modal -->
-    <div id="pdfModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl h-3/4 flex flex-col">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 id="modalTitle" class="text-lg font-semibold text-gray-900"></h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Modal Body -->
-            <div class="flex-1 overflow-hidden">
-                <iframe id="pdfFrame" class="w-full h-full" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
     </div>
 
     <!-- jQuery -->
@@ -302,6 +250,14 @@
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <script>
         // Toggle dropdown menu
@@ -331,56 +287,111 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTKN Projects Data
-        const projectsData = [
-            { name: 'RTKN Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya' },
-            { name: 'RTKN Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza' },
-            { name: 'RTKN Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.' },
-            { name: 'RTKN Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma' },
-            { name: 'RTKN Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama' },
-            { name: 'RTKN Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari' },
-            { name: 'RTKN Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto' },
-            { name: 'RTKN Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.' },
-            { name: 'RTKN Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono' },
-            { name: 'RTKN Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.' }
+        // Province data with participant counts
+        const provinsiData = [
+            { name: 'Aceh', count: 1247 },
+            { name: 'Sumatera Utara', count: 2891 },
+            { name: 'Sumatera Selatan', count: 1653 },
+            { name: 'Sumatera Barat', count: 1122 },
+            { name: 'Bengkulu', count: 543 },
+            { name: 'Riau', count: 1876 },
+            { name: 'Kepulauan Riau', count: 891 },
+            { name: 'Jambi', count: 734 },
+            { name: 'Lampung', count: 1456 },
+            { name: 'Bangka Belitung', count: 512 },
+            { name: 'Kalimantan Barat', count: 987 },
+            { name: 'Kalimantan Timur', count: 1765 },
+            { name: 'Kalimantan Selatan', count: 1234 },
+            { name: 'Kalimantan Tengah', count: 876 },
+            { name: 'Kalimantan Utara', count: 654 },
+            { name: 'Banten', count: 3210 },
+            { name: 'DKI Jakarta', count: 5678 },
+            { name: 'Jawa Barat', count: 4532 },
+            { name: 'Jawa Tengah', count: 3987 },
+            { name: 'DI Yogyakarta', count: 1876 },
+            { name: 'Jawa Timur', count: 4321 },
+            { name: 'Bali', count: 2109 },
+            { name: 'Nusa Tenggara Timur', count: 765 },
+            { name: 'Nusa Tenggara Barat', count: 1098 },
+            { name: 'Gorontalo', count: 432 },
+            { name: 'Sulawesi Barat', count: 567 },
+            { name: 'Sulawesi Tengah', count: 876 },
+            { name: 'Sulawesi Utara', count: 1234 },
+            { name: 'Sulawesi Tenggara', count: 987 },
+            { name: 'Sulawesi Selatan', count: 2345 },
+            { name: 'Maluku Utara', count: 543 },
+            { name: 'Maluku', count: 678 },
+            { name: 'Papua Barat', count: 456 },
+            { name: 'Papua', count: 789 },
+            { name: 'Papua Tengah', count: 321 },
+            { name: 'Papua Pegunungan', count: 234 },
+            { name: 'Papua Selatan', count: 345 },
+            { name: 'Papua Barat Daya', count: 298 }
         ];
 
         // Transform data for DataTable
-        const tableData = projectsData.map((project, index) => {
+        const tableData = provinsiData.map((prov, index) => {
             return [
                 index + 1,
-                project.name,
-                project.leader,
-                `<button onclick="viewProject('${project.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                prov.name,
+                prov.count.toLocaleString('id-ID'),
+                `<a href="#" onclick="viewDetail('${prov.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
-                    View
-                </button>`
+                    View Detail
+                </a>`
             ];
         });
 
-        // Initialize DataTable
+        // Initialize DataTable with export buttons
         $(document).ready(function () {
-            $('#projectsTable').DataTable({
+            $('#provinsiTable').DataTable({
                 data: tableData,
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"></i> Excel',
+                        title: 'Rekapitulasi Provinsi',
+                        exportOptions: {
+                            columns: [0, 1, 2]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fa fa-file-pdf-o"></i> PDF',
+                        title: 'Rekapitulasi Provinsi',
+                        exportOptions: {
+                            columns: [0, 1, 2]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i> Print',
+                        title: 'Rekapitulasi Provinsi',
+                        exportOptions: {
+                            columns: [0, 1, 2]
+                        }
+                    }
+                ],
                 language: {
                     search: "Cari:",
                     lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ project",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 project",
-                    infoFiltered: "(difilter dari _MAX_ total project)",
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ provinsi",
+                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 provinsi",
+                    infoFiltered: "(difilter dari _MAX_ total provinsi)",
                     paginate: {
                         first: "Pertama",
                         last: "Terakhir",
                         next: "Selanjutnya",
                         previous: "Sebelumnya"
                     },
-                    zeroRecords: "Tidak ada project yang ditemukan",
-                    emptyTable: "Tidak ada project tersedia"
+                    zeroRecords: "Tidak ada data yang ditemukan",
+                    emptyTable: "Tidak ada data tersedia"
                 },
                 order: [[0, 'asc']],
                 columnDefs: [
@@ -389,26 +400,10 @@
             });
         });
 
-        // View project function - opens modal with PDF
-        function viewProject(projectName) {
-            const modal = document.getElementById('pdfModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const pdfFrame = document.getElementById('pdfFrame');
-
-            modalTitle.textContent = projectName;
-            pdfFrame.src = '../../assets/UU Nomor 13 Tahun 2003.pdf';
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal function
-        function closeModal() {
-            const modal = document.getElementById('pdfModal');
-            const pdfFrame = document.getElementById('pdfFrame');
-
-            modal.classList.add('hidden');
-            pdfFrame.src = '';
-            document.body.style.overflow = 'auto';
+        // View detail function
+        function viewDetail(provinceName) {
+            alert(`Detail untuk ${provinceName}\n\nFitur ini akan menampilkan detail peserta dari provinsi ${provinceName}.`);
+            return false;
         }
     </script>
 </body>

@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan RTKN | EduLearn - Platform E-Learning Terbaik</title>
+    <title>Create Project RTKN | EduLearn - Platform E-Learning Terbaik</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,70 +18,41 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* DataTables Custom Styling */
-        .dataTables_wrapper {
-            padding: 0;
-        }
-
-        table.dataTable thead th {
-            background-color: #f9fafb;
-            color: #374151;
-            font-weight: 600;
-            font-size: 0.875rem;
-            padding: 12px 16px;
-            border-bottom: 2px solid #e5e7eb;
-        }
-
-        table.dataTable tbody td {
-            padding: 12px 16px;
-            font-size: 0.875rem;
-            color: #4b5563;
-        }
-
-        table.dataTable tbody tr:hover {
-            background-color: #f9fafb;
-        }
-
-        .dataTables_filter input {
+        /* Select2 Custom Styling */
+        .select2-container--default .select2-selection--single {
+            height: 42px;
             border: 1px solid #d1d5db;
             border-radius: 0.5rem;
             padding: 0.5rem 0.75rem;
-            margin-left: 0.5rem;
-            font-size: 0.875rem;
         }
 
-        .dataTables_filter input:focus {
-            outline: none;
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 26px;
+            color: #374151;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 40px;
+        }
+
+        .select2-container--default.select2-container--focus .select2-selection--single {
             border-color: #6366f1;
             box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
 
-        .dataTables_length select {
+        .select2-dropdown {
             border: 1px solid #d1d5db;
             border-radius: 0.5rem;
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
             padding: 0.5rem;
-            margin: 0 0.5rem;
-            font-size: 0.875rem;
         }
 
-        .paginate_button {
-            padding: 0.5rem 0.75rem !important;
-            margin: 0 0.25rem !important;
-            border-radius: 0.375rem !important;
-            border: 1px solid #d1d5db !important;
-            background-color: white !important;
-            color: #374151 !important;
-        }
-
-        .paginate_button:hover {
-            background-color: #f3f4f6 !important;
-            border-color: #9ca3af !important;
-        }
-
-        .paginate_button.current {
-            background-color: #6366f1 !important;
-            color: white !important;
-            border-color: #6366f1 !important;
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #6366f1;
         }
     </style>
 </head>
@@ -241,176 +212,147 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Penyusunan</span>
+                            <a href="./index.html"
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">Penyusunan</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Create Project</span>
                         </div>
                     </li>
                 </ol>
             </nav>
 
-            <!-- DataTable Card -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKN</h2>
-                    <a href="./create.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        Create Project
-                    </a>
+            <!-- Form Card -->
+            <div class="bg-white rounded-lg shadow-sm p-8 max-w-2xl mx-auto">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Create New RTKN Project</h1>
+                    <p class="text-gray-600 mt-1">Buat project RTKN baru dengan mengisi form di bawah ini</p>
                 </div>
-                <table id="projectsTable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Project Name</th>
-                            <th>Nama Ketua Tim</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
+
+                <form id="createProjectForm" class="space-y-6">
+                    <!-- Nama Project -->
+                    <div>
+                        <label for="projectName" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nama Project <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="projectName" name="projectName" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Contoh: RTKN Sektor Industri Manufaktur 2025">
+                    </div>
+
+                    <!-- Ketua Tim -->
+                    <div>
+                        <label for="teamLeader" class="block text-sm font-medium text-gray-700 mb-2">
+                            Ketua Tim <span class="text-red-500">*</span>
+                        </label>
+                        <select id="teamLeader" name="teamLeader" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Pilih Ketua Tim</option>
+                            <option value="Dr. Ahmad Wijaya">Dr. Ahmad Wijaya</option>
+                            <option value="Ir. Siti Nurhaliza">Ir. Siti Nurhaliza</option>
+                            <option value="Budi Santoso, S.E.">Budi Santoso, S.E.</option>
+                            <option value="Dr. Rina Kusuma">Dr. Rina Kusuma</option>
+                            <option value="dr. Hendra Pratama">dr. Hendra Pratama</option>
+                            <option value="Prof. Dewi Lestari">Prof. Dewi Lestari</option>
+                            <option value="Ir. Bambang Suryanto">Ir. Bambang Suryanto</option>
+                            <option value="Andi Firmansyah, S.T.">Andi Firmansyah, S.T.</option>
+                            <option value="Dr. Rudi Hartono">Dr. Rudi Hartono</option>
+                            <option value="Maya Sari, M.M.">Maya Sari, M.M.</option>
+                            <option value="Dr. Agus Setiawan">Dr. Agus Setiawan</option>
+                            <option value="Ir. Lina Marlina">Ir. Lina Marlina</option>
+                            <option value="Prof. Dr. Budi Utomo">Prof. Dr. Budi Utomo</option>
+                            <option value="Dra. Sari Indah">Dra. Sari Indah</option>
+                            <option value="M. Rizki Pratama, S.T.">M. Rizki Pratama, S.T.</option>
+                        </select>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-4 pt-4">
+                        <a href="./index.html"
+                            class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors text-center">
+                            Cancel
+                        </a>
+                        <button type="submit"
+                            class="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            Submit
+                        </button>
+                    </div>
+                </form>
             </div>
-        </div>
-    </div>
 
-    <!-- PDF Modal -->
-    <div id="pdfModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl h-3/4 flex flex-col">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 id="modalTitle" class="text-lg font-semibold text-gray-900"></h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Modal Body -->
-            <div class="flex-1 overflow-hidden">
-                <iframe id="pdfFrame" class="w-full h-full" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
-    </div>
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+            <!-- Select2 JS -->
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+            <script>
+                // Toggle dropdown menu
+                document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+                    document.getElementById('dropdown-user').classList.toggle('hidden');
+                });
 
-    <script>
-        // Toggle dropdown menu
-        document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
-            document.getElementById('dropdown-user').classList.toggle('hidden');
-        });
+                // Toggle sidebar on mobile
+                document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
+                    document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+                });
 
-        // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
-        });
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function (event) {
+                    const dropdown = document.getElementById('dropdown-user');
+                    const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+                    if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.getElementById('dropdown-user');
-            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
-            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
-            }
-        });
+                // Toggle Pelaporan dropdown
+                document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
+                    const dropdown = document.getElementById('dropdown-pelaporan');
+                    const arrow = this.querySelector('.dropdown-arrow');
+                    dropdown.classList.toggle('hidden');
+                    arrow?.classList.toggle('rotate-180');
+                });
 
-        // Toggle Pelaporan dropdown
-        document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
-            const dropdown = document.getElementById('dropdown-pelaporan');
-            const arrow = this.querySelector('.dropdown-arrow');
-            dropdown.classList.toggle('hidden');
-            arrow?.classList.toggle('rotate-180');
-        });
+                // Initialize Select2
+                $(document).ready(function () {
+                    $('#teamLeader').select2({
+                        placeholder: 'Pilih Ketua Tim',
+                        allowClear: true,
+                        width: '100%'
+                    });
+                });
 
-        // RTKN Projects Data
-        const projectsData = [
-            { name: 'RTKN Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya' },
-            { name: 'RTKN Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza' },
-            { name: 'RTKN Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.' },
-            { name: 'RTKN Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma' },
-            { name: 'RTKN Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama' },
-            { name: 'RTKN Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari' },
-            { name: 'RTKN Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto' },
-            { name: 'RTKN Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.' },
-            { name: 'RTKN Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono' },
-            { name: 'RTKN Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.' }
-        ];
+                // Form submission handler
+                document.getElementById('createProjectForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-        // Transform data for DataTable
-        const tableData = projectsData.map((project, index) => {
-            return [
-                index + 1,
-                project.name,
-                project.leader,
-                `<button onclick="viewProject('${project.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                    View
-                </button>`
-            ];
-        });
+                    const projectName = document.getElementById('projectName').value;
+                    const teamLeader = document.getElementById('teamLeader').value;
 
-        // Initialize DataTable
-        $(document).ready(function () {
-            $('#projectsTable').DataTable({
-                data: tableData,
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ project",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 project",
-                    infoFiltered: "(difilter dari _MAX_ total project)",
-                    paginate: {
-                        first: "Pertama",
-                        last: "Terakhir",
-                        next: "Selanjutnya",
-                        previous: "Sebelumnya"
-                    },
-                    zeroRecords: "Tidak ada project yang ditemukan",
-                    emptyTable: "Tidak ada project tersedia"
-                },
-                order: [[0, 'asc']],
-                columnDefs: [
-                    { orderable: false, targets: 3 }
-                ]
-            });
-        });
+                    if (!projectName || !teamLeader) {
+                        alert('Mohon lengkapi semua field yang diperlukan!');
+                        return;
+                    }
 
-        // View project function - opens modal with PDF
-        function viewProject(projectName) {
-            const modal = document.getElementById('pdfModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const pdfFrame = document.getElementById('pdfFrame');
+                    // Show success message
+                    alert(`Project berhasil dibuat!\n\nNama Project: ${projectName}\nKetua Tim: ${teamLeader}\n\nCatatan: Dalam implementasi nyata, data akan disimpan ke database.`);
 
-            modalTitle.textContent = projectName;
-            pdfFrame.src = '../../assets/UU Nomor 13 Tahun 2003.pdf';
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal function
-        function closeModal() {
-            const modal = document.getElementById('pdfModal');
-            const pdfFrame = document.getElementById('pdfFrame');
-
-            modal.classList.add('hidden');
-            pdfFrame.src = '';
-            document.body.style.overflow = 'auto';
-        }
-    </script>
+                    // Redirect back to list page
+                    window.location.href = './index.html';
+                });
+            </script>
 </body>
 
 </html>
