@@ -40,21 +40,50 @@
         }
 
         .dt-buttons {
+            margin-top: 1rem;
             margin-bottom: 1rem;
+            display: block !important;
+            width: 100% !important;
+            clear: both !important;
         }
 
         .dt-button {
-            background-color: #6366f1 !important;
+            background-color: #16a34a !important;
+            /* Green */
             color: white !important;
             border: none !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 0.5rem !important;
+            padding: 0.375rem 0.75rem !important;
+            /* Smaller padding */
+            border-radius: 0 !important;
+            /* No border radius - square */
+            font-size: 0.813rem !important;
+            /* Smaller font */
             margin-right: 0.5rem !important;
-            font-size: 0.875rem !important;
         }
 
         .dt-button:hover {
-            background-color: #4f46e5 !important;
+            background-color: #15803d !important;
+            /* Darker green on hover */
+        }
+
+        .paginate_button {
+            padding: 0.5rem 0.75rem !important;
+            margin: 0 0.25rem !important;
+            border-radius: 0.375rem !important;
+            border: 1px solid #d1d5db !important;
+            background-color: white !important;
+            color: #374151 !important;
+        }
+
+        .paginate_button:hover {
+            background-color: #f3f4f6 !important;
+            border-color: #9ca3af !important;
+        }
+
+        .paginate_button.current {
+            background-color: #6366f1 !important;
+            color: white !important;
+            border-color: #6366f1 !important;
         }
     </style>
 </head>
@@ -175,6 +204,17 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="./index.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi</span>
+                    </a>
+                </li>
+                <li>
                     <a href="../support/help.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
@@ -223,10 +263,6 @@
 
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Rekapitulasi Provinsi</h2>
-                    <p class="text-sm text-gray-600 mt-1">Data peserta pembelajaran per provinsi</p>
-                </div>
                 <table id="provinsiTable" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -340,7 +376,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
-                    View Detail
+                    View
                 </a>`
             ];
         });
@@ -351,11 +387,11 @@
                 data: tableData,
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                dom: 'Bfrtip',
+                dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
                 buttons: [
                     {
                         extend: 'excelHtml5',
-                        text: '<i class="fa fa-file-excel-o"></i> Excel',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
                         title: 'Rekapitulasi Provinsi',
                         exportOptions: {
                             columns: [0, 1, 2]
@@ -363,7 +399,7 @@
                     },
                     {
                         extend: 'pdfHtml5',
-                        text: '<i class="fa fa-file-pdf-o"></i> PDF',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
                         title: 'Rekapitulasi Provinsi',
                         exportOptions: {
                             columns: [0, 1, 2]
@@ -371,7 +407,7 @@
                     },
                     {
                         extend: 'print',
-                        text: '<i class="fa fa-print"></i> Print',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
                         title: 'Rekapitulasi Provinsi',
                         exportOptions: {
                             columns: [0, 1, 2]
