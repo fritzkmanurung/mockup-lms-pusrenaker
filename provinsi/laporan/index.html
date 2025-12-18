@@ -78,10 +78,10 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="./index.html"
-                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
-                        <svg class="w-5 h-5 text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./susun/index.html"
+                    <a href="../susun/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -104,29 +104,28 @@
                 </li>
                 <li>
                     <button type="button" data-dropdown-toggle="dropdown-pelaporan"
-                        class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                        class="flex items-center w-full px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap text-left">Pelaporan</span>
-                        <svg class="w-3 h-3 transition-transform dropdown-arrow" aria-hidden="true"
+                        <svg class="w-3 h-3 transition-transform rotate-180 dropdown-arrow" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
-                    <ul id="dropdown-pelaporan" class="hidden py-2 space-y-2">
+                    <ul id="dropdown-pelaporan" class="py-2 space-y-2">
                         <li>
-                            <a href="./laporan/index.html"
-                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
+                            <a href="./index.html"
+                                class="flex items-center w-full px-2 py-1.5 text-indigo-600 bg-purple-50 transition-colors rounded-lg pl-11 font-medium">
                                 Dashboard RTK
                             </a>
                         </li>
                         <li>
-                            <a href="./laporan/list.html"
+                            <a href="./list.html"
                                 class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
                                 Daftar RTK
                             </a>
@@ -134,7 +133,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="./rekapitulasi/index.html"
+                    <a href="../rekapitulasi/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -146,7 +145,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./support/help.html"
+                    <a href="../support/help.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -182,41 +181,31 @@
                 </ol>
             </nav>
 
-            <!-- Bar Chart: SDM per Kab/Kota -->
+            <!-- Bar Chart: Masa Aktif RTK per Provinsi -->
             <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Jumlah SDM per Kabupaten/Kota</h2>
-                    <div class="flex items-center gap-2">
-                        <label for="yearFilter" class="text-sm font-medium text-gray-700">Tahun:</label>
-                        <select id="yearFilter"
-                            class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="2025">2025</option>
-                            <option value="2024" selected>2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                        </select>
+                    <h2 class="text-xl font-bold text-gray-900">Masa Aktif RTK per Kab/Kota</h2>
+                    <div class="text-sm text-gray-600">
+                        <span class="font-medium">Tahun Sekarang:</span> 2025
+                        <span class="mx-2">|</span>
+                        <span class="font-medium">Masa Berlaku:</span> 5 Tahun
                     </div>
                 </div>
                 <div class="h-96">
-                    <canvas id="sdmBarChart"></canvas>
+                    <canvas id="rtkValidityBarChart"></canvas>
                 </div>
             </div>
 
-            <!-- Pie Charts Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Left Card: Gender Distribution Pie Chart -->
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Jenis Kelamin</h2>
-                    <div class="h-80 flex items-center justify-center">
-                        <canvas id="genderPieChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Right Card: Module Distribution Pie Chart -->
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Modul yang Diambil</h2>
-                    <div class="h-80 flex items-center justify-center">
-                        <canvas id="modulePieChart"></canvas>
+            <!-- RTK Validity Status Pie Chart -->
+            <div class="flex justify-center">
+                <div class="bg-white rounded-lg p-6 shadow-sm w-full lg:w-2/3">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">Status Masa Berlaku RTK Kab/Kota (2025)
+                    </h2>
+                    <p class="text-sm text-gray-600 mb-6 text-center">
+                        RTK yang sudah tidak berlaku <span class="font-semibold text-red-600">harus segera diurus</span>
+                    </p>
+                    <div class="h-96 flex items-center justify-center">
+                        <canvas id="rtkStatusPieChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -252,40 +241,51 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // Chart data by year
-        const chartDataByYear = {
-            2022: {
-                labels: ['Jakarta Utara', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Pusat', 'Kepulauan Seribu'],
-                data: [245, 312, 289, 276, 198, 45]
-            },
-            2023: {
-                labels: ['Jakarta Utara', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Pusat', 'Kepulauan Seribu'],
-                data: [289, 356, 324, 298, 234, 52]
-            },
-            2024: {
-                labels: ['Jakarta Utara', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Pusat', 'Kepulauan Seribu'],
-                data: [324, 398, 367, 342, 265, 68]
-            },
-            2025: {
-                labels: ['Jakarta Utara', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Pusat', 'Kepulauan Seribu'],
-                data: [156, 187, 165, 142, 98, 24]
-            }
-        };
+        // RTK Validity Data for Jakarta Kab/Kota
+        // Current year is 2025, RTK validity is 5 years
+        // If expiry year < 2025, it's expired and needs renewal
+        const provinceLabels = ['Jakarta Pusat', 'Jakarta Barat', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Utara', 'Kep. Seribu'];
 
-        // Bar Chart: SDM per Kab/Kota
-        const barCtx = document.getElementById('sdmBarChart').getContext('2d');
-        let sdmBarChart = new Chart(barCtx, {
+        // Year when RTK expires for each kab/kota (some expired, some still valid)
+        const rtkExpiryYears = [
+            2027, 2028, 2026, 2029, 2027, 2025
+        ];
+
+        // Calculate valid vs expired
+        let validCount = 0;
+        let expiredCount = 0;
+        const currentYear = 2025;
+
+        rtkExpiryYears.forEach(year => {
+            if (year >= currentYear) {
+                validCount++;
+            } else {
+                expiredCount++;
+            }
+        });
+
+        // Create background colors for bar chart (red for expired, green for valid)
+        const backgroundColors = rtkExpiryYears.map(year =>
+            year >= currentYear ? 'rgba(16, 185, 129, 0.8)' : 'rgba(239, 68, 68, 0.8)'
+        );
+
+        const borderColors = rtkExpiryYears.map(year =>
+            year >= currentYear ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'
+        );
+
+        // Bar Chart: RTK Validity Period per Province
+        const barCtx = document.getElementById('rtkValidityBarChart').getContext('2d');
+        const rtkValidityBarChart = new Chart(barCtx, {
             type: 'bar',
             data: {
-                labels: chartDataByYear[2024].labels,
+                labels: provinceLabels,
                 datasets: [{
-                    label: 'Jumlah SDM',
-                    data: chartDataByYear[2024].data,
-                    backgroundColor: 'rgba(99, 102, 241, 0.8)',
-                    borderColor: 'rgba(99, 102, 241, 1)',
+                    label: 'Tahun Berlaku (Kadaluarsa)',
+                    data: rtkExpiryYears,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
                     borderWidth: 1,
-                    borderRadius: 6,
-                    hoverBackgroundColor: 'rgba(99, 102, 241, 1)'
+                    borderRadius: 6
                 }]
             },
             options: {
@@ -293,7 +293,30 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 13,
+                                weight: '500'
+                            },
+                            generateLabels: function () {
+                                return [
+                                    {
+                                        text: 'Masih Berlaku (≥ 2025)',
+                                        fillStyle: 'rgba(16, 185, 129, 0.8)',
+                                        strokeStyle: 'rgba(16, 185, 129, 1)',
+                                        lineWidth: 1
+                                    },
+                                    {
+                                        text: 'Sudah Tidak Berlaku (< 2025)',
+                                        fillStyle: 'rgba(239, 68, 68, 0.8)',
+                                        strokeStyle: 'rgba(239, 68, 68, 1)',
+                                        lineWidth: 1
+                                    }
+                                ];
+                            }
+                        }
                     },
                     tooltip: {
                         backgroundColor: 'rgba(31, 41, 55, 0.95)',
@@ -305,95 +328,56 @@
                         },
                         bodyFont: {
                             size: 13
+                        },
+                        callbacks: {
+                            label: function (context) {
+                                const year = context.parsed.y;
+                                const status = year >= currentYear ? 'Masih Berlaku' : 'Sudah Tidak Berlaku';
+                                return `Berlaku sampai: ${year} (${status})`;
+                            }
                         }
                     }
                 },
                 scales: {
                     y: {
-                        beginAtZero: true,
+                        beginAtZero: false,
+                        min: 2020,
+                        max: 2030,
                         ticks: {
                             font: {
                                 size: 12
-                            }
+                            },
+                            stepSize: 1
                         },
                         grid: {
                             color: 'rgba(229, 231, 235, 0.8)'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Tahun Berlaku',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
                         }
                     },
                     x: {
                         ticks: {
                             font: {
-                                size: 12
-                            }
+                                size: 10
+                            },
+                            maxRotation: 45,
+                            minRotation: 45
                         },
                         grid: {
                             display: false
-                        }
-                    }
-                }
-            }
-        });
-
-        // Year filter change handler
-        document.getElementById('yearFilter').addEventListener('change', function (e) {
-            const year = e.target.value;
-            sdmBarChart.data.labels = chartDataByYear[year].labels;
-            sdmBarChart.data.datasets[0].data = chartDataByYear[year].data;
-            sdmBarChart.update();
-        });
-
-        // Pie Chart: Gender Distribution
-        const genderCtx = document.getElementById('genderPieChart').getContext('2d');
-        const genderPieChart = new Chart(genderCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Laki-laki', 'Perempuan'],
-                datasets: [{
-                    data: [856, 908],
-                    backgroundColor: [
-                        'rgba(59, 130, 246, 0.8)',
-                        'rgba(236, 72, 153, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(59, 130, 246, 1)',
-                        'rgba(236, 72, 153, 1)'
-                    ],
-                    borderWidth: 2,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
+                        },
+                        title: {
+                            display: true,
+                            text: 'Kab/Kota',
                             font: {
                                 size: 13,
-                                weight: '500'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 12,
-                        cornerRadius: 8,
-                        titleFont: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function (context) {
-                                const label = context.label || '';
-                                const value = context.parsed || 0;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(1);
-                                return `${label}: ${value} (${percentage}%)`;
+                                weight: 'bold'
                             }
                         }
                     }
@@ -401,26 +385,24 @@
             }
         });
 
-        // Pie Chart: Module Distribution
-        const moduleCtx = document.getElementById('modulePieChart').getContext('2d');
-        const modulePieChart = new Chart(moduleCtx, {
+        // Pie Chart: RTK Validity Status
+        const pieCtx = document.getElementById('rtkStatusPieChart').getContext('2d');
+        const rtkStatusPieChart = new Chart(pieCtx, {
             type: 'pie',
             data: {
-                labels: ['Modul Makro', 'Modul Mikro', 'Modul Pembangunan Ketenagakerjaan'],
+                labels: ['Masih Berlaku', 'Sudah Tidak Berlaku (Perlu Diurus)'],
                 datasets: [{
-                    data: [542, 678, 544],
+                    data: [validCount, expiredCount],
                     backgroundColor: [
                         'rgba(16, 185, 129, 0.8)',
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(139, 92, 246, 0.8)'
+                        'rgba(239, 68, 68, 0.8)'
                     ],
                     borderColor: [
                         'rgba(16, 185, 129, 1)',
-                        'rgba(245, 158, 11, 1)',
-                        'rgba(139, 92, 246, 1)'
+                        'rgba(239, 68, 68, 1)'
                     ],
                     borderWidth: 2,
-                    hoverOffset: 10
+                    hoverOffset: 15
                 }]
             },
             options: {
@@ -432,21 +414,32 @@
                         labels: {
                             padding: 20,
                             font: {
-                                size: 13,
-                                weight: '500'
+                                size: 14,
+                                weight: '600'
+                            },
+                            generateLabels: function (chart) {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => ({
+                                    text: `${label}: ${data.datasets[0].data[i]} kab/kota`,
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    strokeStyle: data.datasets[0].borderColor[i],
+                                    lineWidth: 2,
+                                    hidden: false,
+                                    index: i
+                                }));
                             }
                         }
                     },
                     tooltip: {
                         backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 12,
+                        padding: 15,
                         cornerRadius: 8,
                         titleFont: {
-                            size: 14,
+                            size: 15,
                             weight: 'bold'
                         },
                         bodyFont: {
-                            size: 13
+                            size: 14
                         },
                         callbacks: {
                             label: function (context) {
@@ -454,7 +447,7 @@
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
-                                return `${label}: ${value} (${percentage}%)`;
+                                return `${label}: ${value} kab/kota (${percentage}%)`;
                             }
                         }
                     }
