@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Admin | EduLearn</title>
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <title>Detail Admin Pusat | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <link rel="icon" type="image/png" href="../../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,117 +13,135 @@
         * {
             font-family: 'Inter', sans-serif;
         }
-        
+
         /* Animasi untuk modal */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        
+
         .modal-animation {
             animation: fadeIn 0.2s ease-out;
         }
-        
+
         .modal-content-animation {
             animation: slideUp 0.3s ease-out;
         }
-        
+
         /* Custom scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #c7d2fe;
             border-radius: 4px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #a5b4fc;
         }
-        
+
         /* Breadcrumb */
         .breadcrumb-item:not(:last-child)::after {
             content: "/";
             margin: 0 8px;
             color: #9ca3af;
         }
-        
+
         /* Card hover effect */
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .detail-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .action-buttons {
                 flex-direction: column;
                 gap: 12px;
             }
-            
-            .action-buttons button, .action-buttons a {
+
+            .action-buttons button,
+            .action-buttons a {
                 width: 100%;
                 justify-content: center;
             }
-            
+
             .profile-section {
                 flex-direction: column;
                 text-align: center;
                 gap: 16px;
             }
-            
+
             .profile-info {
                 text-align: center;
             }
         }
-        
+
         @media (max-width: 640px) {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .section-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
             }
         }
-        
+
         /* Status badge */
         .status-badge {
             transition: all 0.2s ease;
         }
-        
+
         .status-badge:hover {
             transform: translateY(-1px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* Loading animation */
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .animate-spin {
             animation: spin 1s linear infinite;
         }
@@ -141,12 +158,10 @@
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="../index.html" class="flex ms-2"><svg
-                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
-                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
-                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        </svg></button><a href="../../superadmin/index.html" class="flex items-center ms-2">
+                        <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
+                        <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
+                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
                         alt="user"></button>
@@ -172,19 +187,18 @@
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
-            <a href="#" class="flex items-center ps-2.5 mb-5">
-                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
-                </svg>
-                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            <a href="../../superadmin/index.html" class="flex items-center ps-2.5 mb-5">
+                <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
+                <span class="self-center text-lg font-semibold whitespace-nowrap ms-2"
+                    style="color: #13416B;">SIRENATA</span>
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="../index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -248,7 +262,8 @@
             <!-- Header dengan Tombol Kembali -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div class="flex items-center gap-3">
-                    <a href="../admin-pusat/index.html" class="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <a href="../admin-pusat/index.html"
+                        class="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors">
                         <i class="fas fa-arrow-left"></i>
                     </a>
                     <div>
@@ -256,7 +271,7 @@
                         <p class="text-gray-500">Lihat dan kelola informasi admin</p>
                     </div>
                 </div>
-                
+
                 <!-- Status Badge -->
                 <div id="admin-status" class="flex items-center">
                     <!-- Status akan diisi oleh JavaScript -->
@@ -268,17 +283,18 @@
                 <div class="flex flex-col md:flex-row items-start md:items-center gap-6 profile-section">
                     <!-- Avatar -->
                     <div class="flex-shrink-0">
-                        <div id="admin-avatar" class="h-24 w-24 rounded-full flex items-center justify-center text-3xl font-bold">
+                        <div id="admin-avatar"
+                            class="h-24 w-24 rounded-full flex items-center justify-center text-3xl font-bold">
                             <!-- Avatar akan diisi oleh JavaScript -->
                         </div>
                     </div>
-                    
+
                     <!-- Profile Info -->
                     <div class="flex-1 profile-info">
                         <h2 id="admin-name" class="text-2xl font-bold text-gray-900 mb-1"></h2>
                         <p id="admin-role" class="text-gray-600 mb-2"></p>
                         <p id="admin-id" class="text-sm text-gray-500 mb-4"></p>
-                        
+
                         <!-- Action Buttons -->
                         <div class="flex flex-wrap gap-3 action-buttons" id="action-buttons">
                             <!-- Tombol aksi akan diisi oleh JavaScript berdasarkan status -->
@@ -295,51 +311,54 @@
                     <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 card-hover">
                         <div class="flex items-center justify-between mb-6 section-header">
                             <h3 class="text-xl font-bold text-gray-900">Informasi Dasar</h3>
-                            <span class="text-sm text-gray-500">Terakhir diperbarui: <span id="last-updated">-</span></span>
+                            <span class="text-sm text-gray-500">Terakhir diperbarui: <span
+                                    id="last-updated">-</span></span>
                         </div>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-500 mb-1">Email</label>
                                     <p id="admin-email" class="text-gray-900 font-medium"></p>
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-sm font-medium text-gray-500 mb-1">Nomor Telepon</label>
                                     <p id="admin-phone" class="text-gray-900 font-medium"></p>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-500 mb-1">Tanggal Bergabung</label>
+                                    <label class="block text-sm font-medium text-gray-500 mb-1">Tanggal
+                                        Bergabung</label>
                                     <p id="join-date" class="text-gray-900 font-medium"></p>
                                 </div>
                             </div>
-                            
+
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-500 mb-1">Terakhir Login</label>
                                     <p id="last-login" class="text-gray-900 font-medium"></p>
                                     <p id="last-login-detail" class="text-sm text-gray-500"></p>
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-sm font-medium text-gray-500 mb-1">IP Terakhir</label>
                                     <p id="last-ip" class="text-gray-900 font-medium"></p>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-500 mb-1">Perangkat Terakhir</label>
+                                    <label class="block text-sm font-medium text-gray-500 mb-1">Perangkat
+                                        Terakhir</label>
                                     <p id="last-device" class="text-gray-900 font-medium"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Statistik Aktivitas -->
                     <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 card-hover">
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Statistik Aktivitas</h3>
-                        
+
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stats-grid">
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="flex items-center mb-2">
@@ -353,7 +372,7 @@
                                 </div>
                                 <p class="text-xs text-gray-500">30 hari terakhir</p>
                             </div>
-                            
+
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="flex items-center mb-2">
                                     <div class="p-2 rounded-lg bg-emerald-50 text-emerald-600 mr-3">
@@ -366,7 +385,7 @@
                                 </div>
                                 <p class="text-xs text-gray-500">Hari ini</p>
                             </div>
-                            
+
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="flex items-center mb-2">
                                     <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mr-3">
@@ -379,7 +398,7 @@
                                 </div>
                                 <p class="text-xs text-gray-500">Per sesi</p>
                             </div>
-                            
+
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="flex items-center mb-2">
                                     <div class="p-2 rounded-lg bg-blue-50 text-blue-600 mr-3">
@@ -395,13 +414,13 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Informasi Sistem -->
                 <div class="space-y-6">
                     <!-- Status Sistem -->
                     <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 card-hover">
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Status Sistem</h3>
-                        
+
                         <div class="space-y-4">
                             <div class="flex items-center justify-between p-3 border rounded-lg">
                                 <div class="flex items-center">
@@ -413,9 +432,10 @@
                                         <p class="text-xs text-gray-500" id="account-status-detail">-</p>
                                     </div>
                                 </div>
-                                <span id="account-status-badge" class="text-xs font-medium px-3 py-1 rounded-full">-</span>
+                                <span id="account-status-badge"
+                                    class="text-xs font-medium px-3 py-1 rounded-full">-</span>
                             </div>
-                            
+
                             <div class="flex items-center justify-between p-3 border rounded-lg">
                                 <div class="flex items-center">
                                     <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mr-3">
@@ -426,9 +446,11 @@
                                         <p class="text-xs text-gray-500">Verifikasi 2 faktor</p>
                                     </div>
                                 </div>
-                                <span id="security-status" class="text-xs font-medium bg-gray-100 text-gray-800 px-3 py-1 rounded-full">Tidak aktif</span>
+                                <span id="security-status"
+                                    class="text-xs font-medium bg-gray-100 text-gray-800 px-3 py-1 rounded-full">Tidak
+                                    aktif</span>
                             </div>
-                            
+
                             <div class="flex items-center justify-between p-3 border rounded-lg">
                                 <div class="flex items-center">
                                     <div class="p-2 rounded-lg bg-blue-50 text-blue-600 mr-3">
@@ -443,14 +465,14 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Log Aktivitas Terbaru -->
                     <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 card-hover">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-xl font-bold text-gray-900">Log Aktivitas</h3>
                             <a href="#" class="text-sm text-indigo-600 hover:underline">Lihat Semua</a>
                         </div>
-                        
+
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 p-3 border rounded-lg">
                                 <div class="p-2 rounded-lg bg-blue-100 text-blue-600">
@@ -462,7 +484,7 @@
                                     <p class="text-xs text-gray-500 mt-1">Hari ini, 08:45</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start gap-3 p-3 border rounded-lg">
                                 <div class="p-2 rounded-lg bg-emerald-100 text-emerald-600">
                                     <i class="fas fa-file-edit"></i>
@@ -485,13 +507,15 @@
     <div id="modal-ganti-password" class="hidden fixed inset-0 z-50 overflow-y-auto modal-animation">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
-            
+
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full modal-content-animation">
+
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full modal-content-animation">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">
-                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <div
+                            class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
                             <i class="fas fa-key text-indigo-600"></i>
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
@@ -500,38 +524,55 @@
                                 <form id="form-ganti-password">
                                     <div class="space-y-4">
                                         <div>
-                                            <label class="block text-sm font-medium text-gray-700 mb-1">Admin: <span id="password-admin-name" class="font-semibold"></span></label>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Admin: <span
+                                                    id="password-admin-name" class="font-semibold"></span></label>
                                         </div>
-                                        
+
                                         <div>
-                                            <label for="new-password" class="block text-sm font-medium text-gray-700 mb-1">Password Baru</label>
+                                            <label for="new-password"
+                                                class="block text-sm font-medium text-gray-700 mb-1">Password
+                                                Baru</label>
                                             <div class="relative">
-                                                <input type="password" id="new-password" name="new-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Masukkan password baru">
-                                                <button type="button" class="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700" onclick="togglePassword('new-password')">
+                                                <input type="password" id="new-password" name="new-password"
+                                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                                    placeholder="Masukkan password baru">
+                                                <button type="button"
+                                                    class="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
+                                                    onclick="togglePassword('new-password')">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </div>
-                                            <p class="text-xs text-gray-500 mt-1">Minimal 8 karakter, kombinasi huruf dan angka</p>
+                                            <p class="text-xs text-gray-500 mt-1">Minimal 8 karakter, kombinasi huruf
+                                                dan angka</p>
                                         </div>
-                                        
+
                                         <div>
-                                            <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                                            <label for="confirm-password"
+                                                class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi
+                                                Password</label>
                                             <div class="relative">
-                                                <input type="password" id="confirm-password" name="confirm-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Konfirmasi password baru">
-                                                <button type="button" class="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700" onclick="togglePassword('confirm-password')">
+                                                <input type="password" id="confirm-password" name="confirm-password"
+                                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                                    placeholder="Konfirmasi password baru">
+                                                <button type="button"
+                                                    class="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
+                                                    onclick="togglePassword('confirm-password')">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                        
+
                                         <div>
                                             <div class="flex items-center">
-                                                <input id="send-email" name="send-email" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                                <input id="send-email" name="send-email" type="checkbox"
+                                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                                    checked>
                                                 <label for="send-email" class="ml-2 block text-sm text-gray-700">
                                                     Kirim notifikasi email ke admin
                                                 </label>
                                             </div>
-                                            <p class="text-xs text-gray-500 mt-1">Admin akan menerima email tentang perubahan password.</p>
+                                            <p class="text-xs text-gray-500 mt-1">Admin akan menerima email tentang
+                                                perubahan password.</p>
                                         </div>
                                     </div>
                                 </form>
@@ -540,10 +581,12 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" id="btn-save-password" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="btn-save-password"
+                        class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
                         Simpan Password
                     </button>
-                    <button type="button" id="btn-cancel-password" class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="btn-cancel-password"
+                        class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                         Batal
                     </button>
                 </div>
@@ -555,13 +598,15 @@
     <div id="modal-konfirmasi" class="hidden fixed inset-0 z-50 overflow-y-auto modal-animation">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
-            
+
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-content-animation">
+
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-content-animation">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">
-                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full" id="confirm-icon">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full"
+                            id="confirm-icon">
                             <!-- Ikon akan diisi oleh JavaScript -->
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
@@ -578,10 +623,12 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" id="btn-confirm-yes" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="btn-confirm-yes"
+                        class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
                         <!-- Teks tombol akan diisi oleh JavaScript -->
                     </button>
-                    <button type="button" id="btn-confirm-no" class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="btn-confirm-no"
+                        class="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                         Batal
                     </button>
                 </div>
@@ -592,7 +639,7 @@
     <script>
         // Data Admin (dapat diambil dari URL parameter)
         const adminId = new URLSearchParams(window.location.search).get('id') || 1;
-        
+
         // Data admin contoh
         const adminData = {
             id: 1,
@@ -618,9 +665,9 @@
         };
 
         // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadAdminData();
-            
+
             // Navbar dropdown
             document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
                 document.getElementById('dropdown-user').classList.toggle('hidden');
@@ -646,7 +693,7 @@
                 const avatar = document.getElementById('admin-avatar');
                 avatar.className = `h-24 w-24 rounded-full flex items-center justify-center text-3xl font-bold bg-${adminData.avatarColor}-100 text-${adminData.avatarColor}-600`;
                 avatar.textContent = adminData.avatar;
-                
+
                 // Set basic info
                 document.getElementById('admin-name').textContent = adminData.name;
                 document.getElementById('admin-role').textContent = adminData.role;
@@ -664,17 +711,17 @@
                 document.getElementById('avg-time').textContent = "3.2 menit";
                 document.getElementById('last-activity').textContent = "15";
                 document.getElementById('password-last-changed').textContent = adminData.passwordLastChanged;
-                
+
                 // Set status
                 updateStatusDisplay();
-                
+
                 // Set action buttons based on status
                 updateActionButtons();
-                
+
                 // Set security status
                 document.getElementById('security-status').textContent = adminData.security2FA ? "Aktif" : "Tidak aktif";
-                document.getElementById('security-status').className = adminData.security2FA 
-                    ? "text-xs font-medium bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full" 
+                document.getElementById('security-status').className = adminData.security2FA
+                    ? "text-xs font-medium bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full"
                     : "text-xs font-medium bg-gray-100 text-gray-800 px-3 py-1 rounded-full";
             }
 
@@ -683,7 +730,7 @@
                 const statusContainer = document.getElementById('admin-status');
                 const accountStatusBadge = document.getElementById('account-status-badge');
                 const accountStatusDetail = document.getElementById('account-status-detail');
-                
+
                 if (adminData.status === 'aktif') {
                     statusContainer.innerHTML = `
                         <span class="status-badge bg-emerald-100 text-emerald-800 text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center">
@@ -710,7 +757,7 @@
             // Update action buttons based on status
             function updateActionButtons() {
                 const actionButtonsContainer = document.getElementById('action-buttons');
-                
+
                 if (adminData.status === 'aktif') {
                     // Untuk admin aktif: Edit, Nonaktifkan, Ganti Password
                     actionButtonsContainer.innerHTML = `
@@ -747,10 +794,10 @@
             }
 
             // Toggle password visibility
-            window.togglePassword = function(inputId) {
+            window.togglePassword = function (inputId) {
                 const input = document.getElementById(inputId);
                 const icon = input.nextElementSibling.querySelector('i');
-                
+
                 if (input.type === 'password') {
                     input.type = 'text';
                     icon.classList.remove('fa-eye');
@@ -763,21 +810,21 @@
             }
 
             // Show change password modal
-            window.showChangePasswordModal = function() {
+            window.showChangePasswordModal = function () {
                 document.getElementById('password-admin-name').textContent = adminData.name;
                 document.getElementById('form-ganti-password').reset();
                 openModal('modal-ganti-password');
             }
 
             // Show deactivate modal
-            window.showDeactivateModal = function() {
+            window.showDeactivateModal = function () {
                 const confirmModal = document.getElementById('modal-konfirmasi');
                 const icon = document.getElementById('confirm-icon');
                 const title = document.getElementById('confirm-title');
                 const message = document.getElementById('confirm-message');
                 const details = document.getElementById('confirm-details');
                 const confirmBtn = document.getElementById('btn-confirm-yes');
-                
+
                 icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-amber-100';
                 icon.innerHTML = '<i class="fas fa-user-slash text-amber-600"></i>';
                 title.textContent = 'Nonaktifkan Admin';
@@ -789,19 +836,19 @@
                 `;
                 confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-amber-600 text-base font-medium text-white hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:ml-3 sm:w-auto sm:text-sm';
                 confirmBtn.textContent = 'Nonaktifkan';
-                
+
                 openModal('modal-konfirmasi');
             }
 
             // Show activate modal
-            window.showActivateModal = function() {
+            window.showActivateModal = function () {
                 const confirmModal = document.getElementById('modal-konfirmasi');
                 const icon = document.getElementById('confirm-icon');
                 const title = document.getElementById('confirm-title');
                 const message = document.getElementById('confirm-message');
                 const details = document.getElementById('confirm-details');
                 const confirmBtn = document.getElementById('btn-confirm-yes');
-                
+
                 icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-emerald-100';
                 icon.innerHTML = '<i class="fas fa-user-check text-emerald-600"></i>';
                 title.textContent = 'Aktifkan Admin';
@@ -813,19 +860,19 @@
                 `;
                 confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:ml-3 sm:w-auto sm:text-sm';
                 confirmBtn.textContent = 'Aktifkan';
-                
+
                 openModal('modal-konfirmasi');
             }
 
             // Show delete modal
-            window.showDeleteModal = function() {
+            window.showDeleteModal = function () {
                 const confirmModal = document.getElementById('modal-konfirmasi');
                 const icon = document.getElementById('confirm-icon');
                 const title = document.getElementById('confirm-title');
                 const message = document.getElementById('confirm-message');
                 const details = document.getElementById('confirm-details');
                 const confirmBtn = document.getElementById('btn-confirm-yes');
-                
+
                 icon.className = 'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100';
                 icon.innerHTML = '<i class="fas fa-trash-alt text-red-600"></i>';
                 title.textContent = 'Hapus Admin';
@@ -839,7 +886,7 @@
                 `;
                 confirmBtn.className = 'w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm';
                 confirmBtn.textContent = 'Hapus Permanen';
-                
+
                 openModal('modal-konfirmasi');
             }
 
@@ -859,13 +906,13 @@
 
             // Show notification
             function showNotification(message, type = 'info') {
-                const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : 
-                              type === 'error' ? 'bg-red-100 text-red-800 border-red-200' : 
-                              'bg-blue-100 text-blue-800 border-blue-200';
-                const icon = type === 'success' ? 'fa-check-circle' : 
-                            type === 'error' ? 'fa-exclamation-circle' : 
-                            'fa-info-circle';
-                
+                const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' :
+                    type === 'error' ? 'bg-red-100 text-red-800 border-red-200' :
+                        'bg-blue-100 text-blue-800 border-blue-200';
+                const icon = type === 'success' ? 'fa-check-circle' :
+                    type === 'error' ? 'fa-exclamation-circle' :
+                        'fa-info-circle';
+
                 const notification = document.createElement('div');
                 notification.className = `fixed top-20 right-4 ${bgColor} px-4 py-3 rounded-lg shadow-lg z-50 flex items-center max-w-sm border transition-all transform translate-x-full`;
                 notification.innerHTML = `
@@ -873,13 +920,13 @@
                     <span>${message}</span>
                 `;
                 document.body.appendChild(notification);
-                
+
                 // Animate in
                 setTimeout(() => {
                     notification.classList.remove('translate-x-full');
                     notification.classList.add('translate-x-0');
                 }, 10);
-                
+
                 // Remove after 3 seconds
                 setTimeout(() => {
                     notification.classList.remove('translate-x-0');
@@ -891,42 +938,42 @@
             }
 
             // Modal close buttons
-            document.getElementById('btn-cancel-password').addEventListener('click', function() {
+            document.getElementById('btn-cancel-password').addEventListener('click', function () {
                 closeModal('modal-ganti-password');
             });
 
-            document.getElementById('btn-confirm-no').addEventListener('click', function() {
+            document.getElementById('btn-confirm-no').addEventListener('click', function () {
                 closeModal('modal-konfirmasi');
             });
 
             // Save password
-            document.getElementById('btn-save-password').addEventListener('click', function() {
+            document.getElementById('btn-save-password').addEventListener('click', function () {
                 const newPassword = document.getElementById('new-password').value;
                 const confirmPassword = document.getElementById('confirm-password').value;
-                
+
                 if (!newPassword || !confirmPassword) {
                     showNotification('Harap isi semua field password!', 'error');
                     return;
                 }
-                
+
                 if (newPassword.length < 8) {
                     showNotification('Password minimal 8 karakter!', 'error');
                     return;
                 }
-                
+
                 if (newPassword !== confirmPassword) {
                     showNotification('Password dan konfirmasi password tidak cocok!', 'error');
                     return;
                 }
-                
+
                 showNotification(`Password untuk ${adminData.name} berhasil diubah!`, 'success');
                 closeModal('modal-ganti-password');
             });
 
             // Confirm action
-            document.getElementById('btn-confirm-yes').addEventListener('click', function() {
+            document.getElementById('btn-confirm-yes').addEventListener('click', function () {
                 const btnText = this.textContent;
-                
+
                 if (btnText === 'Nonaktifkan') {
                     adminData.status = 'nonaktif';
                     showNotification(`Admin ${adminData.name} berhasil dinonaktifkan!`, 'success');
@@ -944,7 +991,7 @@
                         window.location.href = '../admin-pusat/index.html';
                     }, 1000);
                 }
-                
+
                 closeModal('modal-konfirmasi');
             });
         });

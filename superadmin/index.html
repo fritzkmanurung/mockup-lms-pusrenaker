@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Superadmin | EduLearn</title>
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <title>Dashboard Superadmin | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,99 +13,100 @@
         * {
             font-family: 'Inter', sans-serif;
         }
-        
+
         /* Animasi untuk card */
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
+
         /* Gradien untuk statistik */
         .gradient-indigo {
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
         }
-        
+
         .gradient-emerald {
             background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
         }
-        
+
         .gradient-amber {
             background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
         }
-        
+
         .gradient-rose {
             background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
         }
-        
+
         /* Custom scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #c7d2fe;
             border-radius: 4px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #a5b4fc;
         }
-        
+
         /* Breadcrumb */
         .breadcrumb-item:not(:last-child)::after {
             content: "/";
             margin: 0 8px;
             color: #9ca3af;
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 640px) {
             .breadcrumb {
                 font-size: 0.875rem;
             }
-            
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .quick-actions {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .card-title {
                 font-size: 1.125rem;
             }
         }
-        
+
         @media (max-width: 480px) {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .quick-actions {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         /* Progress bar animation */
         @keyframes progress-animation {
             0% {
                 width: 0%;
             }
+
             100% {
                 width: var(--progress-width);
             }
         }
-        
+
         .progress-bar {
             animation: progress-animation 1.5s ease-out forwards;
         }
@@ -123,12 +123,10 @@
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="../index.html" class="flex ms-2"><svg
-                            class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
-                        </svg><span class="text-lg font-semibold ms-2">EduLearn</span></a></div><button
-                    class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                        </svg></button><a href="../index.html" class="flex items-center ms-2">
+                        <img src="../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
+                        <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
+                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
                         alt="user"></button>
@@ -156,18 +154,17 @@
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
             <a href="#" class="flex items-center ps-2.5 mb-5">
-                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
-                </svg>
-                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+                <img src="../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
+                <span class="self-center text-lg font-semibold whitespace-nowrap ms-2"
+                    style="color: #13416B;">SIRENATA</span>
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="../index.html"
                         class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -246,7 +243,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Admin Aktif -->
                 <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
                     <div class="flex items-center justify-between mb-3 md:mb-4">
@@ -260,12 +257,13 @@
                     </div>
                     <div class="pt-3 border-t">
                         <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="progress-bar bg-emerald-500 h-2 rounded-full" style="--progress-width: 83%"></div>
+                            <div class="progress-bar bg-emerald-500 h-2 rounded-full" style="--progress-width: 83%">
+                            </div>
                         </div>
                         <div class="text-xs text-gray-500 mt-2">83% dari total</div>
                     </div>
                 </div>
-                
+
                 <!-- Admin Nonaktif -->
                 <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
                     <div class="flex items-center justify-between mb-3 md:mb-4">
@@ -284,7 +282,7 @@
                         <div class="text-xs text-gray-500 mt-2">17% dari total</div>
                     </div>
                 </div>
-                
+
                 <!-- Aktivitas Admin -->
                 <div class="bg-white rounded-xl shadow-sm border p-4 md:p-5 card-hover">
                     <div class="flex items-center justify-between mb-3 md:mb-4">
@@ -315,127 +313,157 @@
                     <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 h-full">
                         <div class="flex items-center justify-between mb-4 md:mb-6">
                             <div>
-                                <h2 class="text-lg md:text-xl font-bold text-gray-900 card-title">Event Penting Terkini</h2>
+                                <h2 class="text-lg md:text-xl font-bold text-gray-900 card-title">Event Penting Terkini
+                                </h2>
                                 <p class="text-sm text-gray-500 mt-1">Monitor aktivitas sistem dan admin</p>
                             </div>
                             <a href="#" class="text-sm text-indigo-600 hover:underline font-medium">Lihat Semua Log</a>
                         </div>
-                        
+
                         <div class="space-y-3 md:space-y-4">
-                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <div
+                                class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex-shrink-0">
-                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <div
+                                        class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                                         <i class="fas fa-cog text-sm md:text-base"></i>
                                     </div>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between">
                                         <p class="font-semibold text-gray-900 truncate">Update Konfigurasi Integrasi</p>
-                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">10m lalu</span>
+                                        <span
+                                            class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">10m
+                                            lalu</span>
                                     </div>
-                                    <p class="text-sm text-gray-600 mt-1 truncate">Konfigurasi API Key KCLC diperbarui oleh Superadmin.</p>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Konfigurasi API Key KCLC diperbarui
+                                        oleh Superadmin.</p>
                                     <div class="flex items-center mt-2">
-                                        <span class="text-xs text-gray-500">Oleh: <span class="font-medium">Super Admin</span></span>
+                                        <span class="text-xs text-gray-500">Oleh: <span class="font-medium">Super
+                                                Admin</span></span>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+
+                            <div
+                                class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex-shrink-0">
-                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                    <div
+                                        class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
                                         <i class="fas fa-user-plus text-sm md:text-base"></i>
                                     </div>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between">
                                         <p class="font-semibold text-gray-900 truncate">Admin Pusat Baru</p>
-                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">2h lalu</span>
+                                        <span
+                                            class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">2h
+                                            lalu</span>
                                     </div>
-                                    <p class="text-sm text-gray-600 mt-1 truncate">Admin "Sarah Putri" ditambahkan ke sistem.</p>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Admin "Sarah Putri" ditambahkan ke
+                                        sistem.</p>
                                     <div class="flex items-center mt-2">
-                                        <span class="text-xs text-gray-500">Email: <span class="font-medium">sarah.putri@kemnaker.go.id</span></span>
+                                        <span class="text-xs text-gray-500">Email: <span
+                                                class="font-medium">sarah.putri@kemnaker.go.id</span></span>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+
+                            <div
+                                class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex-shrink-0">
-                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+                                    <div
+                                        class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
                                         <i class="fas fa-exclamation-triangle text-sm md:text-base"></i>
                                     </div>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between">
                                         <p class="font-semibold text-gray-900 truncate">Peringatan Sistem</p>
-                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">5h lalu</span>
+                                        <span
+                                            class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">5h
+                                            lalu</span>
                                     </div>
-                                    <p class="text-sm text-gray-600 mt-1 truncate">Penggunaan resource server mencapai 85%.</p>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Penggunaan resource server mencapai
+                                        85%.</p>
                                     <div class="flex items-center mt-2">
                                         <span class="text-xs text-amber-600 font-medium">Diperlukan monitoring</span>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+
+                            <div
+                                class="flex gap-3 md:gap-4 p-3 md:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex-shrink-0">
-                                    <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                    <div
+                                        class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
                                         <i class="fas fa-key text-sm md:text-base"></i>
                                     </div>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between">
                                         <p class="font-semibold text-gray-900 truncate">Reset Password Admin</p>
-                                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">1d lalu</span>
+                                        <span
+                                            class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 md:mt-0">1d
+                                            lalu</span>
                                     </div>
-                                    <p class="text-sm text-gray-600 mt-1 truncate">Password admin "Agus Wijaya" telah direset.</p>
+                                    <p class="text-sm text-gray-600 mt-1 truncate">Password admin "Agus Wijaya" telah
+                                        direset.</p>
                                     <div class="flex items-center mt-2">
-                                        <span class="text-xs text-gray-500">Oleh: <span class="font-medium">Sistem</span></span>
+                                        <span class="text-xs text-gray-500">Oleh: <span
+                                                class="font-medium">Sistem</span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="mt-6 pt-6 border-t">
                             <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p class="text-sm text-gray-500">Total event hari ini: <span class="font-medium text-gray-900">8 event</span></p>
-                                <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium px-4 py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors w-full sm:w-auto text-center">
+                                <p class="text-sm text-gray-500">Total event hari ini: <span
+                                        class="font-medium text-gray-900">8 event</span></p>
+                                <button
+                                    class="text-indigo-600 hover:text-indigo-800 text-sm font-medium px-4 py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors w-full sm:w-auto text-center">
                                     <i class="fas fa-history mr-2"></i> Muat Ulang Event
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Quick Actions -->
                 <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6">
                     <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 card-title">Aksi Cepat</h2>
-                    
+
                     <div class="grid grid-cols-2 gap-3 md:gap-4 quick-actions">
-                        <a href="../admin-pusat/index.html" class="bg-indigo-50 border border-indigo-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-indigo-100 transition-colors card-hover">
+                        <a href="../admin-pusat/index.html"
+                            class="bg-indigo-50 border border-indigo-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-indigo-100 transition-colors card-hover">
                             <div class="p-2 md:p-3 rounded-full bg-indigo-100 text-indigo-600 mb-2 md:mb-3">
                                 <i class="fas fa-user-plus text-base md:text-lg"></i>
                             </div>
                             <p class="font-medium text-gray-900 text-sm md:text-base">Tambah Admin</p>
                             <p class="text-xs text-gray-500 mt-1">Buat akun baru</p>
                         </a>
-                        
-                        <button onclick="exportData()" class="bg-emerald-50 border border-emerald-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-emerald-100 transition-colors card-hover">
+
+                        <button onclick="exportData()"
+                            class="bg-emerald-50 border border-emerald-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-emerald-100 transition-colors card-hover">
                             <div class="p-2 md:p-3 rounded-full bg-emerald-100 text-emerald-600 mb-2 md:mb-3">
                                 <i class="fas fa-file-export text-base md:text-lg"></i>
                             </div>
                             <p class="font-medium text-gray-900 text-sm md:text-base">Ekspor Data</p>
                             <p class="text-xs text-gray-500 mt-1">Laporan admin</p>
                         </button>
-                        
-                        <button onclick="openSettings()" class="bg-amber-50 border border-amber-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-amber-100 transition-colors card-hover">
+
+                        <button onclick="openSettings()"
+                            class="bg-amber-50 border border-amber-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-amber-100 transition-colors card-hover">
                             <div class="p-2 md:p-3 rounded-full bg-amber-100 text-amber-600 mb-2 md:mb-3">
                                 <i class="fas fa-cog text-base md:text-lg"></i>
                             </div>
                             <p class="font-medium text-gray-900 text-sm md:text-base">Pengaturan</p>
                             <p class="text-xs text-gray-500 mt-1">Konfigurasi sistem</p>
                         </button>
-                        
-                        <button onclick="viewActivityLogs()" class="bg-purple-50 border border-purple-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-purple-100 transition-colors card-hover">
+
+                        <button onclick="viewActivityLogs()"
+                            class="bg-purple-50 border border-purple-100 rounded-xl p-3 md:p-4 flex flex-col items-center justify-center text-center hover:bg-purple-100 transition-colors card-hover">
                             <div class="p-2 md:p-3 rounded-full bg-purple-100 text-purple-600 mb-2 md:mb-3">
                                 <i class="fas fa-history text-base md:text-lg"></i>
                             </div>
@@ -443,14 +471,15 @@
                             <p class="text-xs text-gray-500 mt-1">Monitor admin</p>
                         </button>
                     </div>
-                    
+
                     <!-- Ringkasan Aktivitas -->
                     <div class="mt-6 md:mt-8 pt-6 border-t">
                         <h3 class="font-medium text-gray-900 mb-3 md:mb-4">Ringkasan Aktivitas</h3>
                         <div class="space-y-3 md:space-y-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm mr-3">
+                                    <div
+                                        class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm mr-3">
                                         SP
                                     </div>
                                     <div>
@@ -458,12 +487,14 @@
                                         <p class="text-xs text-gray-500">Login terakhir: 1 jam lalu</p>
                                     </div>
                                 </div>
-                                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
+                                <span
+                                    class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
                             </div>
-                            
+
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm mr-3">
+                                    <div
+                                        class="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm mr-3">
                                         AW
                                     </div>
                                     <div>
@@ -471,12 +502,14 @@
                                         <p class="text-xs text-gray-500">Login terakhir: 3 jam lalu</p>
                                     </div>
                                 </div>
-                                <span class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
+                                <span
+                                    class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Aktif</span>
                             </div>
-                            
+
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm mr-3">
+                                    <div
+                                        class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm mr-3">
                                         BS
                                     </div>
                                     <div>
@@ -484,12 +517,14 @@
                                         <p class="text-xs text-gray-500">Login terakhir: 2 minggu</p>
                                     </div>
                                 </div>
-                                <span class="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded-full">Nonaktif</span>
+                                <span
+                                    class="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded-full">Nonaktif</span>
                             </div>
                         </div>
-                        
+
                         <div class="mt-4 md:mt-6">
-                            <a href="../admin-pusat/index.html" class="block text-center text-indigo-600 hover:text-indigo-800 text-sm font-medium py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors">
+                            <a href="../admin-pusat/index.html"
+                                class="block text-center text-indigo-600 hover:text-indigo-800 text-sm font-medium py-2 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors">
                                 <i class="fas fa-arrow-right mr-2"></i> Kelola Semua Admin
                             </a>
                         </div>
@@ -500,7 +535,7 @@
             <!-- Additional Stats -->
             <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 mb-6">
                 <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 card-title">Statistik Detail</h2>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <div class="flex items-center mb-3">
@@ -514,7 +549,7 @@
                         </div>
                         <p class="text-xs text-gray-500">Rata-rata: 10 login/hari</p>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <div class="flex items-center mb-3">
                             <div class="p-2 rounded-lg bg-emerald-50 text-emerald-600 mr-3">
@@ -527,7 +562,7 @@
                         </div>
                         <p class="text-xs text-gray-500">Hari ini (hingga saat ini)</p>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <div class="flex items-center mb-3">
                             <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mr-3">
@@ -573,23 +608,23 @@
                 showNotification('Data admin berhasil diekspor!', 'success');
             }, 1500);
         }
-        
+
         function openSettings() {
             showNotification('Membuka halaman pengaturan...', 'info');
             // In real app, redirect to settings page
             // window.location.href = '../user/settings.html';
         }
-        
+
         function viewActivityLogs() {
             showNotification('Membuka log aktivitas admin...', 'info');
             // In real app, redirect to activity logs page
         }
-        
+
         // Notification function
         function showNotification(message, type) {
             const bgColor = type === 'success' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800';
             const icon = type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
-            
+
             const notification = document.createElement('div');
             notification.className = `fixed top-20 right-4 ${bgColor} px-4 py-3 rounded-lg shadow-lg z-50 flex items-center max-w-sm`;
             notification.innerHTML = `
@@ -597,30 +632,30 @@
                 <span>${message}</span>
             `;
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.remove();
             }, 3000);
         }
-        
+
         // Load event button
-        document.querySelector('.fa-history').closest('button').addEventListener('click', function() {
+        document.querySelector('.fa-history').closest('button').addEventListener('click', function () {
             showNotification('Memuat ulang event...', 'info');
             this.disabled = true;
             this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memuat...';
-            
+
             setTimeout(() => {
                 this.disabled = false;
                 this.innerHTML = '<i class="fas fa-history mr-2"></i> Muat Ulang Event';
                 showNotification('Event berhasil dimuat ulang!', 'success');
             }, 1500);
         });
-        
+
         // Card click animations
         document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('click', function(e) {
+            card.addEventListener('click', function (e) {
                 if (this.tagName === 'A') return; // Skip if it's already a link
-                
+
                 // Add click effect
                 this.style.transform = 'scale(0.98)';
                 setTimeout(() => {
@@ -628,24 +663,24 @@
                 }, 200);
             });
         });
-        
+
         // Initialize progress bar animations
         document.querySelectorAll('.progress-bar').forEach(bar => {
             // Set initial width for animation
             const width = bar.style.getPropertyValue('--progress-width');
             bar.style.width = '0%';
-            
+
             // Trigger animation after a small delay
             setTimeout(() => {
                 bar.style.width = width;
             }, 300);
         });
-        
+
         // Responsive adjustments
         function handleResize() {
             const isMobile = window.innerWidth < 640;
             const cards = document.querySelectorAll('.stats-grid > div');
-            
+
             if (isMobile) {
                 cards.forEach(card => {
                     card.classList.add('text-center');
@@ -656,7 +691,7 @@
                 });
             }
         }
-        
+
         // Initial call and event listener
         handleResize();
         window.addEventListener('resize', handleResize);
