@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan RTK | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <title>Project RTK | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
     <link rel="icon" type="image/png" href="../../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -147,9 +147,9 @@
                         <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
+                                d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Penyusunan</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
                     </a>
                 </li>
                 <li>
@@ -189,10 +189,10 @@
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi RTK</span>
                     </a>
                 </li>
                 <li>
@@ -236,7 +236,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Penyusunan</span>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Project</span>
                         </div>
                     </li>
                 </ol>
@@ -257,10 +257,12 @@
                 <table id="projectsTable" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Project Name</th>
-                            <th>Nama Ketua Tim</th>
-                            <th>Action</th>
+                            <th>Nama</th>
+                            <th>Proyek Dibuat</th>
+                            <th>Proyek Selesai</th>
+                            <th>Durasi</th>
+                            <th>Ketua Tim</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -328,31 +330,42 @@
 
         // RTK Projects Data
         const projectsData = [
-            { name: 'RTK Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya' },
-            { name: 'RTK Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza' },
-            { name: 'RTK Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.' },
-            { name: 'RTK Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma' },
-            { name: 'RTK Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama' },
-            { name: 'RTK Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari' },
-            { name: 'RTK Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto' },
-            { name: 'RTK Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.' },
-            { name: 'RTK Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono' },
-            { name: 'RTK Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.' }
+            { name: 'RTK Provinsi Jawa Barat 2025-2030', leader: 'Dr. Ahmad Suryadi', created: '2024-02-01', completed: '2030-12-31', duration: '83 bulan' },
+            { name: 'RTK Sektor Industri Manufaktur Jabar 2024', leader: 'Ir. Siti Rahayu', created: '2024-03-15', completed: '2024-12-31', duration: '10 bulan' },
+            { name: 'RTK Sektor Pariwisata Jawa Barat 2025', leader: 'Drs. Budi Permana', created: '2024-04-01', completed: '2025-12-31', duration: '21 bulan' },
+            { name: 'RTK Sektor Teknologi Digital 2024-2029', leader: 'Dr. Rina Anggraeni', created: '2024-01-20', completed: '2029-12-31', duration: '72 bulan' },
+            { name: 'RTK Sektor Kesehatan Provinsi 2025', leader: 'dr. Hendra Kusuma', created: '2024-05-10', completed: '2025-12-31', duration: '20 bulan' },
+            { name: 'RTK Sektor Pendidikan Jabar 2024-2028', leader: 'Prof. Dewi Kartini', created: '2024-02-20', completed: '2028-12-31', duration: '58 bulan' },
+            { name: 'RTK Sektor Pertanian Jawa Barat 2025', leader: 'Ir. Bambang Hartono', created: '2024-06-01', completed: '2025-12-31', duration: '19 bulan' },
+            { name: 'RTK Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Setiawan, S.T.', created: '2024-01-15', completed: '2024-12-31', duration: '12 bulan' }
         ];
 
         // Transform data for DataTable
         const tableData = projectsData.map((project, index) => {
             return [
-                index + 1,
                 project.name,
+                project.created,
+                project.completed,
+                project.duration,
                 project.leader,
-                `<button onclick="viewProject('${project.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                    View
-                </button>`
+                `<div class="flex gap-2">
+                    <button onclick="viewProject('${project.name}')" class="px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center" title="Lihat Detail">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </button>
+                    <button onclick="editProject(${index + 1}, '${project.name}')" class="px-3 py-2 bg-amber-500 text-white text-sm rounded-lg hover:bg-amber-600 transition-colors inline-flex items-center" title="Edit">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                    </button>
+                    <button onclick="deleteProject(${index + 1}, '${project.name}')" class="px-3 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors inline-flex items-center" title="Hapus">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                    </button>
+                </div>`
             ];
         });
 

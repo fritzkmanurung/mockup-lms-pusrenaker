@@ -82,18 +82,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
-                    </a>
-                </li>
+
                 <li>
                     <button type="button" data-dropdown-toggle="dropdown-pelaporan"
                         class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
@@ -206,37 +195,76 @@
 
                 <!-- Form Content -->
                 <div class="pt-24 px-6 md:px-12 pb-10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Left Column -->
-                        <div class="space-y-6">
-                            <!-- Nama -->
-                            <div>
-                                <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Nama
-                                </label>
-                                <input type="text" id="nama" value="Budi Santoso" disabled readonly
-                                    class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-500 cursor-not-allowed select-none">
-                            </div>
+                    <!-- Row 1: Nama & NIK -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
 
-                            <!-- NIK -->
-                            <div>
-                                <label for="nik" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    NIK
-                                </label>
-                                <input type="text" id="nik" value="121218826490127485271" disabled readonly
-                                    class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-500 cursor-not-allowed select-none">
-                            </div>
+                        <!-- Nama -->
+                        <div>
+                            <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Nama Lengkap
+                            </label>
+                            <input type="text" id="nama" value="Budi Santoso" disabled readonly
+                                class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 cursor-not-allowed">
                         </div>
 
-                        <!-- Right Column -->
-                        <div class="space-y-6">
+                        <!-- NIK -->
+                        <div>
+                            <label for="nik" class="block text-sm font-semibold text-gray-700 mb-2">
+                                NIK
+                            </label>
+                            <input type="text" id="nik" value="3201012345678901" disabled readonly
+                                class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Email, Phone, Instansi -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Email
+                            </label>
+                            <input type="email" id="email" value="budi.santoso@kemnaker.go.id" disabled readonly
+                                class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 cursor-not-allowed">
+                        </div>
+
+                        <!-- Nomor Handphone -->
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Nomor Handphone
+                            </label>
+                            <input type="tel" id="phone" value="081234567890" disabled readonly
+                                class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 cursor-not-allowed">
+                        </div>
+
+                        <!-- Instansi -->
+                        <div>
+                            <label for="instansi" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Instansi
+                            </label>
+                            <input type="text" id="instansi" value="Kementerian Ketenagakerjaan RI" disabled readonly
+                                class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-700 cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 my-8"></div>
+
+                    <!-- Row 3: Password Section -->
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Ubah Password</h2>
+                        <p class="text-sm text-gray-600 mb-6">Kosongkan jika tidak ingin mengubah password</p>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+
                             <!-- Password -->
                             <div>
                                 <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Password
+                                    Password Baru
                                 </label>
                                 <div class="relative">
-                                    <input type="password" id="password" placeholder="Masukkan password"
+                                    <input type="password" id="password" placeholder="Masukkan password baru"
                                         oninput="validatePassword()"
                                         class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all pr-12 text-gray-800">
                                     <button onclick="togglePassword('password')" type="button"
@@ -251,43 +279,59 @@
                                     </button>
                                 </div>
 
+                                <!-- Password Strength Meter -->
+                                <div class="mt-3">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-medium text-gray-700">Kekuatan Password:</span>
+                                        <span id="strengthLabel" class="text-xs font-semibold text-gray-500">-</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="strengthMeter"
+                                            class="h-full transition-all duration-300 rounded-full bg-gray-300"
+                                            style="width: 0%"></div>
+                                    </div>
+                                </div>
+
                                 <!-- Password Requirements -->
-                                <div class="mt-3 space-y-2">
-                                    <div id="req-length" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Minimal 8 karakter</span>
-                                    </div>
-                                    <div id="req-lowercase" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Terdapat minimal satu huruf kecil</span>
-                                    </div>
-                                    <div id="req-uppercase" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Terdapat minimal satu huruf besar</span>
-                                    </div>
-                                    <div id="req-number" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Terdapat minimal satu angka</span>
-                                    </div>
-                                    <div id="req-symbol" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Terdapat salah satu simbol: ! @ # $ % ^ & *</span>
-                                    </div>
-                                    <div id="req-match" class="flex items-center gap-2 text-xs text-gray-500">
-                                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <circle cx="10" cy="10" r="10" opacity="0.3" />
-                                        </svg>
-                                        <span>Password dan Re-Password cocok</span>
+                                <div class="mt-4 bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                    <h4 class="text-xs font-semibold text-gray-700 mb-3">Persyaratan Password:</h4>
+                                    <div class="space-y-2">
+                                        <div id="req-length" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Minimal 8 karakter</span>
+                                        </div>
+                                        <div id="req-lowercase" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Minimal 1 huruf kecil (a-z)</span>
+                                        </div>
+                                        <div id="req-uppercase" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Minimal 1 huruf besar (A-Z)</span>
+                                        </div>
+                                        <div id="req-number" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Minimal 1 angka (0-9)</span>
+                                        </div>
+                                        <div id="req-symbol" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Minimal 1 karakter khusus (@$!%*?&)</span>
+                                        </div>
+                                        <div id="req-match" class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <circle cx="10" cy="10" r="10" opacity="0.3" />
+                                            </svg>
+                                            <span>Password dan konfirmasi cocok</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +363,7 @@
                     <!-- Submit Button -->
                     <div class="mt-10 flex justify-end">
                         <button onclick="handleSubmit()"
-                            class="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                            class="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                             Submit
                         </button>
                     </div>

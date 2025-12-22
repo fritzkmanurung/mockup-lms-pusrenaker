@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Instansi | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Select2 custom styling */
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            height: auto;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #374151;
+            line-height: normal;
+            padding: 0;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%;
+        }
+
+        .select2-dropdown {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #6366f1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Blurred Background Content -->
+    <div class="blur-sm pointer-events-none" style="filter: blur(8px);">
+        <!-- Navbar -->
+        <nav class="fixed top-0 z-10 w-full bg-white border-b">
+            <div class="px-3 py-3 lg:px-5">
+                <div class="flex justify-between">
+                    <div class="flex items-center">
+                        <a href="./index.html" class="flex items-center ms-2">
+                            <img src="../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
+                            <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content (Blurred) -->
+        <div class="p-4 mt-14">
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-indigo-500">
+                        <p class="text-gray-500 text-sm">Placeholder</p>
+                        <h3 class="text-3xl font-bold text-gray-900">--</h3>
+                    </div>
+                    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-emerald-500">
+                        <p class="text-gray-500 text-sm">Placeholder</p>
+                        <h3 class="text-3xl font-bold text-gray-900">--</h3>
+                    </div>
+                    <div class="bg-white rounded-lg p-5 shadow-sm border-l-4 border-amber-500">
+                        <p class="text-gray-500 text-sm">Placeholder</p>
+                        <h3 class="text-3xl font-bold text-gray-900">--</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Card (Not Blurred) -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: rgba(0, 0, 0, 0.3);">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Pilih Instansi Anda</h2>
+                    <p class="text-gray-600 mt-2">Lengkapi informasi institusi untuk melanjutkan</p>
+                </div>
+
+                <!-- Form -->
+                <form id="instansiForm" class="space-y-6">
+                    <!-- Asal Instansi -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Asal Instansi <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex gap-4">
+                            <label
+                                class="flex-1 flex items-center justify-center px-4 py-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-indigo-500 transition-colors">
+                                <input type="radio" name="asalInstansi" value="pusat" class="mr-2">
+                                <span class="font-medium">Pusat</span>
+                            </label>
+                            <label
+                                class="flex-1 flex items-center justify-center px-4 py-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-indigo-500 transition-colors">
+                                <input type="radio" name="asalInstansi" value="daerah" class="mr-2">
+                                <span class="font-medium">Daerah</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Kementerian (Show if Pusat) -->
+                    <div id="kementerianSection" class="hidden">
+                        <label for="kementerian" class="block text-sm font-medium text-gray-700 mb-2">
+                            Kementerian/Lembaga <span class="text-red-500">*</span>
+                        </label>
+                        <select id="kementerian" class="w-full">
+                            <option value="">Pilih Kementerian/Lembaga</option>
+                        </select>
+                    </div>
+
+                    <!-- Provinsi (Show if Daerah) -->
+                    <div id="provinsiSection" class="hidden">
+                        <label for="provinsi" class="block text-sm font-medium text-gray-700 mb-2">
+                            Provinsi <span class="text-red-500">*</span>
+                        </label>
+                        <select id="provinsi" class="w-full">
+                            <option value="">Pilih Provinsi</option>
+                        </select>
+                    </div>
+
+                    <!-- Kab/Kota (Show after Provinsi) -->
+                    <div id="kabkotaSection" class="hidden">
+                        <label for="kabkota" class="block text-sm font-medium text-gray-700 mb-2">
+                            Kabupaten/Kota <span class="text-red-500">*</span>
+                        </label>
+                        <select id="kabkota" class="w-full">
+                            <option value="">Pilih Kabupaten/Kota</option>
+                        </select>
+                    </div>
+
+                    <!-- Instansi Daerah (Show after Kab/Kota) -->
+                    <div id="instansiDaerahSection" class="hidden">
+                        <label for="instansiDaerah" class="block text-sm font-medium text-gray-700 mb-2">
+                            Instansi <span class="text-red-500">*</span>
+                        </label>
+                        <select id="instansiDaerah" class="w-full">
+                            <option value="">Pilih Instansi</option>
+                        </select>
+                    </div>
+
+                    <!-- Unit Kerja -->
+                    <div id="unitKerjaSection" class="hidden">
+                        <label for="unitKerja" class="block text-sm font-medium text-gray-700 mb-2">
+                            Unit Kerja <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="unitKerja" placeholder="Contoh: Bagian SDM"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Lanjutkan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (required for Select2) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        // Data Kementerian/Lembaga
+        const kementerianList = [
+            "Kementerian Koordinator Bidang Infrastruktur dan Pengembangan Wilayah",
+            "Kementerian Dalam Negeri",
+            "Kementerian Luar Negeri",
+            "Kementerian Pertahanan",
+            "Kementerian Pekerjaan Umum",
+            "Kementerian Perumahan dan Kawasan Permukiman",
+            "Kementerian Perhubungan",
+            "Kementerian Kelautan dan Perikanan",
+            "Kementerian Perlindungan Pekerja Migran Indonesia",
+            "Kementerian Imigrasi dan Pemasyarakatan",
+            "Kementerian Keuangan",
+            "Kementerian Pertanian",
+            "Kementerian Koperasi",
+            "Kementerian Usaha Kecil dan Menengah",
+            "Kementerian Perdagangan",
+            "Kementerian Lingkungan Hidup",
+            "Kementerian Kehutanan",
+            "Kementerian Agraria dan Tata Ruang/ Kepala Badan Pertahanan",
+            "Kementerian Pariwisata",
+            "Kementerian Ekonomi Kreatif/Kepala Badan Ekonomi Kreatif",
+            "Kementerian Ketegakerjaan",
+            "Kementerian Desa dan Pembangunan Daerah Tertingal",
+            "Kementarian Komunikasi dan Digitalisasi",
+            "Kementerian Energi dan Sumber Daya Tertinggal",
+            "Kementerian Pendidikan Dasar dan Menengah",
+            "Kementerian Pendidikan Tinggi, Sains dan Teknologi",
+            "Kementerian Agama",
+            "Kementerian Sosial",
+            "Tentara Nasional Indonesia",
+            "Kepolisian Republik Indonesia",
+            "Badan Informasi Geospasial",
+            "Badan Kemanan Laut",
+            "Badan Karantina Indonesia",
+            "Badan Narkotika Nasional",
+            "Badan Pusat Statistik",
+            "Badan Nasional Penanggulangan Bencana",
+            "Badan Gizi Nasional",
+            "Badan Pangan Nasional"
+        ];
+
+        // Data Provinsi
+        const provinsiList = [
+            "Aceh", "Sumatera Utara", "Sumatera Barat", "Riau", "Jambi", "Sumatera Selatan",
+            "Bengkulu", "Lampung", "Kepulauan Bangka Belitung", "Kepulauan Riau", "DKI Jakarta",
+            "Jawa Barat", "Jawa Tengah", "DI Yogyakarta", "Jawa Timur", "Banten", "Bali",
+            "Nusa Tenggara Barat", "Nusa Tenggara Timur", "Kalimantan Barat", "Kalimantan Tengah",
+            "Kalimantan Selatan", "Kalimantan Timur", "Kalimantan Utara", "Sulawesi Utara",
+            "Sulawesi Tengah", "Sulawesi Selatan", "Sulawesi Tenggara", "Gorontalo", "Sulawesi Barat",
+            "Maluku", "Maluku Utara", "Papua", "Papua Barat", "Papua Tengah", "Papua Pegunungan",
+            "Papua Selatan", "Papua Barat Daya"
+        ];
+
+        // Populate Kementerian
+        kementerianList.forEach(k => {
+            $('#kementerian').append(new Option(k, k));
+        });
+
+        // Populate Provinsi
+        provinsiList.forEach(p => {
+            $('#provinsi').append(new Option(p, p));
+        });
+
+        // Initialize Select2
+        $('#kementerian, #provinsi, #kabkota, #instansiDaerah').select2({
+            placeholder: function () {
+                return $(this).find('option:first').text();
+            },
+            allowClear: true,
+            width: '100%'
+        });
+
+        // Handle Asal Instansi Selection
+        $('input[name="asalInstansi"]').on('change', function () {
+            const value = $(this).val();
+
+            // Reset all sections
+            $('#kementerianSection, #provinsiSection, #kabkotaSection, #instansiDaerahSection, #unitKerjaSection').addClass('hidden');
+            $('#kementerian, #provinsi, #kabkota, #instansiDaerah, #unitKerja').val('').trigger('change');
+
+            if (value === 'pusat') {
+                $('#kementerianSection, #unitKerjaSection').removeClass('hidden');
+            } else if (value === 'daerah') {
+                $('#provinsiSection').removeClass('hidden');
+            }
+        });
+
+        // Handle Provinsi Selection
+        $('#provinsi').on('change', function () {
+            const provinsi = $(this).val();
+            if (provinsi) {
+                // Populate dummy Kab/Kota data
+                $('#kabkota').empty().append(new Option('Pilih Kabupaten/Kota', ''));
+                const dummyKabKota = [
+                    'Kabupaten ' + provinsi,
+                    'Kota ' + provinsi,
+                    'Kabupaten Utara',
+                    'Kabupaten Selatan'
+                ];
+                dummyKabKota.forEach(k => {
+                    $('#kabkota').append(new Option(k, k));
+                });
+                $('#kabkotaSection').removeClass('hidden');
+                $('#instansiDaerahSection, #unitKerjaSection').addClass('hidden');
+            }
+        });
+
+        // Handle Kab/Kota Selection
+        $('#kabkota').on('change', function () {
+            const kabkota = $(this).val();
+            if (kabkota) {
+                // Populate dummy Instansi data
+                $('#instansiDaerah').empty().append(new Option('Pilih Instansi', ''));
+                const dummyInstansi = [
+                    'Dinas Pendidikan',
+                    'Dinas Kesehatan',
+                    'Dinas Pekerjaan Umum',
+                    'Dinas Perhubungan',
+                    'Dinas Sosial',
+                    'Badan Kepegawaian Daerah'
+                ];
+                dummyInstansi.forEach(i => {
+                    $('#instansiDaerah').append(new Option(i, i));
+                });
+                $('#instansiDaerahSection').removeClass('hidden');
+            }
+        });
+
+        // Handle Instansi Daerah Selection
+        $('#instansiDaerah').on('change', function () {
+            if ($(this).val()) {
+                $('#unitKerjaSection').removeClass('hidden');
+            }
+        });
+
+        // Form Submit
+        $('#instansiForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const asalInstansi = $('input[name="asalInstansi"]:checked').val();
+            const unitKerja = $('#unitKerja').val().trim();
+
+            if (!asalInstansi) {
+                alert('Pilih asal instansi terlebih dahulu!');
+                return;
+            }
+
+            if (!unitKerja) {
+                alert('Unit Kerja harus diisi!');
+                return;
+            }
+
+            if (asalInstansi === 'pusat') {
+                const kementerian = $('#kementerian').val();
+                if (!kementerian) {
+                    alert('Pilih Kementerian/Lembaga!');
+                    return;
+                }
+            } else {
+                const provinsi = $('#provinsi').val();
+                const kabkota = $('#kabkota').val();
+                const instansi = $('#instansiDaerah').val();
+
+                if (!provinsi || !kabkota || !instansi) {
+                    alert('Lengkapi semua data daerah!');
+                    return;
+                }
+            }
+
+            // Redirect to index.html
+            window.location.href = './index.html';
+        });
+    </script>
+</body>
+
+</html>
