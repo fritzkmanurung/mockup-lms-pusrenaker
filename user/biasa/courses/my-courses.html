@@ -113,9 +113,9 @@
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
+                                d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Penyusunan</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
                     </a>
                 </li>
                 <li>
@@ -139,13 +139,13 @@
                         <li>
                             <a href="../../tim/perhitungan.html"
                                 class="flex items-center w-full px-2 py-1.5 ps-10 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors">
-                                Daftar
+                                Kalkulator RTK
                             </a>
                         </li>
                         <li>
                             <a href="../../tim/draft.html"
                                 class="flex items-center w-full px-2 py-1.5 ps-10 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors">
-                                Draft
+                                Draft RTK
                             </a>
                         </li>
                     </ul>
@@ -218,77 +218,21 @@
 
             <!-- Courses Grid -->
             <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Course Card 1 -->
-                <div data-status="belum-selesai"
-                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/react/400/200" alt="Course" class="w-full h-40 object-cover">
-                    <div class="p-5">
-                        <div class="flex items-start justify-between mb-3">
-                            <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
-                                Berjalan</span>
-                            <span class="text-xs text-gray-500">65%</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">React & TypeScript Masterclass</h3>
-                        <p class="text-sm text-gray-600 mb-4">Dr. Ahmad Wijaya</p>
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>12 dari 18 materi</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                    style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <a href="course-learning.html"
-                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
-                            Belajar</a>
-                    </div>
-                </div>
-
-                <!-- Course Card 2 -->
-                <div data-status="belum-selesai"
-                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/nodejs/400/200" alt="Course" class="w-full h-40 object-cover">
-                    <div class="p-5">
-                        <div class="flex items-start justify-between mb-3">
-                            <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
-                                Berjalan</span>
-                            <span class="text-xs text-gray-500">53%</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Node.js Backend Development</h3>
-                        <p class="text-sm text-gray-600 mb-4">Prof. Siti Nurhaliza</p>
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>8 dari 15 materi</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                    style="width: 53%"></div>
-                            </div>
-                        </div>
-                        <a href="course-learning.html"
-                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
-                            Belajar</a>
-                    </div>
-                </div>
-
-                <!-- Course Card 3 -->
+                <!-- Course Card 1 - SELESAI -->
                 <div data-status="sudah-selesai"
                     class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/python/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <img src="https://picsum.photos/seed/macro/400/200" alt="Course" class="w-full h-40 object-cover">
                     <div class="p-5">
                         <div class="flex items-start justify-between mb-3">
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-600">Selesai</span>
                             <span class="text-xs text-gray-500">100%</span>
                         </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Python untuk Data Science</h3>
-                        <p class="text-sm text-gray-600 mb-4">Dr. Budi Rahardjo</p>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Perencanaan Tenaga Kerja Makro</h3>
+                        <p class="text-sm text-gray-600 mb-4">Dr. Ahmad Suryadi</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>20 dari 20 materi</span>
+                                <span>15 dari 15 materi</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
                                 <div class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
@@ -301,77 +245,21 @@
                     </div>
                 </div>
 
-                <!-- Course Card 4 -->
-                <div data-status="belum-selesai"
-                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/flutter/400/200" alt="Course" class="w-full h-40 object-cover">
-                    <div class="p-5">
-                        <div class="flex items-start justify-between mb-3">
-                            <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
-                                Berjalan</span>
-                            <span class="text-xs text-gray-500">35%</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Flutter Mobile Development</h3>
-                        <p class="text-sm text-gray-600 mb-4">Ir. Andi Prasetyo</p>
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>7 dari 20 materi</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                    style="width: 35%"></div>
-                            </div>
-                        </div>
-                        <a href="course-learning.html"
-                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
-                            Belajar</a>
-                    </div>
-                </div>
-
-                <!-- Course Card 5 -->
-                <div data-status="belum-selesai"
-                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/docker/400/200" alt="Course" class="w-full h-40 object-cover">
-                    <div class="p-5">
-                        <div class="flex items-start justify-between mb-3">
-                            <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
-                                Berjalan</span>
-                            <span class="text-xs text-gray-500">20%</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Docker & Kubernetes</h3>
-                        <p class="text-sm text-gray-600 mb-4">M. Rizki Fauzi, M.Kom</p>
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>3 dari 15 materi</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                    style="width: 20%"></div>
-                            </div>
-                        </div>
-                        <a href="course-learning.html"
-                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
-                            Belajar</a>
-                    </div>
-                </div>
-
-                <!-- Course Card 6 -->
+                <!-- Course Card 2 - SELESAI -->
                 <div data-status="sudah-selesai"
                     class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
-                    <img src="https://picsum.photos/seed/ui/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <img src="https://picsum.photos/seed/micro/400/200" alt="Course" class="w-full h-40 object-cover">
                     <div class="p-5">
                         <div class="flex items-start justify-between mb-3">
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-600">Selesai</span>
                             <span class="text-xs text-gray-500">100%</span>
                         </div>
-                        <h3 class="font-bold text-gray-900 mb-2 text-lg">UI/UX Design Fundamentals</h3>
-                        <p class="text-sm text-gray-600 mb-4">Dra. Maria Santika</p>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Perencanaan Tenaga Kerja Mikro</h3>
+                        <p class="text-sm text-gray-600 mb-4">Prof. Siti Rahayu</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span>16 dari 16 materi</span>
+                                <span>12 dari 12 materi</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
                                 <div class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
@@ -381,6 +269,121 @@
                         <button
                             class="w-full bg-emerald-600 text-white py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">Lihat
                             Detail Kursus</button>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 - SEDANG BERJALAN -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/ipk/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">45%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Indeks Pembangunan Ketenagakerjaan</h3>
+                        <p class="text-sm text-gray-600 mb-4">Ir. Budi Permana</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>9 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 - SEDANG BERJALAN -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/macro-adv/400/200" alt="Course"
+                        class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">30%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Perencanaan Tenaga Kerja Makro (Advanced)</h3>
+                        <p class="text-sm text-gray-600 mb-4">Dr. Rina Anggraeni</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>6 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 5 - SEDANG BERJALAN -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/micro-adv/400/200" alt="Course"
+                        class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">25%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Perencanaan Tenaga Kerja Mikro (Advanced)</h3>
+                        <p class="text-sm text-gray-600 mb-4">dr. Hendra Kusuma</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>5 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 6 - SEDANG BERJALAN -->
+                <div data-status="belum-selesai"
+                    class="course-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
+                    <img src="https://picsum.photos/seed/ipk-adv/400/200" alt="Course" class="w-full h-40 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-indigo-600">Sedang
+                                Berjalan</span>
+                            <span class="text-xs text-gray-500">15%</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-lg">Indeks Pembangunan Ketenagakerjaan (Advanced)
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">Prof. Dewi Kartini</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>3 dari 20 materi</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <a href="course-learning.html"
+                            class="block w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-center">Lanjutkan
+                            Belajar</a>
                     </div>
                 </div>
             </div>
@@ -391,24 +394,24 @@
                 <div
                     class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
                     <!-- Certificate Image -->
-                    <img src="https://picsum.photos/seed/cert-python/600/400" alt="Sertifikat Python untuk Data Science"
-                        class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/cert-macro/600/400"
+                        alt="Sertifikat Perencanaan Tenaga Kerja Makro" class="w-full h-48 object-cover">
 
                     <div class="p-5">
-                        <h3 class="font-bold text-gray-900 text-lg mb-4">Python untuk Data Science</h3>
+                        <h3 class="font-bold text-gray-900 text-lg mb-4">Perencanaan Tenaga Kerja Makro</h3>
 
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <p class="text-xs text-gray-500 mb-1">Tanggal Selesai</p>
-                                <p class="text-sm font-semibold text-gray-900">15 Nov 2024</p>
+                                <p class="text-sm font-semibold text-gray-900">10 Des 2024</p>
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 mb-1">No. Sertifikat</p>
-                                <p class="text-sm font-semibold text-gray-900">CERT-2024-001</p>
+                                <p class="text-sm font-semibold text-gray-900">CERT-2024-PTK-001</p>
                             </div>
                         </div>
 
-                        <button onclick="downloadCertificate('Python untuk Data Science', 'CERT-2024-001')"
+                        <button onclick="downloadCertificate('Perencanaan Tenaga Kerja Makro', 'CERT-2024-PTK-001')"
                             class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -423,24 +426,24 @@
                 <div
                     class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(99,102,241,0.3)] hover:border-indigo-500">
                     <!-- Certificate Image -->
-                    <img src="https://picsum.photos/seed/cert-uiux/600/400" alt="Sertifikat UI/UX Design Fundamentals"
-                        class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/cert-micro/600/400"
+                        alt="Sertifikat Perencanaan Tenaga Kerja Mikro" class="w-full h-48 object-cover">
 
                     <div class="p-5">
-                        <h3 class="font-bold text-gray-900 text-lg mb-4">UI/UX Design Fundamentals</h3>
+                        <h3 class="font-bold text-gray-900 text-lg mb-4">Perencanaan Tenaga Kerja Mikro</h3>
 
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <p class="text-xs text-gray-500 mb-1">Tanggal Selesai</p>
-                                <p class="text-sm font-semibold text-gray-900">20 Nov 2024</p>
+                                <p class="text-sm font-semibold text-gray-900">15 Des 2024</p>
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 mb-1">No. Sertifikat</p>
-                                <p class="text-sm font-semibold text-gray-900">CERT-2024-002</p>
+                                <p class="text-sm font-semibold text-gray-900">CERT-2024-PTK-002</p>
                             </div>
                         </div>
 
-                        <button onclick="downloadCertificate('UI/UX Design Fundamentals', 'CERT-2024-002')"
+                        <button onclick="downloadCertificate('Perencanaan Tenaga Kerja Mikro', 'CERT-2024-PTK-002')"
                             class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
