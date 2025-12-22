@@ -8,7 +8,6 @@
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -103,18 +102,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
-                    </a>
-                </li>
-                <li>
                     <button type="button" data-dropdown-toggle="dropdown-pelaporan"
                         class="flex items-center w-full px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
                         <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
@@ -139,13 +126,13 @@
                         <li>
                             <a href="./list.html"
                                 class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
-                                Daftar RTKN
+                                Daftar RTK
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../rekapitulasi/index.html"
+                    <a href="../report/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -153,7 +140,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Report</span>
                     </a>
                 </li>
                 <li>
@@ -193,35 +180,89 @@
                 </ol>
             </nav>
 
-            <!-- Bar Chart: Masa Aktif RTK per Provinsi -->
+            <!-- RTK Status Card -->
             <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Masa Aktif RTK per Provinsi</h2>
-                    <div class="text-sm text-gray-600">
-                        <span class="font-medium">Tahun Sekarang:</span> 2025
-                        <span class="mx-2">|</span>
-                        <span class="font-medium">Masa Berlaku:</span> 5 Tahun
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Kabupaten Kepulauan Siau Tagulandang Biaro</h2>
+                        <p class="text-gray-600 mb-4">Kabupaten/Kota Administrasi</p>
                     </div>
-                </div>
-                <div class="h-96">
-                    <canvas id="rtkValidityBarChart"></canvas>
+                    <div class="text-right">
+                        <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-lg">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-semibold">RTK Berlaku</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Status: Aktif hingga 2029</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- RTK Validity Status Pie Chart -->
-            <div class="flex justify-center">
-                <div class="bg-white rounded-lg p-6 shadow-sm w-full lg:w-2/3">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">Status Masa Berlaku RTK Provinsi (2025)
-                    </h2>
-                    <p class="text-sm text-gray-600 mb-6 text-center">
-                        RTK yang sudah tidak berlaku <span class="font-semibold text-red-600">harus segera diurus</span>
-                    </p>
-                    <div class="h-96 flex items-center justify-center">
-                        <canvas id="rtkStatusPieChart"></canvas>
+            <!-- Two Column Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Masa Berlaku RTK</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-indigo-50 rounded-lg">
+                            <div class=" w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Tanggal Mulai</p>
+                                <p class="text-lg font-bold text-gray-900">1 Januari 2024</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-green-50 rounded-lg">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Tanggal Berakhir</p>
+                                <p class="text-lg font-bold text-gray-900">31 Desember 2029</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg border-l-4 border-indigo-600">
+                            <p class="text-sm text-gray-600 mb-1">Periode Berlaku</p>
+                            <p class="text-2xl font-bold text-indigo-600">2024 - 2029</p>
+                            <p class="text-sm text-gray-500 mt-2">Masa berlaku: 5 Tahun</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Dokumen RTK</h3>
+                    <div class="border rounded-lg overflow-hidden" style="height: 500px;">
+                        <iframe src="../../assets/UU Nomor 13 Tahun 2003.pdf#toolbar=1" class="w-full h-full"
+                            frameborder="0"></iframe>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="text-sm text-gray-600">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            RTK_Jakarta_Timur_2024-2029.pdf
+                        </div>
+                        <a href="../../assets/UU Nomor 13 Tahun 2003.pdf" download
+                            class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white texts-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Download
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 
@@ -251,227 +292,6 @@
             const arrow = this.querySelector('.dropdown-arrow');
             dropdown.classList.toggle('hidden');
             arrow?.classList.toggle('rotate-180');
-        });
-
-        // RTK Validity Data for 38 Provinces
-        // Current year is 2025, RTK validity is 5 years
-        // If expiry year < 2025, it's expired and needs renewal
-        const provinceLabels = ['Aceh', 'Sumut', 'Sumsel', 'Sumbar', 'Bengkulu', 'Riau', 'Kep. Riau', 'Jambi', 'Lampung', 'Babel',
-            'Kalbar', 'Kaltim', 'Kalsel', 'Kalteng', 'Kaltara', 'Banten', 'DKI Jakarta', 'Jabar', 'Jateng', 'DIY',
-            'Jatim', 'Bali', 'NTT', 'NTB', 'Gorontalo', 'Sulbar', 'Sulteng', 'Sulut', 'Sultra', 'Sulsel',
-            'Malut', 'Maluku', 'Papua Barat', 'Papua', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan', 'Papua Barat Daya'];
-
-        // Year when RTK expires for each province (some expired, some still valid)
-        const rtkExpiryYears = [
-            2023, 2026, 2025, 2027, 2022, 2026, 2024, 2025, 2027, 2023,
-            2026, 2028, 2025, 2024, 2023, 2027, 2028, 2029, 2027, 2026,
-            2028, 2027, 2024, 2026, 2023, 2024, 2025, 2027, 2025, 2028,
-            2023, 2024, 2022, 2023, 2022, 2023, 2024, 2023
-        ];
-
-        // Calculate valid vs expired
-        let validCount = 0;
-        let expiredCount = 0;
-        const currentYear = 2025;
-
-        rtkExpiryYears.forEach(year => {
-            if (year >= currentYear) {
-                validCount++;
-            } else {
-                expiredCount++;
-            }
-        });
-
-        // Create background colors for bar chart (red for expired, green for valid)
-        const backgroundColors = rtkExpiryYears.map(year =>
-            year >= currentYear ? 'rgba(16, 185, 129, 0.8)' : 'rgba(239, 68, 68, 0.8)'
-        );
-
-        const borderColors = rtkExpiryYears.map(year =>
-            year >= currentYear ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'
-        );
-
-        // Bar Chart: RTK Validity Period per Province
-        const barCtx = document.getElementById('rtkValidityBarChart').getContext('2d');
-        const rtkValidityBarChart = new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: provinceLabels,
-                datasets: [{
-                    label: 'Tahun Berlaku (Kadaluarsa)',
-                    data: rtkExpiryYears,
-                    backgroundColor: backgroundColors,
-                    borderColor: borderColors,
-                    borderWidth: 1,
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            generateLabels: function () {
-                                return [
-                                    {
-                                        text: 'Masih Berlaku (≥ 2025)',
-                                        fillStyle: 'rgba(16, 185, 129, 0.8)',
-                                        strokeStyle: 'rgba(16, 185, 129, 1)',
-                                        lineWidth: 1
-                                    },
-                                    {
-                                        text: 'Sudah Tidak Berlaku (< 2025)',
-                                        fillStyle: 'rgba(239, 68, 68, 0.8)',
-                                        strokeStyle: 'rgba(239, 68, 68, 1)',
-                                        lineWidth: 1
-                                    }
-                                ];
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 12,
-                        cornerRadius: 8,
-                        titleFont: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function (context) {
-                                const year = context.parsed.y;
-                                const status = year >= currentYear ? 'Masih Berlaku' : 'Sudah Tidak Berlaku';
-                                return `Berlaku sampai: ${year} (${status})`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 2020,
-                        max: 2030,
-                        ticks: {
-                            font: {
-                                size: 12
-                            },
-                            stepSize: 1
-                        },
-                        grid: {
-                            color: 'rgba(229, 231, 235, 0.8)'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Tahun Berlaku',
-                            font: {
-                                size: 13,
-                                weight: 'bold'
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 10
-                            },
-                            maxRotation: 45,
-                            minRotation: 45
-                        },
-                        grid: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: 'Provinsi',
-                            font: {
-                                size: 13,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Pie Chart: RTK Validity Status
-        const pieCtx = document.getElementById('rtkStatusPieChart').getContext('2d');
-        const rtkStatusPieChart = new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Masih Berlaku', 'Sudah Tidak Berlaku (Perlu Diurus)'],
-                datasets: [{
-                    data: [validCount, expiredCount],
-                    backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(239, 68, 68, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(16, 185, 129, 1)',
-                        'rgba(239, 68, 68, 1)'
-                    ],
-                    borderWidth: 2,
-                    hoverOffset: 15
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            },
-                            generateLabels: function (chart) {
-                                const data = chart.data;
-                                return data.labels.map((label, i) => ({
-                                    text: `${label}: ${data.datasets[0].data[i]} provinsi`,
-                                    fillStyle: data.datasets[0].backgroundColor[i],
-                                    strokeStyle: data.datasets[0].borderColor[i],
-                                    lineWidth: 2,
-                                    hidden: false,
-                                    index: i
-                                }));
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 15,
-                        cornerRadius: 8,
-                        titleFont: {
-                            size: 15,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 14
-                        },
-                        callbacks: {
-                            label: function (context) {
-                                const label = context.label || '';
-                                const value = context.parsed || 0;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(1);
-                                return `${label}: ${value} provinsi (${percentage}%)`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
     </script>
 </body>
 

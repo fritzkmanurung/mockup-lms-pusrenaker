@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft Dokumen | EduLearn - Platform E-Learning Terbaik</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Quill Editor CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Quill Editor Custom Styling */
+        .ql-container {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            min-height: 500px;
+        }
+
+        .ql-editor {
+            min-height: 500px;
+            padding: 2rem;
+        }
+
+        .ql-toolbar {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb !important;
+            border-bottom: 2px solid #d1d5db !important;
+            border-radius: 0.5rem 0.5rem 0 0;
+            padding: 1rem;
+        }
+
+        .ql-container {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0 0 0.5rem 0.5rem;
+            background: white;
+        }
+
+        .ql-editor.ql-blank::before {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        /* Custom button styling */
+        .action-btn {
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-50 w-full bg-white border-b">
+        <div class="px-3 py-3 lg:px-5">
+            <div class="flex justify-between">
+                <div class="flex items-center">
+                    <button data-drawer-toggle="sidebar" class="sm:hidden p-2 rounded-lg hover:bg-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                        </svg>
+                    </button>
+                    <a href="../index.html" class="flex ms-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                        </svg>
+                        <span class="text-lg font-semibold ms-2">EduLearn</span>
+                    </a>
+                </div>
+                <button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user">
+                    <img class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff" alt="user">
+                </button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Budi Santoso</p>
+                    </div>
+                    <ul class="p-2 text-sm">
+                        <li><a href="./biasa/user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                        </li>
+                        <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="top-bar-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
+                </svg>
+                <span class="self-center text-lg text-gray-900 font-semibold whitespace-nowrap ms-2">EduLearn</span>
+            </a>
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="../index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                        </svg>
+                        <span class="ms-3">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../biasa/courses/my-courses.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 4h12M6 4v16M6 20h12M6 20H5m13 0h1m-1 0V4m0 0h1M6 4H5M9 8h1v1H9V8Zm5 0h1v1h-1V8Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Kursus Saya</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Katalog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../biasa/library/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Perpustakaan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
+                        </svg>
+                        <span class="ms-3">Penyusunan</span>
+                    </a>
+                </li>
+                <li>
+                    <button data-dropdown-toggle="dropdown-perhitungan"
+                        class="flex items-center justify-between w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
+                        </div>
+                        <svg class="w-3 h-3 transition-transform dropdown-arrow" fill="none" stroke="currentColor"
+                            viewBox="0 0 10 6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-perhitungan" class="py-2 space-y-2">
+                        <li>
+                            <a href="./perhitungan.html"
+                                class="flex items-center w-full px-2 py-1.5 ps-10 text-gray-500 hover:bg-purple-100 hover:text-indigo-600 rounded-lg transition-colors">
+                                Daftar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./draft.html"
+                                class="flex items-center w-full px-2 py-1.5 ps-10 text-indigo-600 bg-purple-100 rounded-lg transition-colors">
+                                Draft
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./biasa/support/help.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span class="ms-3">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-6">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-6" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html"
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                </path>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Draft Dokumen</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Document Header -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex-1">
+                        <input type="text" id="documentTitle" placeholder="Judul Dokumen" value="Dokumen Tanpa Judul"
+                            class="text-2xl font-bold text-gray-900 border-0 focus:ring-0 focus:outline-none w-full bg-transparent">
+                        <p class="text-sm text-gray-500 mt-1">Terakhir diedit: <span id="lastEdited">Baru dibuat</span>
+                        </p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="saveDraft()"
+                            class="action-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-all inline-flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                            </svg>
+                            Simpan
+                        </button>
+                        <button onclick="exportPDF()"
+                            class="action-btn px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-all inline-flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor Container -->
+            <div class="bg-white rounded-lg shadow-sm">
+                <div id="editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quill Editor JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script>
+        // Initialize Quill Editor with full toolbar
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Mulai menulis dokumen Anda di sini...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'font': [] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                    [{ 'align': [] }],
+                    ['blockquote', 'code-block'],
+                    ['link', 'image', 'video'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Auto-save functionality
+        let autoSaveInterval;
+        quill.on('text-change', function () {
+            updateLastEdited();
+            clearTimeout(autoSaveInterval);
+            autoSaveInterval = setTimeout(function () {
+                saveDraftAuto();
+            }, 2000); // Auto-save after 2 seconds of inactivity
+        });
+
+        // Update last edited time
+        function updateLastEdited() {
+            const now = new Date();
+            const timeString = now.toLocaleString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            document.getElementById('lastEdited').textContent = timeString;
+        }
+
+        // Save draft function
+        function saveDraft() {
+            const title = document.getElementById('documentTitle').value;
+            const content = quill.root.innerHTML;
+
+            // Save to localStorage
+            const draft = {
+                title: title,
+                content: content,
+                lastEdited: new Date().toISOString()
+            };
+
+            localStorage.setItem('currentDraft', JSON.stringify(draft));
+
+            // Show success message
+            showNotification('Dokumen berhasil disimpan!', 'success');
+        }
+
+        // Auto-save function (silent)
+        function saveDraftAuto() {
+            const title = document.getElementById('documentTitle').value;
+            const content = quill.root.innerHTML;
+
+            const draft = {
+                title: title,
+                content: content,
+                lastEdited: new Date().toISOString()
+            };
+
+            localStorage.setItem('currentDraft', JSON.stringify(draft));
+        }
+
+        // Export to PDF
+        function exportPDF() {
+            showNotification('Fitur export PDF akan segera tersedia', 'info');
+        }
+
+        // Load saved draft
+        function loadDraft() {
+            const saved = localStorage.getItem('currentDraft');
+            if (saved) {
+                const draft = JSON.parse(saved);
+                document.getElementById('documentTitle').value = draft.title;
+                quill.root.innerHTML = draft.content;
+
+                const lastEdit = new Date(draft.lastEdited);
+                const timeString = lastEdit.toLocaleString('id-ID', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                document.getElementById('lastEdited').textContent = timeString;
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500'
+            };
+
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all transform`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Load draft on page load
+        window.addEventListener('load', function () {
+            loadDraft();
+        });
+
+        // Dropdown toggle
+        document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', function () {
+            document.getElementById('dropdown-user').classList.toggle('hidden');
+        });
+
+        // Toggle Perhitungan dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-perhitungan"]')?.addEventListener('click', function () {
+            const dropdown = document.getElementById('dropdown-perhitungan');
+            const arrow = this.querySelector('.dropdown-arrow');
+            dropdown.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-180');
+        });
+
+        // Sidebar toggle
+        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
+            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown-user');
+            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+            if (dropdown && button && !button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

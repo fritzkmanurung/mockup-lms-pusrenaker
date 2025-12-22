@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan RTKN | EduLearn - Platform E-Learning Terbaik</title>
+    <title>Penyusunan RTK | EduLearn - Platform E-Learning Terbaik</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -156,20 +156,7 @@
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Penyusunan</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
-                    </a>
-                </li>
-                <li>
+                </li><li>
                     <button type="button" data-dropdown-toggle="dropdown-pelaporan"
                         class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
@@ -195,13 +182,13 @@
                         <li>
                             <a href="../laporan/list.html"
                                 class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
-                                Daftar RTKN
+                                Daftar RTK
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../rekapitulasi/index.html"
+                    <a href="../report/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -209,7 +196,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Report</span>
                     </a>
                 </li>
                 <li>
@@ -262,7 +249,7 @@
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKN</h2>
+                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTK</h2>
                     <a href="./create.html"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -343,18 +330,18 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTKN Projects Data
+        // RTK Projects Data
         const projectsData = [
-            { name: 'RTKN Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya' },
-            { name: 'RTKN Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza' },
-            { name: 'RTKN Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.' },
-            { name: 'RTKN Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma' },
-            { name: 'RTKN Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama' },
-            { name: 'RTKN Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari' },
-            { name: 'RTKN Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto' },
-            { name: 'RTKN Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.' },
-            { name: 'RTKN Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono' },
-            { name: 'RTKN Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.' }
+            { name: 'RTK Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya' },
+            { name: 'RTK Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza' },
+            { name: 'RTK Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.' },
+            { name: 'RTK Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma' },
+            { name: 'RTK Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama' },
+            { name: 'RTK Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari' },
+            { name: 'RTK Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto' },
+            { name: 'RTK Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.' },
+            { name: 'RTK Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono' },
+            { name: 'RTK Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.' }
         ];
 
         // Transform data for DataTable

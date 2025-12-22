@@ -4,22 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekapitulasi Provinsi | EduLearn - Platform E-Learning Terbaik</title>
+    <title>Perhitungan | EduLearn - Platform E-Learning Terbaik</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: 'Inter', sans-serif;
         }
 
         /* DataTables Custom Styling */
+        .dataTables_wrapper {
+            padding: 0;
+        }
+
         table.dataTable thead th {
             background-color: #f9fafb;
             color: #374151;
@@ -39,6 +43,28 @@
             background-color: #f9fafb;
         }
 
+        .dataTables_filter input {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            margin-left: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .dataTables_filter input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .dataTables_length select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            margin: 0 0.5rem;
+            font-size: 0.875rem;
+        }
+
         .dt-buttons {
             margin-top: 1rem;
             margin-bottom: 1rem;
@@ -49,21 +75,18 @@
 
         .dt-button {
             background-color: #16a34a !important;
-            /* Green */
             color: white !important;
             border: none !important;
             padding: 0.375rem 0.75rem !important;
-            /* Smaller padding */
             border-radius: 0 !important;
-            /* No border radius - square */
             font-size: 0.813rem !important;
-            /* Smaller font */
+            font-weight: 500 !important;
             margin-right: 0.5rem !important;
+            cursor: pointer !important;
         }
 
         .dt-button:hover {
             background-color: #15803d !important;
-            /* Darker green on hover */
         }
 
         .paginate_button {
@@ -98,7 +121,7 @@
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="./index.html" class="flex ms-2"><svg class="w-8 h-8 text-indigo-600"
+                        </svg></button><a href="../index.html" class="flex ms-2"><svg class="w-8 h-8 text-indigo-600"
                             fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v7.22c0 4.42-3.05 8.62-8 9.81-4.95-1.19-8-5.39-8-9.81V7.78l8-3.6zM11 8v2H9v2h2v2h2v-2h2v-2h-2V8h-2z" />
@@ -114,7 +137,8 @@
                     </div>
                     <ul class="p-2 text-sm">
                         <!-- Menu Profile -->
-                        <li><a href="./user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="./biasa/user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                        </li>
                         <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
                     </ul>
                 </div>
@@ -138,8 +162,8 @@
                 <li>
                     <a href="../index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -149,11 +173,43 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../susun/index.html"
+                    <a href="../biasa/courses/my-courses.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 4h12M6 4v16M6 20h12M6 20H5m13 0h1m-1 0V4m0 0h1M6 4H5M9 8h1v1H9V8Zm5 0h1v1h-1V8Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Kursus Saya</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Katalog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../biasa/library/index.html"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Perpustakaan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 14 12 8l8 6M4 8l8-6 8 6M4 20l8-6 8 6" />
                         </svg>
@@ -161,65 +217,42 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
-                    </a>
-                </li>
-                <li>
-                    <button type="button" data-dropdown-toggle="dropdown-pelaporan"
-                        class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap text-left">Pelaporan</span>
-                        <svg class="w-3 h-3 transition-transform dropdown-arrow" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
+                    <button data-dropdown-toggle="dropdown-perhitungan"
+                        class="flex items-center justify-between w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <div class="flex items-center">
+                            <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 4v16m8-8H4m8-4h.01M12 16h.01M16 12h.01M8 12h.01" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Perhitungan</span>
+                        </div>
+                        <svg class="w-3 h-3 transition-transform dropdown-arrow" fill="none" stroke="currentColor"
+                            viewBox="0 0 10 6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
-                    <ul id="dropdown-pelaporan" class="hidden py-2 space-y-2">
+                    <ul id="dropdown-perhitungan" class="py-2 space-y-2">
                         <li>
-                            <a href="../laporan/index.html"
-                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
-                                Dashboard RTK
+                            <a href="./perhitungan.html"
+                                class="flex items-center w-full px-2 py-1.5 ps-10 text-indigo-600 bg-purple-100 rounded-lg transition-colors">
+                                Daftar
                             </a>
                         </li>
                         <li>
-                            <a href="../laporan/list.html"
-                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
-                                Daftar RTKN
+                            <a href="./draft.html"
+                                class="flex items-center w-full px-2 py-1.5 ps-10 text-gray-500 hover:bg-purple-100 hover:text-indigo-600 rounded-lg transition-colors">
+                                Draft
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="./index.html"
-                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../support/help.html"
+                    <a href="./biasa/support/help.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
@@ -255,7 +288,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Rekapitulasi</span>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Perhitungan</span>
                         </div>
                     </li>
                 </ol>
@@ -263,13 +296,14 @@
 
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <table id="provinsiTable" class="display" style="width:100%">
+                <table id="perhitunganTable" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Provinsi</th>
-                            <th>Jumlah</th>
-                            <th>Action</th>
+                            <th>Kategori</th>
+                            <th>Persediaan</th>
+                            <th>Kebutuhan</th>
+                            <th>Neraca</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -279,30 +313,133 @@
             </div>
         </div>
     </div>
-    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-
-    <!-- DataTables Buttons -->
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <script>
+        // Sample data for perhitungan table
+        const perhitunganData = [
+            { no: 1, kategori: 'Tenaga Kerja Terampil', persediaan: 12500, kebutuhan: 15000, neraca: -2500 },
+            { no: 2, kategori: 'Tenaga Kerja Profesional', persediaan: 8200, kebutuhan: 7500, neraca: 700 },
+            { no: 3, kategori: 'Operator Mesin', persediaan: 5400, kebutuhan: 6000, neraca: -600 },
+            { no: 4, kategori: 'Teknisi', persediaan: 3200, kebutuhan: 4500, neraca: -1300 },
+            { no: 5, kategori: 'Administrasi', persediaan: 4500, kebutuhan: 4000, neraca: 500 },
+            { no: 6, kategori: 'Manajemen', persediaan: 2100, kebutuhan: 2000, neraca: 100 },
+            { no: 7, kategori: 'IT Specialist', persediaan: 1800, kebutuhan: 3200, neraca: -1400 },
+            { no: 8, kategori: 'Quality Control', persediaan: 980, kebutuhan: 1200, neraca: -220 },
+            { no: 9, kategori: 'Logistik', persediaan: 2300, kebutuhan: 2100, neraca: 200 },
+            { no: 10, kategori: 'Marketing', persediaan: 1650, kebutuhan: 1900, neraca: -250 },
+        ];
+
+        // Transform data for DataTable
+        const tableData = perhitunganData.map(item => {
+            // Format numbers with thousand separator
+            const formatNumber = (num) => num.toLocaleString('id-ID');
+
+            // Determine neraca status and styling
+            const neracaValue = item.neraca;
+            let neracaDisplay;
+            if (neracaValue > 0) {
+                neracaDisplay = `<span class="text-green-600 font-semibold">+${formatNumber(neracaValue)}</span>`;
+            } else if (neracaValue < 0) {
+                neracaDisplay = `<span class="text-red-600 font-semibold">${formatNumber(neracaValue)}</span>`;
+            } else {
+                neracaDisplay = `<span class="text-gray-600 font-semibold">0</span>`;
+            }
+
+            return [
+                item.no,
+                item.kategori,
+                formatNumber(item.persediaan),
+                formatNumber(item.kebutuhan),
+                neracaDisplay
+            ];
+        });
+
+        // Initialize DataTable
+        $(document).ready(function () {
+            $('#perhitunganTable').DataTable({
+                data: tableData,
+                dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
+                        title: 'Data Perhitungan',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
+                        title: 'Data Perhitungan',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
+                        title: 'Data Perhitungan',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    }
+                ],
+                pageLength: 10,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                language: {
+                    search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ data per halaman",
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                    infoFiltered: "(difilter dari _MAX_ total data)",
+                    paginate: {
+                        first: "Pertama",
+                        last: "Terakhir",
+                        next: "Selanjutnya",
+                        previous: "Sebelumnya"
+                    },
+                    zeroRecords: "Tidak ada data yang ditemukan",
+                    emptyTable: "Tidak ada data tersedia"
+                },
+                order: [[0, 'asc']],
+                columns: [
+                    { className: "text-center" },
+                    null,
+                    { className: "text-right" },
+                    { className: "text-right" },
+                    { className: "text-center" }
+                ]
+            });
+        });
+
         // Toggle dropdown menu
         document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
             document.getElementById('dropdown-user').classList.toggle('hidden');
         });
 
+        // Toggle Perhitungan dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-perhitungan"]')?.addEventListener('click', function () {
+            const dropdown = document.getElementById('dropdown-perhitungan');
+            const arrow = this.querySelector('.dropdown-arrow');
+            dropdown.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-180');
+        });
+
         // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
+        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
             document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
         });
 
@@ -314,133 +451,6 @@
                 dropdown.classList.add('hidden');
             }
         });
-
-        // Toggle Pelaporan dropdown
-        document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
-            const dropdown = document.getElementById('dropdown-pelaporan');
-            const arrow = this.querySelector('.dropdown-arrow');
-            dropdown.classList.toggle('hidden');
-            arrow?.classList.toggle('rotate-180');
-        });
-
-        // Province data with participant counts
-        const provinsiData = [
-            { name: 'Aceh', count: 1247 },
-            { name: 'Sumatera Utara', count: 2891 },
-            { name: 'Sumatera Selatan', count: 1653 },
-            { name: 'Sumatera Barat', count: 1122 },
-            { name: 'Bengkulu', count: 543 },
-            { name: 'Riau', count: 1876 },
-            { name: 'Kepulauan Riau', count: 891 },
-            { name: 'Jambi', count: 734 },
-            { name: 'Lampung', count: 1456 },
-            { name: 'Bangka Belitung', count: 512 },
-            { name: 'Kalimantan Barat', count: 987 },
-            { name: 'Kalimantan Timur', count: 1765 },
-            { name: 'Kalimantan Selatan', count: 1234 },
-            { name: 'Kalimantan Tengah', count: 876 },
-            { name: 'Kalimantan Utara', count: 654 },
-            { name: 'Banten', count: 3210 },
-            { name: 'DKI Jakarta', count: 5678 },
-            { name: 'Jawa Barat', count: 4532 },
-            { name: 'Jawa Tengah', count: 3987 },
-            { name: 'DI Yogyakarta', count: 1876 },
-            { name: 'Jawa Timur', count: 4321 },
-            { name: 'Bali', count: 2109 },
-            { name: 'Nusa Tenggara Timur', count: 765 },
-            { name: 'Nusa Tenggara Barat', count: 1098 },
-            { name: 'Gorontalo', count: 432 },
-            { name: 'Sulawesi Barat', count: 567 },
-            { name: 'Sulawesi Tengah', count: 876 },
-            { name: 'Sulawesi Utara', count: 1234 },
-            { name: 'Sulawesi Tenggara', count: 987 },
-            { name: 'Sulawesi Selatan', count: 2345 },
-            { name: 'Maluku Utara', count: 543 },
-            { name: 'Maluku', count: 678 },
-            { name: 'Papua Barat', count: 456 },
-            { name: 'Papua', count: 789 },
-            { name: 'Papua Tengah', count: 321 },
-            { name: 'Papua Pegunungan', count: 234 },
-            { name: 'Papua Selatan', count: 345 },
-            { name: 'Papua Barat Daya', count: 298 }
-        ];
-
-        // Transform data for DataTable
-        const tableData = provinsiData.map((prov, index) => {
-            return [
-                index + 1,
-                prov.name,
-                prov.count.toLocaleString('id-ID'),
-                `<a href="#" onclick="viewDetail('${prov.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                    View
-                </a>`
-            ];
-        });
-
-        // Initialize DataTable with export buttons
-        $(document).ready(function () {
-            $('#provinsiTable').DataTable({
-                data: tableData,
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                        title: 'Rekapitulasi Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2]
-                        }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                        title: 'Rekapitulasi Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                        title: 'Rekapitulasi Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2]
-                        }
-                    }
-                ],
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ provinsi",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 provinsi",
-                    infoFiltered: "(difilter dari _MAX_ total provinsi)",
-                    paginate: {
-                        first: "Pertama",
-                        last: "Terakhir",
-                        next: "Selanjutnya",
-                        previous: "Sebelumnya"
-                    },
-                    zeroRecords: "Tidak ada data yang ditemukan",
-                    emptyTable: "Tidak ada data tersedia"
-                },
-                order: [[0, 'asc']],
-                columnDefs: [
-                    { orderable: false, targets: 3 }
-                ]
-            });
-        });
-
-        // View detail function
-        function viewDetail(provinceName) {
-            alert(`Detail untuk ${provinceName}\n\nFitur ini akan menampilkan detail peserta dari provinsi ${provinceName}.`);
-            return false;
-        }
     </script>
 </body>
 
