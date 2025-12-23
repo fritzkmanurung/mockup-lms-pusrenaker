@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembelajaran | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <title>Indeks Pembangunan Ketenagakerjaan | SIRENATA</title>
     <link rel="icon" type="image/png" href="../../../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../courses/my-courses.html"
+                    <a href="my-courses.html"
                         class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
                         <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -169,31 +169,19 @@
         <div class="p-6">
             <!-- Breadcrumb -->
             <nav class="flex mb-6" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="../../index.html"
+                        <a href="my-courses.html"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                                 </path>
                             </svg>
-                            Home
+                            Kursus Saya
                         </a>
                     </li>
                     <li>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <a href="../courses/my-courses.html"
-                                class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">My
-                                Courses</a>
-                        </div>
-                    </li>
-                    <li aria-current="page">
                         <div class="flex items-center">
                             <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -206,17 +194,35 @@
                 </ol>
             </nav>
 
+            <!-- Course Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 text-white mb-6">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <h1 class="text-2xl font-bold mb-2">Indeks Pembangunan Ketenagakerjaan</h1>
+                        <div class="flex items-center gap-6 text-sm">
+                            <span>📚 3 Modul</span>
+                            <span>🎯 Progress: 45%</span>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 text-center min-w-[100px]">
+                            <div class="text-3xl font-bold">45%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Filter Tabs -->
             <div class="mb-6">
                 <div class="border-b border-gray-200">
                     <nav class="flex space-x-8">
                         <button onclick="filterModules('all')" id="filter-all"
                             class="filter-tab border-b-2 border-indigo-600 text-indigo-600 py-3 px-1 text-sm font-semibold">
-                            Semua (6)
+                            Semua (3)
                         </button>
                         <button onclick="filterModules('incomplete')" id="filter-incomplete"
                             class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-3 px-1 text-sm font-medium">
-                            Belum Selesai (5)
+                            Belum Selesai (2)
                         </button>
                         <button onclick="filterModules('completed')" id="filter-completed"
                             class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-3 px-1 text-sm font-medium">
@@ -240,12 +246,12 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 1</span>
                             </div>
-                            <h3 class="font-bold text-gray-900 text-lg mb-2">Pengenalan React & Setup Environment</h3>
-                            <p class="text-sm text-gray-600 mb-3">Pelajari dasar-dasar React, JSX, dan cara setup
-                                development environment dengan Vite.</p>
+                            <h3 class="font-bold text-gray-900 text-lg mb-2">Definisi Indeks Pembangunan Ketenagakerjaan
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-3">Memahami konsep dasar dan definisi dari Indeks
+                                Pembangunan Ketenagakerjaan serta pentingnya dalam perencanaan tenaga kerja.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-500">
-                                <span>• 5 Video</span>
-                                <span>• 45 menit</span>
+                                <span>• 6 Video</span>
                                 <span>• 1 Quiz</span>
                             </div>
                         </div>
@@ -268,13 +274,12 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 2</span>
                             </div>
-                            <h3 class="font-bold text-gray-900 text-lg mb-2">Components & Props</h3>
-                            <p class="text-sm text-gray-600 mb-3">Memahami konsep komponen, props, dan cara membuat
-                                komponen yang reusable.</p>
+                            <h3 class="font-bold text-gray-900 text-lg mb-2">Indikator Pembangunan Ketenagakerjaan</h3>
+                            <p class="text-sm text-gray-600 mb-3">Mempelajari berbagai indikator yang digunakan untuk
+                                mengukur pembangunan ketenagakerjaan di suatu wilayah.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-500">
-                                <span>• 6 Video</span>
-                                <span>• 60 menit</span>
-                                <span>• 2 Quiz</span>
+                                <span>• 7 Video</span>
+                                <span>• 1 Quiz</span>
                             </div>
                         </div>
                         <button onclick="viewModule(2)"
@@ -296,96 +301,11 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 3</span>
                             </div>
-                            <h3 class="font-bold text-gray-700 text-lg mb-2">State & Event Handling</h3>
-                            <p class="text-sm text-gray-500 mb-3">Belajar mengelola state dan event handling dalam
-                                aplikasi React.</p>
-                            <div class="flex items-center gap-4 text-sm text-gray-400">
-                                <span>• 7 Video</span>
-                                <span>• 75 menit</span>
-                                <span>• 3 Quiz</span>
-                            </div>
-                        </div>
-                        <button disabled
-                            class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium">
-                            Terkunci
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Module 4 - Locked (requires Module 3) -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-gray-300 opacity-60"
-                    data-status="terkunci">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-                                    🔒 Terkunci
-                                </span>
-                                <span class="text-xs text-gray-500">Modul 4</span>
-                            </div>
-                            <h3 class="font-bold text-gray-700 text-lg mb-2">Lifecycle & useEffect Hook</h3>
-                            <p class="text-sm text-gray-500 mb-3">Memahami lifecycle component dan penggunaan useEffect
-                                hook untuk side effects.</p>
+                            <h3 class="font-bold text-gray-700 text-lg mb-2">Evaluasi Pembangunan Ketenagakerjaan</h3>
+                            <p class="text-sm text-gray-500 mb-3">Teknik evaluasi dan analisis terhadap pembangunan
+                                ketenagakerjaan menggunakan data indeks yang telah dipelajari.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-400">
                                 <span>• 8 Video</span>
-                                <span>• 90 menit</span>
-                                <span>• 2 Quiz</span>
-                            </div>
-                        </div>
-                        <button disabled
-                            class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium">
-                            Terkunci
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Module 5 - Locked (requires Module 4) -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-gray-300 opacity-60"
-                    data-status="terkunci">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-                                    🔒 Terkunci
-                                </span>
-                                <span class="text-xs text-gray-500">Modul 5</span>
-                            </div>
-                            <h3 class="font-bold text-gray-700 text-lg mb-2">TypeScript Basics</h3>
-                            <p class="text-sm text-gray-500 mb-3">Pengenalan TypeScript, type annotations, dan
-                                interfaces.</p>
-                            <div class="flex items-center gap-4 text-sm text-gray-400">
-                                <span>• 6 Video</span>
-                                <span>• 65 menit</span>
-                                <span>• 2 Quiz</span>
-                            </div>
-                        </div>
-                        <button disabled
-                            class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium">
-                            Terkunci
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Module 6 - Locked (requires Module 5) -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-gray-300 opacity-60"
-                    data-status="terkunci">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-                                    🔒 Terkunci
-                                </span>
-                                <span class="text-xs text-gray-500">Modul 6</span>
-                            </div>
-                            <h3 class="font-bold text-gray-700 text-lg mb-2">Context API & Global State</h3>
-                            <p class="text-sm text-gray-500 mb-3">Mengelola state global menggunakan Context API untuk
-                                sharing data antar komponen.</p>
-                            <div class="flex items-center gap-4 text-sm text-gray-400">
-                                <span>• 5 Video</span>
-                                <span>• 50 menit</span>
                                 <span>• 1 Quiz</span>
                             </div>
                         </div>
@@ -400,23 +320,55 @@
     </div>
 
     <script>
-        // Dropdown toggle
+        // Filter modules function
+        function filterModules(status) {
+            const moduleCards = document.querySelectorAll('.module-card');
+            const filterButtons = document.querySelectorAll('.filter-tab');
+
+            // Update active filter button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'font-semibold');
+                btn.classList.add('border-transparent', 'text-gray-500', 'font-medium');
+            });
+
+            const activeButton = document.getElementById(`filter-${status}`);
+            activeButton.classList.add('border-indigo-600', 'text-indigo-600', 'font-semibold');
+            activeButton.classList.remove('border-transparent', 'text-gray-500', 'font-medium');
+
+            // Filter modules
+            moduleCards.forEach(card => {
+                const cardStatus = card.getAttribute('data-status');
+
+                if (status === 'all') {
+                    card.style.display = '';
+                } else if (status === 'completed' && cardStatus === 'completed') {
+                    card.style.display = '';
+                } else if (status === 'incomplete' && (cardStatus === 'terbuka' || cardStatus === 'terkunci')) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // View module function
+        function viewModule(moduleNumber) {
+            alert(`Membuka Modul ${moduleNumber}:\nIndeks Pembangunan Ketenagakerjaan`);
+            console.log(`Viewing module ${moduleNumber}`);
+        }
+
+        // Toggle dropdown
         document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', () =>
             document.getElementById('dropdown-user').classList.toggle('hidden')
         );
 
-        // Toggle Perhitungan dropdown
+        // Toggle perhitungan dropdown
         document.querySelector('[data-dropdown-toggle="dropdown-perhitungan"]')?.addEventListener('click', function () {
             const dropdown = document.getElementById('dropdown-perhitungan');
-            const arrow = this.querySelector('.dropdown-arrow');
             dropdown.classList.toggle('hidden');
-            arrow?.classList.toggle('rotate-180');
+            const arrow = this.querySelector('.dropdown-arrow');
+            arrow.classList.toggle('rotate-180');
         });
-
-        // Sidebar toggle for mobile
-        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', () =>
-            document.getElementById('sidebar')?.classList.toggle('-translate-x-full')
-        );
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
@@ -426,53 +378,6 @@
                 dropdown.classList.add('hidden');
             }
         });
-
-        // Filter modules function
-        function filterModules(status) {
-            const modules = document.querySelectorAll('.module-card');
-            const filterTabs = document.querySelectorAll('.filter-tab');
-
-            // Update active tab styling
-            filterTabs.forEach(tab => {
-                tab.classList.remove('border-indigo-600', 'text-indigo-600', 'font-semibold');
-                tab.classList.add('border-transparent', 'text-gray-500', 'font-medium');
-            });
-
-            const activeTab = document.getElementById(`filter-${status}`);
-            activeTab.classList.add('border-indigo-600', 'text-indigo-600', 'font-semibold');
-            activeTab.classList.remove('border-transparent', 'text-gray-500', 'font-medium');
-
-            // Filter modules
-            modules.forEach(module => {
-                const moduleStatus = module.getAttribute('data-status');
-
-                if (status === 'all') {
-                    // Semua: Show all modules (completed, terbuka, terkunci)
-                    module.style.display = 'block';
-                } else if (status === 'incomplete') {
-                    // Belum Selesai: Show terbuka and terkunci only
-                    if (moduleStatus === 'terbuka' || moduleStatus === 'terkunci') {
-                        module.style.display = 'block';
-                    } else {
-                        module.style.display = 'none';
-                    }
-                } else if (status === 'completed') {
-                    // Selesai: Show only completed modules
-                    if (moduleStatus === 'completed') {
-                        module.style.display = 'block';
-                    } else {
-                        module.style.display = 'none';
-                    }
-                }
-            });
-        }
-
-        // View module function
-        function viewModule(moduleId) {
-            console.log('Viewing module:', moduleId);
-            // You can redirect to module detail page or open a modal
-            alert(`Membuka Modul ${moduleId}`);
-        }
     </script>
 </body>
 
