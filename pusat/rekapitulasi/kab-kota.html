@@ -4,25 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar RTK | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <title>Detail Kab/Kota - Report User | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
     <link rel="icon" type="image/png" href="../../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: 'Inter', sans-serif;
         }
 
         /* DataTables Custom Styling */
-        .dataTables_wrapper {
-            padding: 0;
-        }
-
         table.dataTable thead th {
             background-color: #f9fafb;
             color: #374151;
@@ -40,28 +36,6 @@
 
         table.dataTable tbody tr:hover {
             background-color: #f9fafb;
-        }
-
-        .dataTables_filter input {
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            margin-left: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .dataTables_filter input:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-        }
-
-        .dataTables_length select {
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            margin: 0 0.5rem;
-            font-size: 0.875rem;
         }
 
         .dt-buttons {
@@ -83,9 +57,7 @@
             /* No border radius - square */
             font-size: 0.813rem !important;
             /* Smaller font */
-            font-weight: 500 !important;
             margin-right: 0.5rem !important;
-            cursor: pointer !important;
         }
 
         .dt-button:hover {
@@ -112,24 +84,6 @@
             color: white !important;
             border-color: #6366f1 !important;
         }
-
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .status-valid {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .status-expired {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
     </style>
 </head>
 
@@ -143,20 +97,21 @@
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="../index.html" class="flex items-center ms-2">
+                        </svg></button><a href="./index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
                     </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
-                        src="https://ui-avatars.com/api/?name=Admin+Pusat&background=6366f1&color=fff"
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
                         alt="user"></button>
                 <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
                     id="dropdown-user">
                     <div class="px-4 py-3 border-b">
-                        <p class="text-sm font-medium">Admin Pusat</p>
+                        <p class="text-sm font-medium">Budi Santoso</p>
                     </div>
                     <ul class="p-2 text-sm">
-                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <!-- Menu Profile -->
+                        <li><a href="./user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
                         <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
                     </ul>
                 </div>
@@ -169,7 +124,7 @@
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
-            <a href="../index.html" class="flex items-center ps-2.5 mb-5">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
                 <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                 <span class="self-center text-lg font-semibold whitespace-nowrap ms-2"
                     style="color: #13416B;">SIRENATA</span>
@@ -200,42 +155,43 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
                     </a>
                 </li>
+
                 <li>
                     <button type="button" data-dropdown-toggle="dropdown-pelaporan"
-                        class="flex items-center w-full px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        class="flex items-center w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap text-left">Pelaporan</span>
-                        <svg class="w-3 h-3 transition-transform rotate-180 dropdown-arrow" aria-hidden="true"
+                        <svg class="w-3 h-3 transition-transform dropdown-arrow" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
-                    <ul id="dropdown-pelaporan" class="py-2 space-y-2">
+                    <ul id="dropdown-pelaporan" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="./index.html"
+                            <a href="../laporan/index.html"
                                 class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
                                 Dashboard RTK
                             </a>
                         </li>
                         <li>
-                            <a href="./list.html"
-                                class="flex items-center w-full px-2 py-1.5 text-indigo-600 bg-purple-50 transition-colors rounded-lg pl-11 font-medium">
-                                Daftar RTK
+                            <a href="../laporan/list.html"
+                                class="flex items-center w-full px-2 py-1.5 text-gray-500 transition-colors rounded-lg pl-11 hover:bg-purple-100 hover:text-indigo-600">
+                                Daftar RTKN
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../rekapitulasi/index.html"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                    <a href="./index.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
                                 d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                         </svg>
@@ -283,7 +239,8 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Daftar Laporan RTK</span>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2"
+                                id="location-name">Loading...</span>
                         </div>
                     </li>
                 </ol>
@@ -291,24 +248,15 @@
 
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="mb-4 text-right">
-                    <a href="./upload.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
-                        Upload RTK
-                    </a>
-                </div>
-                <table id="rtkTable" class="display" style="width:100%">
+                <table id="courseTable" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Instansi (Kab/Kota)</th>
-                            <th>Tahun Berlaku</th>
+                            <th>Nama</th>
+                            <th>Kursus</th>
+                            <th>Instansi</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -317,6 +265,7 @@
                 </table>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- jQuery -->
@@ -328,8 +277,8 @@
     <!-- DataTables Buttons -->
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
@@ -353,71 +302,98 @@
             }
         });
 
-        // RTK Data for Jakarta Districts/Cities
-        const provinceData = [
-            { name: 'Kota Jakarta Pusat', validUntil: 2027 },
-            { name: 'Kota Jakarta Barat', validUntil: 2028 },
-            { name: 'Kota Jakarta Selatan', validUntil: 2026 },
-            { name: 'Kota Jakarta Timur', validUntil: 2029 },
-            { name: 'Kota Jakarta Utara', validUntil: 2027 },
-            { name: 'Kabupaten Administrasi Kepulauan Seribu', validUntil: 2025 }
+        // Toggle Pelaporan dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
+            const dropdown = document.getElementById('dropdown-pelaporan');
+            const arrow = this.querySelector('.dropdown-arrow');
+            dropdown.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-180');
+        });
+
+        // Get province and kab/kota from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const provinceName = urlParams.get('prov') || 'DKI Jakarta';
+        const kabkotaName = urlParams.get('kabkota') || 'Kota Jakarta Selatan';
+        document.getElementById('location-name').textContent = `${kabkotaName}, ${provinceName}`;
+
+        // Course enrollment data for Jakarta Selatan
+        const courseData = [
+            { nama: 'Ahmad Wijaya', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Maju Bersama Jakarta', status: 'Selesai' },
+            { nama: 'Siti Nurhaliza', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'Dinas Tenaga Kerja Jakarta', status: 'Selesai' },
+            { nama: 'Budi Santoso', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Karya Sejahtera', status: 'Selesai' },
+            { nama: 'Dewi Lestari', kursus: 'PTK Makro (Advanced)', instansi: 'PT Indah Pratama', status: 'Selesai' },
+            { nama: 'Rudi Hartono', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'PT Cahaya Abadi', status: 'Selesai' },
+            { nama: 'Maya Sari', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'Dinas Koperasi Jakarta', status: 'Selesai' },
+            { nama: 'Hendra Pratama', kursus: 'PTK Makro (Advanced)', instansi: 'PT Sinar Harapan', status: 'Selesai' },
+            { nama: 'Rina Kusuma', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'PT Mitra Usaha', status: 'Selesai' },
+            { nama: 'Bambang Suryanto', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Jaya Konstruksi', status: 'Selesai' },
+            { nama: 'Andi Firmansyah', kursus: 'PTK Makro (Advanced)', instansi: 'PT Berkah Sentosa', status: 'Selesai' },
+            { nama: 'Putri Wulandari', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'Dinas Perindustrian Jakarta', status: 'Selesai' },
+            { nama: 'Agus Setiawan', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Nusantara Sejahtera', status: 'Selesai' },
+            { nama: 'Linda Marlina', kursus: 'PTK Makro (Advanced)', instansi: 'PT Global Indonesia', status: 'Selesai' },
+            { nama: 'Dian Sastro', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'PT Mandiri Jaya', status: 'Selesai' },
+            { nama: 'Teguh Prasetyo', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Prima Karya', status: 'Selesai' },
+            { nama: 'Ratna Sari', kursus: 'PTK Makro (Advanced)', instansi: 'Kementerian Ketenagakerjaan', status: 'Selesai' },
+            { nama: 'Fajar Ramadhan', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'PT Angkasa Pura', status: 'Selesai' },
+            { nama: 'Indah Permata', kursus: 'Perencanaan Tenaga Kerja Makro', instansi: 'PT Cemerlang Abadi', status: 'Selesai' },
+            { nama: 'Rizki Maulana', kursus: 'PTK Makro (Advanced)', instansi: 'PT Tiga Pilar', status: 'Selesai' },
+            { nama: 'Nurul Hidayah', kursus: 'Indeks Pembangunan Ketenagakerjaan', instansi: 'Badan Pusat Statistik', status: 'Selesai' }
         ];
 
-        const currentYear = 2025;
-
         // Transform data for DataTable
-        const tableData = provinceData.map((province, index) => {
-            const isValid = province.validUntil >= currentYear;
-            const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
-            const statusClass = isValid ? 'status-valid' : 'status-expired';
+        const tableData = courseData.map((item, index) => {
+            const statusBadge = `<span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Selesai</span>`;
+
+            const actionButton = `<button onclick="lihatSertifikat('${item.nama}', '${item.kursus}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Lihat Sertifikat
+            </button>`;
 
             return [
                 index + 1,
-                province.name,
-                province.validUntil,
-                `<span class="status-badge ${statusClass}">${status}</span>`,
-                `<button onclick="downloadFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                    Download
-                </button>`
+                item.nama,
+                item.kursus,
+                item.instansi,
+                statusBadge,
+                actionButton
             ];
         });
 
-        // Initialize DataTable
+        // Initialize DataTable with export buttons
         $(document).ready(function () {
-            $('#rtkTable').DataTable({
+            $('#courseTable').DataTable({
                 data: tableData,
+                pageLength: 10,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
                 dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
                 buttons: [
                     {
-                        extend: 'excel',
+                        extend: 'excelHtml5',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                        title: 'Laporan RTK Kab/Kota',
+                        title: `Report Kursus - ${kabkotaName}`,
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
-                        extend: 'pdf',
+                        extend: 'pdfHtml5',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                        title: 'Laporan RTK Kab/Kota',
+                        title: `Report Kursus - ${kabkotaName}`,
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                        title: 'Laporan RTK Kab/Kota',
+                        title: `Report Kursus - ${kabkotaName}`,
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     }
                 ],
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
                 language: {
                     search: "Cari:",
                     lengthMenu: "Tampilkan _MENU_ data per halaman",
@@ -435,18 +411,71 @@
                 },
                 order: [[0, 'asc']],
                 columnDefs: [
-                    { orderable: false, targets: 4 }
+                    { orderable: false, targets: 5 }
                 ]
             });
         });
 
-        // Download file function
-        function downloadFile(provinceName) {
-            alert(`Mengunduh file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
-            // In real implementation, this would trigger actual file download
-            // window.location.href = `/api/download-rtk/${provinceName}`;
+        // Function to view certificate
+        function lihatSertifikat(nama, kursus) {
+            document.getElementById('modal-title').textContent = `Sertifikat - ${nama}`;
+            document.getElementById('modal-subtitle').textContent = kursus;
+            document.getElementById('certificate-modal').classList.remove('hidden');
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('certificate-modal').classList.add('hidden');
         }
     </script>
+
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="relative bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-4 border-b bg-white rounded-t-lg">
+                    <div>
+                        <h3 id="modal-title" class="text-xl font-bold text-gray-900">Sertifikat</h3>
+                        <p id="modal-subtitle" class="text-sm text-gray-600 mt-1"></p>
+                    </div>
+                    <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal Body - PDF Viewer -->
+                <div class="flex-1 p-4 overflow-hidden">
+                    <iframe 
+                        src="../../assets/UU Nomor 13 Tahun 2003.pdf" 
+                        class="w-full h-[70vh] border rounded-lg"
+                        frameborder="0">
+                    </iframe>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex items-center justify-end gap-2 p-4 border-t bg-gray-50 rounded-b-lg">
+                    <button onclick="closeModal()" 
+                        class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                        Tutup
+                    </button>
+                    <a href="../../assets/UU Nomor 13 Tahun 2003.pdf" download 
+                        class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Download Sertifikat
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

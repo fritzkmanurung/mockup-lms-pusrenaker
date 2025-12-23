@@ -154,18 +154,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
-                    </a>
-                </li>
-                <li>
                     <button data-dropdown-toggle="dropdown-perhitungan"
                         class="flex items-center justify-between w-full px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <div class="flex items-center">
@@ -275,6 +263,86 @@
             <!-- Editor Container -->
             <div class="bg-white rounded-lg shadow-sm">
                 <div id="editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Comment Button -->
+    <button onclick="toggleCommentPanel()"
+        class="fixed right-6 bottom-6 z-40 w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+        </svg>
+        <span
+            class="absolute right-16 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Tambah
+            Komentar</span>
+    </button>
+
+    <!-- Comment Panel Popup -->
+    <div id="comment-panel"
+        class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
+        <div class="flex flex-col h-full">
+            <!-- Panel Header -->
+            <div
+                class="flex items-center justify-between p-4 border-b bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                <h3 class="text-lg font-bold">💬 Komentar</h3>
+                <button onclick="toggleCommentPanel()" class="p-1 hover:bg-white/20 rounded-lg transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Add Comment Section -->
+            <div class="p-4 border-b bg-gray-50">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Tulis Komentar Baru</label>
+                <textarea id="comment-text" rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+                    placeholder="Ketik komentar Anda di sini..."></textarea>
+                <button onclick="addComment()"
+                    class="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors inline-flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Tambah Komentar
+                </button>
+            </div>
+
+            <!-- Comments List -->
+            <div class="flex-1 overflow-y-auto p-4" id="comments-list">
+                <!-- Sample Comment 1 -->
+                <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                    <div class="flex items-start gap-2 mb-2">
+                        <img src="https://ui-avatars.com/api/?name=Ahmad+Reza&background=10b981&color=fff"
+                            class="w-8 h-8 rounded-full" alt="Ahmad">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm text-gray-900">Ahmad Reza</span>
+                                <span class="text-xs text-gray-500">22 Des 2024 14:30</span>
+                            </div>
+                            <p class="text-sm text-gray-700 mt-1">Dokumen sudah bagus, namun perlu ditambahkan data
+                                terbaru untuk tahun 2024.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Comment 2 -->
+                <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                    <div class="flex items-start gap-2 mb-2">
+                        <img src="https://ui-avatars.com/api/?name=Siti+Nurhaliza&background=ef4444&color=fff"
+                            class="w-8 h-8 rounded-full" alt="Siti">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm text-gray-900">Siti Nurhaliza</span>
+                                <span class="text-xs text-gray-500">22 Des 2024 10:15</span>
+                            </div>
+                            <p class="text-sm text-gray-700 mt-1">Bagian analisis perlu diperluas lagi dengan data
+                                kualitatif.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -436,6 +504,55 @@
                 dropdown.classList.add('hidden');
             }
         });
+
+        // Toggle comment panel
+        function toggleCommentPanel() {
+            const panel = document.getElementById('comment-panel');
+            panel.classList.toggle('translate-x-full');
+        }
+
+        // Add comment function
+        function addComment() {
+            const textarea = document.getElementById('comment-text');
+            const commentText = textarea.value.trim();
+
+            if (!commentText) {
+                alert('Silakan masukkan komentar terlebih dahulu');
+                return;
+            }
+
+            // Get current date/time
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            // Create comment element
+            const commentItem = document.createElement('div');
+            commentItem.className = 'bg-gray-50 rounded-lg p-3 mb-3';
+            commentItem.innerHTML = `
+                <div class="flex items-start gap-2 mb-2">
+                    <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff" 
+                         class="w-8 h-8 rounded-full" alt="User">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-gray-900">Budi Santoso</span>
+                            <span class="text-xs text-gray-500">${dateStr} ${timeStr}</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mt-1">${commentText}</p>
+                    </div>
+                </div>
+            `;
+
+            // Add to comments list
+            const commentsList = document.getElementById('comments-list');
+            commentsList.insertBefore(commentItem, commentsList.firstChild);
+
+            // Clear textarea
+            textarea.value = '';
+
+            // Show notification
+            showNotification('Komentar berhasil ditambahkan', 'success');
+        }
     </script>
 </body>
 
