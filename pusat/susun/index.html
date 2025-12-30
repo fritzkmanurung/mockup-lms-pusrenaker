@@ -17,9 +17,22 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Prevent horizontal scroll */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
         /* DataTables Custom Styling */
         .dataTables_wrapper {
             padding: 0;
+            overflow-x: auto;
+        }
+
+        table.dataTable {
+            width: 100% !important;
+            margin: 0 !important;
         }
 
         table.dataTable thead th {
@@ -29,6 +42,7 @@
             font-size: 0.875rem;
             padding: 12px 16px;
             border-bottom: 2px solid #e5e7eb;
+            white-space: nowrap;
         }
 
         table.dataTable tbody td {
@@ -82,6 +96,44 @@
             color: white !important;
             border-color: #6366f1 !important;
         }
+
+        /* Responsive table wrapper */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Action buttons responsive */
+        @media (max-width: 640px) {
+
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                padding: 8px 12px;
+                font-size: 0.8125rem;
+            }
+
+            .action-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .action-buttons button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .dataTables_filter,
+            .dataTables_length {
+                margin-bottom: 1rem;
+            }
+
+            .dataTables_info,
+            .dataTables_paginate {
+                margin-top: 1rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -89,29 +141,36 @@
 
     <!-- Navbar -->
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
-        <div class="px-3 py-3 lg:px-5">
-            <div class="flex justify-between">
-                <div class="flex items-center"><button data-drawer-toggle="sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+        <div class="px-3 py-3 lg:px-5 h-16 flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center">
+                    <button data-drawer-toggle="top-bar-sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="./index.html" class="flex items-center ms-2">
+                        </svg>
+                    </button>
+                    <a href="./index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
-                        class="w-8 h-8 rounded-full"
-                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
-                        alt="user"></button>
-                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
-                    id="dropdown-user">
-                    <div class="px-4 py-3 border-b">
-                        <p class="text-sm font-medium">Budi Santoso</p>
+                    </a>
+                </div>
+                <div class="relative">
+                    <button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user">
+                        <img class="w-8 h-8 rounded-full"
+                            src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff" alt="user">
+                    </button>
+                    <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                        id="dropdown-user">
+                        <div class="px-4 py-3 border-b">
+                            <p class="text-sm font-medium">Budi Santoso</p>
+                        </div>
+                        <ul class="p-2 text-sm">
+                            <li><a href="./user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                            </li>
+                            <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                        </ul>
                     </div>
-                    <ul class="p-2 text-sm">
-                        <!-- Menu Profile -->
-                        <li><a href="./user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
-                        <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -213,11 +272,11 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6">
+    <div class="sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
 
             <!-- Breadcrumb -->
-            <nav class="flex mb-6" aria-label="Breadcrumb">
+            <nav class="flex mb-4 md:mb-6 overflow-x-auto" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
@@ -244,32 +303,34 @@
             </nav>
 
             <!-- DataTable Card -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-4">
+            <div class="bg-white rounded-lg shadow-sm p-4 md:p-6">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
                     <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKN</h2>
                     <a href="./create.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                         Create Project
                     </a>
                 </div>
-                <table id="projectsTable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Proyek Dibuat</th>
-                            <th>Proyek Selesai</th>
-                            <th>Durasi</th>
-                            <th>Ketua Tim</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="projectsTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Proyek Dibuat</th>
+                                <th>Proyek Selesai</th>
+                                <th>Durasi</th>
+                                <th>Ketua Tim</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -279,8 +340,9 @@
         <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl h-3/4 flex flex-col">
             <!-- Modal Header -->
             <div class="flex justify-between items-center p-4 border-b">
-                <h3 id="modalTitle" class="text-lg font-semibold text-gray-900"></h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <h3 id="modalTitle" class="text-lg font-semibold text-gray-900 truncate pr-4"></h3>
+                <button onclick="closeModal()"
+                    class="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
@@ -292,7 +354,6 @@
                 <iframe id="pdfFrame" class="w-full h-full" frameborder="0"></iframe>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- jQuery -->
@@ -308,8 +369,41 @@
         });
 
         // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
+        const sidebar = document.getElementById('top-bar-sidebar');
+
+        // Create backdrop element
+        const backdrop = document.createElement('div');
+        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+        backdrop.id = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Toggle sidebar and backdrop
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        sidebarToggleBtn?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking backdrop
+        backdrop.addEventListener('click', function () {
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            if (window.innerWidth < 640) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                    toggleSidebar();
+                }
+            }
         });
 
         // Close dropdown when clicking outside
@@ -351,7 +445,7 @@
                 project.completed,
                 project.duration,
                 project.leader,
-                `<div class="flex gap-2">
+                `<div class="flex gap-2 action-buttons">
                     <button onclick="viewProject('${project.name}')" class="px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center" title="Lihat Detail">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -395,8 +489,10 @@
                 },
                 order: [[0, 'asc']],
                 columnDefs: [
-                    { orderable: false, targets: 3 }
-                ]
+                    { orderable: false, targets: 5 }
+                ],
+                responsive: true,
+                scrollX: true
             });
         });
 
@@ -414,19 +510,13 @@
 
         // Edit project function
         function editProject(id, projectName) {
-            // In a real application, this would redirect to edit page or open edit modal
             alert(`Edit Project:\nID: ${id}\nNama: ${projectName}\n\nFungsi ini akan mengarah ke halaman edit.`);
-            // Example: window.location.href = `create.html?id=${id}&edit=true`;
         }
 
         // Delete project function
         function deleteProject(id, projectName) {
             if (confirm(`Apakah Anda yakin ingin menghapus project:\n"${projectName}"?\n\nTindakan ini tidak dapat dibatalkan.`)) {
-                // In a real application, this would send delete request to server
                 alert(`Project "${projectName}" berhasil dihapus!`);
-                // Example: send DELETE request to API
-                // After successful deletion, reload the DataTable
-                // $('#projectsTable').DataTable().ajax.reload();
             }
         }
 

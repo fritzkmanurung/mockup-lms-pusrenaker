@@ -20,14 +20,14 @@
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
         <div class="px-3 py-3 lg:px-5">
             <div class="flex justify-between">
-                <div class="flex items-center"><button data-drawer-toggle="sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class="w-6 h-6"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
                         </svg></button><a href="/pusat/index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                    </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
                         alt="user"></button>
@@ -224,7 +224,45 @@
     </div>
     <script>
         document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', () => document.getElementById('dropdown-user').classList.toggle('hidden'));
-        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full'));
+        // Toggle sidebar on mobile
+        const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
+        const sidebar = document.getElementById('top-bar-sidebar');
+
+        // Create backdrop element
+        const backdrop = document.createElement('div');
+        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+        backdrop.id = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Toggle sidebar and backdrop
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        sidebarToggleBtn?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking backdrop
+        backdrop.addEventListener('click', function () {
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            if (window.innerWidth < 640) { // sm breakpoint
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                    toggleSidebar();
+                }
+            }
+        });
+
+        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => { const d = document.getElementById('dropdown-user'), b = document.querySelector('[data-dropdown-toggle="dropdown-user"]'); if (d && b && !b.contains(e.target) && !d.contains(e.target)) d.classList.add('hidden'); });
 
         // Toggle Pelaporan dropdown

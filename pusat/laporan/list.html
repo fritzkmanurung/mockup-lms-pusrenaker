@@ -18,9 +18,22 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Prevent horizontal scroll */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
         /* DataTables Custom Styling */
         .dataTables_wrapper {
             padding: 0;
+            overflow-x: auto;
+        }
+
+        table.dataTable {
+            width: 100% !important;
+            margin: 0 !important;
         }
 
         table.dataTable thead th {
@@ -30,6 +43,7 @@
             font-size: 0.875rem;
             padding: 12px 16px;
             border-bottom: 2px solid #e5e7eb;
+            white-space: nowrap;
         }
 
         table.dataTable tbody td {
@@ -53,8 +67,7 @@
         .dataTables_filter input:focus {
             outline: none;
             border-color: #6366f1;
-            ring: 2px;
-            ring-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
 
         .dataTables_length select {
@@ -108,10 +121,10 @@
             border-color: #9ca3af !important;
         }
 
-        .paginate_button.current {
-            background-color: #6366f1 !important;
-            color: white !important;
-            border-color: #6366f1 !important;
+        /* Responsive table wrapper */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .status-badge {
@@ -138,16 +151,16 @@
 
     <!-- Navbar -->
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
-        <div class="px-3 py-3 lg:px-5">
-            <div class="flex justify-between">
-                <div class="flex items-center"><button data-drawer-toggle="sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+        <div class="px-3 py-3 lg:px-5 h-16 flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class="w-6 h-6"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
                         </svg></button><a href="#" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                    </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Admin+Pusat&background=6366f1&color=fff"
                         alt="user"></button>
@@ -261,11 +274,11 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6">
+    <div class="sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
 
             <!-- Breadcrumb -->
-            <nav class="flex mb-6" aria-label="Breadcrumb">
+            <nav class="flex mb-4 md:mb-6 overflow-x-auto" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
@@ -292,10 +305,10 @@
             </nav>
 
             <!-- DataTable Card -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="mb-4 text-right">
+            <div class="bg-white rounded-lg shadow-sm p-4 md:p-6">
+                <div class="mb-4 flex flex-col sm:flex-row sm:justify-end gap-3">
                     <a href="./upload.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -303,185 +316,219 @@
                         Upload RTK
                     </a>
                 </div>
-                <table id="rtkTable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Instansi (Provinsi)</th>
-                            <th>Tahun Berlaku</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="rtkTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Instansi (Provinsi)</th>
+                                <th>Tahun Berlaku</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-    <!-- DataTables Buttons -->
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+        <!-- DataTables Buttons -->
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
-    <script>
-        // Toggle dropdown menu
-        document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
-            document.getElementById('dropdown-user').classList.toggle('hidden');
-        });
+        <script>
+            // Toggle dropdown menu
+            document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+                document.getElementById('dropdown-user').classList.toggle('hidden');
+            });
 
-        // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
-        });
+            // Toggle sidebar on mobile
+            const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
+            const sidebar = document.getElementById('top-bar-sidebar');
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.getElementById('dropdown-user');
-            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
-            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
+            // Create backdrop element
+            const backdrop = document.createElement('div');
+            backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+            backdrop.id = 'sidebar-backdrop';
+            document.body.appendChild(backdrop);
+
+            // Toggle sidebar and backdrop
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                backdrop.classList.toggle('hidden');
             }
-        });
 
-        // RTK Data for 38 Provinces
-        const provinceData = [
-            { name: 'Nanggroe Aceh Darussalam', validUntil: 2023 },
-            { name: 'Sumatera Utara', validUntil: 2026 },
-            { name: 'Sumatera Selatan', validUntil: 2025 },
-            { name: 'Sumatera Barat', validUntil: 2027 },
-            { name: 'Bengkulu', validUntil: 2022 },
-            { name: 'Riau', validUntil: 2026 },
-            { name: 'Kepulauan Riau', validUntil: 2024 },
-            { name: 'Jambi', validUntil: 2025 },
-            { name: 'Lampung', validUntil: 2027 },
-            { name: 'Bangka Belitung', validUntil: 2023 },
-            { name: 'Kalimantan Barat', validUntil: 2026 },
-            { name: 'Kalimantan Timur', validUntil: 2028 },
-            { name: 'Kalimantan Selatan', validUntil: 2025 },
-            { name: 'Kalimantan Tengah', validUntil: 2024 },
-            { name: 'Kalimantan Utara', validUntil: 2023 },
-            { name: 'Banten', validUntil: 2027 },
-            { name: 'DKI Jakarta', validUntil: 2028 },
-            { name: 'Jawa Barat', validUntil: 2029 },
-            { name: 'Jawa Tengah', validUntil: 2027 },
-            { name: 'Daerah Istimewa Yogyakarta', validUntil: 2026 },
-            { name: 'Jawa Timur', validUntil: 2028 },
-            { name: 'Bali', validUntil: 2027 },
-            { name: 'Nusa Tenggara Timur', validUntil: 2024 },
-            { name: 'Nusa Tenggara Barat', validUntil: 2026 },
-            { name: 'Gorontalo', validUntil: 2023 },
-            { name: 'Sulawesi Barat', validUntil: 2024 },
-            { name: 'Sulawesi Tengah', validUntil: 2025 },
-            { name: 'Sulawesi Utara', validUntil: 2027 },
-            { name: 'Sulawesi Tenggara', validUntil: 2025 },
-            { name: 'Sulawesi Selatan', validUntil: 2028 },
-            { name: 'Maluku Utara', validUntil: 2023 },
-            { name: 'Maluku', validUntil: 2024 },
-            { name: 'Papua Barat', validUntil: 2022 },
-            { name: 'Papua', validUntil: 2023 },
-            { name: 'Papua Tengah', validUntil: 2022 },
-            { name: 'Papua Pegunungan', validUntil: 2023 },
-            { name: 'Papua Selatan', validUntil: 2024 },
-            { name: 'Papua Barat Daya', validUntil: 2023 }
-        ];
+            sidebarToggleBtn?.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleSidebar();
+            });
 
-        const currentYear = 2025;
+            // Close sidebar when clicking backdrop
+            backdrop.addEventListener('click', function () {
+                toggleSidebar();
+            });
 
-        // Transform data for DataTable
-        const tableData = provinceData.map((province, index) => {
-            const isValid = province.validUntil >= currentYear;
-            const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
-            const statusClass = isValid ? 'status-valid' : 'status-expired';
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function (event) {
+                if (window.innerWidth < 640) { // sm breakpoint
+                    const isClickInsideSidebar = sidebar.contains(event.target);
+                    const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
 
-            return [
-                index + 1,
-                province.name,
-                province.validUntil,
-                `<span class="status-badge ${statusClass}">${status}</span>`,
-                `<button onclick="viewFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                    if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                        toggleSidebar();
+                    }
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.getElementById('dropdown-user');
+                const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+
+            // RTK Data for 38 Provinces
+            const provinceData = [
+                { name: 'Nanggroe Aceh Darussalam', validUntil: 2023 },
+                { name: 'Sumatera Utara', validUntil: 2026 },
+                { name: 'Sumatera Selatan', validUntil: 2025 },
+                { name: 'Sumatera Barat', validUntil: 2027 },
+                { name: 'Bengkulu', validUntil: 2022 },
+                { name: 'Riau', validUntil: 2026 },
+                { name: 'Kepulauan Riau', validUntil: 2024 },
+                { name: 'Jambi', validUntil: 2025 },
+                { name: 'Lampung', validUntil: 2027 },
+                { name: 'Bangka Belitung', validUntil: 2023 },
+                { name: 'Kalimantan Barat', validUntil: 2026 },
+                { name: 'Kalimantan Timur', validUntil: 2028 },
+                { name: 'Kalimantan Selatan', validUntil: 2025 },
+                { name: 'Kalimantan Tengah', validUntil: 2024 },
+                { name: 'Kalimantan Utara', validUntil: 2023 },
+                { name: 'Banten', validUntil: 2027 },
+                { name: 'DKI Jakarta', validUntil: 2028 },
+                { name: 'Jawa Barat', validUntil: 2029 },
+                { name: 'Jawa Tengah', validUntil: 2027 },
+                { name: 'Daerah Istimewa Yogyakarta', validUntil: 2026 },
+                { name: 'Jawa Timur', validUntil: 2028 },
+                { name: 'Bali', validUntil: 2027 },
+                { name: 'Nusa Tenggara Timur', validUntil: 2024 },
+                { name: 'Nusa Tenggara Barat', validUntil: 2026 },
+                { name: 'Gorontalo', validUntil: 2023 },
+                { name: 'Sulawesi Barat', validUntil: 2024 },
+                { name: 'Sulawesi Tengah', validUntil: 2025 },
+                { name: 'Sulawesi Utara', validUntil: 2027 },
+                { name: 'Sulawesi Tenggara', validUntil: 2025 },
+                { name: 'Sulawesi Selatan', validUntil: 2028 },
+                { name: 'Maluku Utara', validUntil: 2023 },
+                { name: 'Maluku', validUntil: 2024 },
+                { name: 'Papua Barat', validUntil: 2022 },
+                { name: 'Papua', validUntil: 2023 },
+                { name: 'Papua Tengah', validUntil: 2022 },
+                { name: 'Papua Pegunungan', validUntil: 2023 },
+                { name: 'Papua Selatan', validUntil: 2024 },
+                { name: 'Papua Barat Daya', validUntil: 2023 }
+            ];
+
+            const currentYear = 2025;
+
+            // Transform data for DataTable
+            const tableData = provinceData.map((province, index) => {
+                const isValid = province.validUntil >= currentYear;
+                const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
+                const statusClass = isValid ? 'status-valid' : 'status-expired';
+
+                return [
+                    index + 1,
+                    province.name,
+                    province.validUntil,
+                    `<span class="status-badge ${statusClass}">${status}</span>`,
+                    `<button onclick="viewFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
                     <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
                     View
                 </button>`
-            ];
-        });
-
-        // Initialize DataTable
-        $(document).ready(function () {
-            $('#rtkTable').DataTable({
-                data: tableData,
-                dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
-                buttons: [
-                    {
-                        extend: 'excel',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                        title: 'Laporan RTK Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                        title: 'Laporan RTK Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                        title: 'Laporan RTK Provinsi',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    }
-                ],
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-                    infoFiltered: "(difilter dari _MAX_ total data)",
-                    paginate: {
-                        first: "Pertama",
-                        last: "Terakhir",
-                        next: "Selanjutnya",
-                        previous: "Sebelumnya"
-                    },
-                    zeroRecords: "Tidak ada data yang ditemukan",
-                    emptyTable: "Tidak ada data tersedia"
-                },
-                order: [[0, 'asc']],
-                columnDefs: [
-                    { orderable: false, targets: 4 }
-                ]
+                ];
             });
-        });
 
-        // View file function
-        function viewFile(provinceName) {
-            alert(`Membuka file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan membuka halaman preview dokumen RTK.`);
-            // In real implementation, this would redirect to view page
-            // window.location.href = `/pusat/laporan/view.html?province=${encodeURIComponent(provinceName)}`;
-        }
-    </script>
+            // Initialize DataTable
+            $(document).ready(function () {
+                $('#rtkTable').DataTable({
+                    data: tableData,
+                    dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
+                    buttons: [
+                        {
+                            extend: 'excel',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
+                            title: 'Laporan RTK Provinsi',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
+                            title: 'Laporan RTK Provinsi',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
+                            title: 'Laporan RTK Provinsi',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        }
+                    ],
+                    pageLength: 10,
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ data per halaman",
+                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                        infoFiltered: "(difilter dari _MAX_ total data)",
+                        paginate: {
+                            first: "Pertama",
+                            last: "Terakhir",
+                            next: "Selanjutnya",
+                            previous: "Sebelumnya"
+                        },
+                        zeroRecords: "Tidak ada data yang ditemukan",
+                        emptyTable: "Tidak ada data tersedia"
+                    },
+                    order: [[0, 'asc']],
+                    columnDefs: [
+                        { orderable: false, targets: 4 }
+                    ]
+                });
+            });
+
+            // View file function
+            function viewFile(provinceName) {
+                alert(`Membuka file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan membuka halaman preview dokumen RTK.`);
+                // In real implementation, this would redirect to view page
+                // window.location.href = `/pusat/laporan/view.html?province=${encodeURIComponent(provinceName)}`;
+            }
+        </script>
 </body>
 
 </html>

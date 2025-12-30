@@ -18,9 +18,22 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Prevent horizontal scroll */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
         /* DataTables Custom Styling */
         .dataTables_wrapper {
             padding: 0;
+            overflow-x: auto;
+        }
+
+        table.dataTable {
+            width: 100% !important;
+            margin: 0 !important;
         }
 
         table.dataTable thead th {
@@ -30,6 +43,7 @@
             font-size: 0.875rem;
             padding: 12px 16px;
             border-bottom: 2px solid #e5e7eb;
+            white-space: nowrap;
         }
 
         table.dataTable tbody td {
@@ -107,10 +121,16 @@
             border-color: #9ca3af !important;
         }
 
-        .paginate_button.current {
-            background-color: #6366f1 !important;
+        .dt-button:hover {
+            background-color: #15803d !important;
             color: white !important;
-            border-color: #6366f1 !important;
+            border-color: #15803d !important;
+        }
+
+        /* Responsive table wrapper */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .status-badge {
@@ -139,14 +159,14 @@
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
         <div class="px-3 py-3 lg:px-5">
             <div class="flex justify-between">
-                <div class="flex items-center"><button data-drawer-toggle="sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class=" w-6 h-6"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
                         </svg></button><a href="../index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                    </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Admin+Pusat&background=6366f1&color=fff"
                         alt="user"></button>
@@ -259,11 +279,11 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6">
+    <div class="sm:ml-64 mt-14">
+        <div class="p-4 md:p-6">
 
             <!-- Breadcrumb -->
-            <nav class="flex mb-6" aria-label="Breadcrumb">
+            <nav class="flex mb-4 md:mb-6 overflow-x-auto" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
@@ -290,10 +310,10 @@
             </nav>
 
             <!-- DataTable Card -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="mb-4 text-right">
+            <div class="bg-white rounded-lg shadow-sm p-4 md:p-6">
+                <div class="mb-4 flex flex-col sm:flex-row sm:justify-end gap-3">
                     <a href="./upload.html"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
+                        class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -301,152 +321,186 @@
                         Upload RTK
                     </a>
                 </div>
-                <table id="rtkTable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Instansi (Kab/Kota)</th>
-                            <th>Tahun Berlaku</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="rtkTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Instansi (Kab/Kota)</th>
+                                <th>Tahun Berlaku</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-    <!-- DataTables Buttons -->
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+        <!-- DataTables Buttons -->
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
-    <script>
-        // Toggle dropdown menu
-        document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
-            document.getElementById('dropdown-user').classList.toggle('hidden');
-        });
+        <script>
+            // Toggle dropdown menu
+            document.querySelector('[data-dropdown-toggle="dropdown-user"]').addEventListener('click', function () {
+                document.getElementById('dropdown-user').classList.toggle('hidden');
+            });
 
-        // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
-        });
+            // Toggle sidebar on mobile
+            const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
+            const sidebar = document.getElementById('top-bar-sidebar');
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            const dropdown = document.getElementById('dropdown-user');
-            const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
-            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
+            // Create backdrop element
+            const backdrop = document.createElement('div');
+            backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+            backdrop.id = 'sidebar-backdrop';
+            document.body.appendChild(backdrop);
+
+            // Toggle sidebar and backdrop
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                backdrop.classList.toggle('hidden');
             }
-        });
 
-        // RTK Data for Jakarta Districts/Cities
-        const provinceData = [
-            { name: 'Kota Jakarta Pusat', validUntil: 2027 },
-            { name: 'Kota Jakarta Barat', validUntil: 2028 },
-            { name: 'Kota Jakarta Selatan', validUntil: 2026 },
-            { name: 'Kota Jakarta Timur', validUntil: 2029 },
-            { name: 'Kota Jakarta Utara', validUntil: 2027 },
-            { name: 'Kabupaten Administrasi Kepulauan Seribu', validUntil: 2025 }
-        ];
+            sidebarToggleBtn?.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleSidebar();
+            });
 
-        const currentYear = 2025;
+            // Close sidebar when clicking backdrop
+            backdrop.addEventListener('click', function () {
+                toggleSidebar();
+            });
 
-        // Transform data for DataTable
-        const tableData = provinceData.map((province, index) => {
-            const isValid = province.validUntil >= currentYear;
-            const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
-            const statusClass = isValid ? 'status-valid' : 'status-expired';
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function (event) {
+                if (window.innerWidth < 640) { // sm breakpoint
+                    const isClickInsideSidebar = sidebar.contains(event.target);
+                    const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
 
-            return [
-                index + 1,
-                province.name,
-                province.validUntil,
-                `<span class="status-badge ${statusClass}">${status}</span>`,
-                `<button onclick="downloadFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                    if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                        toggleSidebar();
+                    }
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.getElementById('dropdown-user');
+                const button = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+
+            // RTK Data for Jakarta Districts/Cities
+            const provinceData = [
+                { name: 'Kota Jakarta Pusat', validUntil: 2027 },
+                { name: 'Kota Jakarta Barat', validUntil: 2028 },
+                { name: 'Kota Jakarta Selatan', validUntil: 2026 },
+                { name: 'Kota Jakarta Timur', validUntil: 2029 },
+                { name: 'Kota Jakarta Utara', validUntil: 2027 },
+                { name: 'Kabupaten Administrasi Kepulauan Seribu', validUntil: 2025 }
+            ];
+
+            const currentYear = 2025;
+
+            // Transform data for DataTable
+            const tableData = provinceData.map((province, index) => {
+                const isValid = province.validUntil >= currentYear;
+                const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
+                const statusClass = isValid ? 'status-valid' : 'status-expired';
+
+                return [
+                    index + 1,
+                    province.name,
+                    province.validUntil,
+                    `<span class="status-badge ${statusClass}">${status}</span>`,
+                    `<button onclick="downloadFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
                     <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
                     Download
                 </button>`
-            ];
-        });
-
-        // Initialize DataTable
-        $(document).ready(function () {
-            $('#rtkTable').DataTable({
-                data: tableData,
-                dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
-                buttons: [
-                    {
-                        extend: 'excel',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                        title: 'Laporan RTK Kab/Kota',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                        title: 'Laporan RTK Kab/Kota',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                        title: 'Laporan RTK Kab/Kota',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3]
-                        }
-                    }
-                ],
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-                    infoFiltered: "(difilter dari _MAX_ total data)",
-                    paginate: {
-                        first: "Pertama",
-                        last: "Terakhir",
-                        next: "Selanjutnya",
-                        previous: "Sebelumnya"
-                    },
-                    zeroRecords: "Tidak ada data yang ditemukan",
-                    emptyTable: "Tidak ada data tersedia"
-                },
-                order: [[0, 'asc']],
-                columnDefs: [
-                    { orderable: false, targets: 4 }
-                ]
+                ];
             });
-        });
 
-        // Download file function
-        function downloadFile(provinceName) {
-            alert(`Mengunduh file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
-            // In real implementation, this would trigger actual file download
-            // window.location.href = `/api/download-rtk/${provinceName}`;
-        }
-    </script>
+            // Initialize DataTable
+            $(document).ready(function () {
+                $('#rtkTable').DataTable({
+                    data: tableData,
+                    dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
+                    buttons: [
+                        {
+                            extend: 'excel',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
+                            title: 'Laporan RTK Kab/Kota',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
+                            title: 'Laporan RTK Kab/Kota',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
+                            title: 'Laporan RTK Kab/Kota',
+                            exportOptions: {
+                                columns: [0, 1, 2, 3]
+                            }
+                        }
+                    ],
+                    pageLength: 10,
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ data per halaman",
+                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                        infoFiltered: "(difilter dari _MAX_ total data)",
+                        paginate: {
+                            first: "Pertama",
+                            last: "Terakhir",
+                            next: "Selanjutnya",
+                            previous: "Sebelumnya"
+                        },
+                        zeroRecords: "Tidak ada data yang ditemukan",
+                        emptyTable: "Tidak ada data tersedia"
+                    },
+                    order: [[0, 'asc']],
+                    columnDefs: [
+                        { orderable: false, targets: 4 }
+                    ]
+                });
+            });
+
+            // Download file function
+            function downloadFile(provinceName) {
+                alert(`Mengunduh file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
+                // In real implementation, this would trigger actual file download
+                // window.location.href = `/api/download-rtk/${provinceName}`;
+            }
+        </script>
 </body>
 
 </html>

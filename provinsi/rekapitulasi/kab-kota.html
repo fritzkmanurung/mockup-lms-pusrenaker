@@ -18,6 +18,13 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Prevent horizontal scroll */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
         /* DataTables Custom Styling */
         table.dataTable thead th {
             background-color: #f9fafb;
@@ -93,14 +100,14 @@
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
         <div class="px-3 py-3 lg:px-5">
             <div class="flex justify-between">
-                <div class="flex items-center"><button data-drawer-toggle="sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class="w-6 h-6"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
                         </svg></button><a href="./index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
+                    </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
                         class="w-8 h-8 rounded-full"
                         src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
                         alt="user"></button>
@@ -289,8 +296,41 @@
         });
 
         // Toggle sidebar on mobile
-        document.querySelector('[data-drawer-toggle="top-bar-sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
+        const sidebar = document.getElementById('top-bar-sidebar');
+
+        // Create backdrop element
+        const backdrop = document.createElement('div');
+        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+        backdrop.id = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Toggle sidebar and backdrop
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        sidebarToggleBtn?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking backdrop
+        backdrop.addEventListener('click', function () {
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            if (window.innerWidth < 640) { // sm breakpoint
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                    toggleSidebar();
+                }
+            }
         });
 
         // Close dropdown when clicking outside
@@ -433,7 +473,7 @@
     <div id="certificate-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
         <!-- Backdrop -->
         <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeModal()"></div>
-        
+
         <!-- Modal Content -->
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="relative bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] flex flex-col">
@@ -445,30 +485,30 @@
                     </div>
                     <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                         <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
 
                 <!-- Modal Body - PDF Viewer -->
                 <div class="flex-1 p-4 overflow-hidden">
-                    <iframe 
-                        src="../../assets/UU Nomor 13 Tahun 2003.pdf" 
-                        class="w-full h-[70vh] border rounded-lg"
+                    <iframe src="../../assets/UU Nomor 13 Tahun 2003.pdf" class="w-full h-[70vh] border rounded-lg"
                         frameborder="0">
                     </iframe>
                 </div>
 
                 <!-- Modal Footer -->
                 <div class="flex items-center justify-end gap-2 p-4 border-t bg-gray-50 rounded-b-lg">
-                    <button onclick="closeModal()" 
+                    <button onclick="closeModal()"
                         class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
                         Tutup
                     </button>
-                    <a href="../../assets/UU Nomor 13 Tahun 2003.pdf" download 
+                    <a href="../../assets/UU Nomor 13 Tahun 2003.pdf" download
                         class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         Download Sertifikat
                     </a>
@@ -479,4 +519,3 @@
 </body>
 
 </html>
-
