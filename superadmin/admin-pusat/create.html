@@ -282,12 +282,13 @@
                             </div>
 
                             <div>
-                                <label for="jabatan" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Jabatan
+                                <label for="nik" class="block text-sm font-medium text-gray-700 mb-2">
+                                    NIK <span class="text-red-500">*</span>
                                 </label>
-                                <input type="text" id="jabatan" name="jabatan"
+                                <input type="text" id="nik" name="nik" required
                                     class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
-                                    placeholder="Contoh: Staff Administrasi">
+                                    placeholder="Masukkan NIK 16 digit" maxlength="16">
+                                <p class="text-xs text-gray-500 mt-2">Nomor Induk Kependudukan (16 digit)</p>
                             </div>
                         </div>
                     </div>
@@ -368,44 +369,7 @@
                         </div>
                     </div>
 
-                    <!-- Pengaturan Tambahan -->
-                    <div class="mb-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="p-2 rounded-lg bg-amber-100 text-amber-600">
-                                <i class="fas fa-cog"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900">Pengaturan Tambahan</h3>
-                        </div>
 
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="send_welcome_email" name="send_welcome_email"
-                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                    checked>
-                                <label for="send_welcome_email" class="ml-2 block text-sm text-gray-700">
-                                    Kirim email selamat datang ke admin baru
-                                </label>
-                            </div>
-                            <p class="text-xs text-gray-500 ml-6">Admin akan menerima email dengan instruksi login</p>
-
-                            <div class="flex items-center">
-                                <input type="checkbox" id="require_password_change" name="require_password_change"
-                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <label for="require_password_change" class="ml-2 block text-sm text-gray-700">
-                                    Wajibkan perubahan password saat login pertama
-                                </label>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input type="checkbox" id="activate_account" name="activate_account"
-                                    class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                    checked>
-                                <label for="activate_account" class="ml-2 block text-sm text-gray-700">
-                                    Aktifkan akun segera setelah dibuat
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Informasi Role -->
                     <div class="mb-8">
@@ -423,9 +387,9 @@
                                 </label>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                                     <div class="relative">
-                                        <input type="radio" id="role_admin" name="role" value="admin_pusat"
+                                        <input type="radio" id="role_admin_pusat" name="role" value="admin_pusat"
                                             class="hidden peer" checked>
-                                        <label for="role_admin"
+                                        <label for="role_admin_pusat"
                                             class="flex flex-col p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-colors">
                                             <div class="flex items-center mb-2">
                                                 <div class="p-2 rounded-lg bg-indigo-100 text-indigo-600 mr-3">
@@ -433,67 +397,43 @@
                                                 </div>
                                                 <span class="font-medium text-gray-900">Admin Pusat</span>
                                             </div>
-                                            <p class="text-sm text-gray-600">Akses penuh ke semua fitur admin</p>
+                                            <p class="text-sm text-gray-600">Mengelola data tingkat pusat</p>
                                         </label>
                                     </div>
 
                                     <div class="relative">
-                                        <input type="radio" id="role_viewer" name="role" value="viewer"
+                                        <input type="radio" id="role_admin_provinsi" name="role" value="admin_provinsi"
                                             class="hidden peer">
-                                        <label for="role_viewer"
+                                        <label for="role_admin_provinsi"
                                             class="flex flex-col p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-colors">
                                             <div class="flex items-center mb-2">
-                                                <div class="p-2 rounded-lg bg-gray-100 text-gray-600 mr-3">
-                                                    <i class="fas fa-eye"></i>
+                                                <div class="p-2 rounded-lg bg-purple-100 text-purple-600 mr-3">
+                                                    <i class="fas fa-user-tie"></i>
                                                 </div>
-                                                <span class="font-medium text-gray-900">Viewer</span>
+                                                <span class="font-medium text-gray-900">Admin Provinsi</span>
                                             </div>
-                                            <p class="text-sm text-gray-600">Hanya dapat melihat, tidak dapat mengubah
-                                            </p>
+                                            <p class="text-sm text-gray-600">Mengelola data tingkat provinsi</p>
+                                        </label>
+                                    </div>
+
+                                    <div class="relative">
+                                        <input type="radio" id="role_admin_kabkota" name="role" value="admin_kabkota"
+                                            class="hidden peer">
+                                        <label for="role_admin_kabkota"
+                                            class="flex flex-col p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-colors">
+                                            <div class="flex items-center mb-2">
+                                                <div class="p-2 rounded-lg bg-emerald-100 text-emerald-600 mr-3">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-900">Admin Kab/Kota</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600">Mengelola data tingkat kab/kota</p>
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                    Izin Khusus
-                                </label>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="permission_export" name="permission_export"
-                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="permission_export" class="ml-2 block text-sm text-gray-700">
-                                            Ekspor Data
-                                        </label>
-                                    </div>
 
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="permission_manage_users"
-                                            name="permission_manage_users"
-                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="permission_manage_users" class="ml-2 block text-sm text-gray-700">
-                                            Kelola Pengguna
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="permission_reports" name="permission_reports"
-                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="permission_reports" class="ml-2 block text-sm text-gray-700">
-                                            Akses Laporan
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="permission_settings" name="permission_settings"
-                                            class="custom-checkbox h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="permission_settings" class="ml-2 block text-sm text-gray-700">
-                                            Pengaturan Sistem
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -526,36 +466,7 @@
                 </form>
             </div>
 
-            <!-- Informasi Tambahan -->
-            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 md:p-6">
-                <div class="flex items-start gap-3">
-                    <div class="p-2 rounded-lg bg-blue-100 text-blue-600 mt-1">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-medium text-gray-900 mb-2">Informasi Penting</h4>
-                        <ul class="text-sm text-gray-700 space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
-                                <span>Pastikan email menggunakan domain <strong>kemnaker.go.id</strong></span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
-                                <span>Password harus minimal 8 karakter dan mengandung kombinasi huruf dan angka</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
-                                <span>Admin baru akan menerima email konfirmasi jika opsi tersebut dipilih</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-emerald-500 mr-2 mt-0.5"></i>
-                                <span>Role <strong>Admin Pusat</strong> memiliki akses penuh ke semua fitur
-                                    sistem</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
     </div>
@@ -765,8 +676,8 @@
                 strengthBar.className = `h-full rounded-full ${color}`;
                 strengthText.textContent = text;
                 strengthText.className = `text-xs font-medium ${strength <= 2 ? 'text-red-600' :
-                        strength <= 4 ? 'text-amber-600' :
-                            'text-emerald-600'
+                    strength <= 4 ? 'text-amber-600' :
+                        'text-emerald-600'
                     }`;
             }
 
