@@ -165,7 +165,26 @@
             box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
         }
 
-        /* Action buttons responsive */
+        /* Progress bar styling */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #10b981;
+            transition: width 0.3s ease;
+        }
+
+        .progress-bar-fill.incomplete {
+            background-color: #6366f1;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 640px) {
 
             table.dataTable thead th,
@@ -378,6 +397,7 @@
                                 <th>Proyek Selesai</th>
                                 <th>Durasi</th>
                                 <th>Ketua Tim</th>
+                                <th>Persentase Pengerjaan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -478,28 +498,58 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTKN Projects Data
+        // Helper function to calculate progress based on period
+        function calculateProgress(period) {
+            // Extract start year from period (e.g., "2025-2029" -> 2025)
+            const startYear = parseInt(period.split('-')[0]);
+
+            // If period starts before 2025, it's 100% complete
+            if (startYear < 2025) {
+                return 100;
+            }
+
+            // For current period (2025-2029), calculate based on current date
+            if (startYear === 2025) {
+                // We're in 2025, so calculate progress
+                // Assuming period is 5 years (2025-2029)
+                const currentYear = 2025;
+                const currentMonth = 12; // December 2025
+                const totalMonths = 60; // 5 years
+                const elapsedMonths = (currentYear - 2025) * 12 + currentMonth;
+                return Math.min(Math.round((elapsedMonths / totalMonths) * 100), 100);
+            }
+
+            // Future periods have 0% progress
+            return 0;
+        }
+
+        // RTKN Projects Data - One RTK per period (newest first)
         const projectsData = [
-            { name: 'RTKN Nasional 2025-2030', leader: 'Dr. Ahmad Wijaya', created: '2024-01-15', completed: '2025-12-31', duration: '24 bulan' },
-            { name: 'RTKN Sektor Industri Manufaktur 2024', leader: 'Ir. Siti Nurhaliza', created: '2024-02-01', completed: '2024-12-31', duration: '11 bulan' },
-            { name: 'RTKN Sektor Pariwisata dan Perhotelan 2025', leader: 'Budi Santoso, S.E.', created: '2024-03-10', completed: '2025-12-31', duration: '22 bulan' },
-            { name: 'RTKN Sektor Teknologi Informasi 2024-2029', leader: 'Dr. Rina Kusuma', created: '2024-01-20', completed: '2029-12-31', duration: '72 bulan' },
-            { name: 'RTKN Sektor Kesehatan dan Farmasi 2025', leader: 'dr. Hendra Pratama', created: '2024-04-05', completed: '2025-12-31', duration: '21 bulan' },
-            { name: 'RTKN Sektor Pendidikan 2024-2028', leader: 'Prof. Dewi Lestari', created: '2024-02-15', completed: '2028-12-31', duration: '58 bulan' },
-            { name: 'RTKN Sektor Pertanian dan Perkebunan 2025', leader: 'Ir. Bambang Suryanto', created: '2024-05-01', completed: '2025-12-31', duration: '20 bulan' },
-            { name: 'RTKN Sektor Konstruksi dan Infrastruktur 2024', leader: 'Andi Firmansyah, S.T.', created: '2024-01-10', completed: '2024-12-31', duration: '12 bulan' },
-            { name: 'RTKN Sektor Energi dan Pertambangan 2025-2030', leader: 'Dr. Rudi Hartono', created: '2024-03-01', completed: '2030-12-31', duration: '82 bulan' },
-            { name: 'RTKN Sektor Perdagangan dan Ritel 2024', leader: 'Maya Sari, M.M.', created: '2024-06-01', completed: '2024-12-31', duration: '7 bulan' }
+            { name: 'RTKN 2025-2029', period: '2025-2029', leader: 'Dr. Ahmad Wijaya', created: '2024-01-15', completed: '2029-12-31', duration: '60 bulan' },
+            { name: 'RTKN 2020-2024', period: '2020-2024', leader: 'Ir. Siti Nurhaliza', created: '2019-02-01', completed: '2024-12-31', duration: '60 bulan' },
+            { name: 'RTKN 2015-2019', period: '2015-2019', leader: 'Prof. Dewi Lestari', created: '2014-03-10', completed: '2019-12-31', duration: '60 bulan' },
+            { name: 'RTKN 2010-2014', period: '2010-2014', leader: 'Dr. Rina Kusuma', created: '2009-04-05', completed: '2014-12-31', duration: '60 bulan' },
+            { name: 'RTKN 2005-2009', period: '2005-2009', leader: 'Ir. Bambang Suryanto', created: '2004-05-01', completed: '2009-12-31', duration: '60 bulan' },
+            { name: 'RTKN 2000-2004', period: '2000-2004', leader: 'Drs. Budi Santoso', created: '1999-06-01', completed: '2004-12-31', duration: '60 bulan' }
         ];
 
         // Transform data for DataTable
         const tableData = projectsData.map((project, index) => {
+            const progress = calculateProgress(project.period);
+            const progressClass = progress === 100 ? '' : 'incomplete';
+
             return [
                 project.name,
                 project.created,
                 project.completed,
                 project.duration,
                 project.leader,
+                `<div class="flex items-center gap-2">
+                    <div class="progress-bar" style="width: 80px;">
+                        <div class="progress-bar-fill ${progressClass}" style="width: ${progress}%"></div>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600">${progress}%</span>
+                </div>`,
                 `<div class="dropdown-menu">
                     <button class="three-dot-btn" onclick="toggleDropdown(event, ${index})" title="Aksi">
                         <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
@@ -548,7 +598,7 @@
                 },
                 order: [[0, 'asc']],
                 columnDefs: [
-                    { orderable: false, targets: 5 }
+                    { orderable: false, targets: [5, 6] }
                 ],
                 responsive: true,
                 scrollX: true

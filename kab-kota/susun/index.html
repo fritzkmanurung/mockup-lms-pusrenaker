@@ -152,6 +152,25 @@
             box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
         }
 
+        /* Progress bar styling */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #10b981;
+            transition: width 0.3s ease;
+        }
+
+        .progress-bar-fill.incomplete {
+            background-color: #6366f1;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 640px) {
             .dropdown-content {
@@ -321,7 +340,7 @@
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-4 md:p-6">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTK</h2>
+                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKD</h2>
                     <a href="./create.html"
                         class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,6 +357,7 @@
                             <th>Proyek Selesai</th>
                             <th>Durasi</th>
                             <th>Ketua Tim</th>
+                            <th>Persentase Pengerjaan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -437,24 +457,49 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTK Projects Data for Kab/Kota
+        // Helper function to calculate progress based on period
+        function calculateProgress(period) {
+            const startYear = parseInt(period.split('-')[0]);
+            if (startYear < 2025) {
+                return 100;
+            }
+            if (startYear === 2025) {
+                const currentYear = 2025;
+                const currentMonth = 12;
+                const totalMonths = 60;
+                const elapsedMonths = (currentYear - 2025) * 12 + currentMonth;
+                return Math.min(Math.round((elapsedMonths / totalMonths) * 100), 100);
+            }
+            return 0;
+        }
+
+        // RTKD Projects Data for Kab/Kota - One RTKD per period (newest first)
         const projectsData = [
-            { name: 'RTK Kota Jakarta Barat 2025-2030', leader: 'Ir. Agus Prasetyo', created: '2024-03-01', completed: '2030-12-31', duration: '82 bulan' },
-            { name: 'RTK Sektor UMKM Jakarta Barat 2024', leader: 'Dra. Ani Widiastuti', created: '2024-04-10', completed: '2024-12-31', duration: '9 bulan' },
-            { name: 'RTK Sektor Perdagangan dan Jasa 2025', leader: 'Budi Hartono, S.E.', created: '2024-05-01', completed: '2025-12-31', duration: '20 bulan' },
-            { name: 'RTK Sektor Kuliner dan Pariwisata 2024-2029', leader: 'Dr. Rina Kusumawati', created: '2024-02-15', completed: '2029-12-31', duration: '70 bulan' },
-            { name: 'RTK Sektor Kesehatan Publik 2025', leader: 'dr. Hendra Gunawan', created: '2024-06-01', completed: '2025-12-31', duration: '19 bulan' },
-            { name: 'RTK Sektor Pendidikan Vokasi 2024-2028', leader: 'Prof. Dewi Sartika', created: '2024-03-10', completed: '2028-12-31', duration: '58 bulan' }
+            { name: 'RTKD Kota Jakarta Barat 2025-2029', period: '2025-2029', leader: 'Ir. Agus Prasetyo', created: '2024-03-01', completed: '2029-12-31', duration: '60 bulan' },
+            { name: 'RTKD Kota Jakarta Barat 2020-2024', period: '2020-2024', leader: 'Dra. Ani Widiastuti', created: '2019-04-10', completed: '2024-12-31', duration: '60 bulan' },
+            { name: 'RTKD Kota Jakarta Barat 2015-2019', period: '2015-2019', leader: 'Prof. Dewi Sartika', created: '2014-05-01', completed: '2019-12-31', duration: '60 bulan' },
+            { name: 'RTKD Kota Jakarta Barat 2010-2014', period: '2010-2014', leader: 'Dr. Rina Kusumawati', created: '2009-06-01', completed: '2014-12-31', duration: '60 bulan' },
+            { name: 'RTKD Kota Jakarta Barat 2005-2009', period: '2005-2009', leader: 'Budi Hartono, S.E.', created: '2004-02-15', completed: '2009-12-31', duration: '60 bulan' },
+            { name: 'RTKD Kota Jakarta Barat 2000-2004', period: '2000-2004', leader: 'dr. Hendra Gunawan', created: '1999-03-10', completed: '2004-12-31', duration: '60 bulan' }
         ];
 
         // Transform data for DataTable
         const tableData = projectsData.map((project, index) => {
+            const progress = calculateProgress(project.period);
+            const progressClass = progress === 100 ? '' : 'incomplete';
+
             return [
                 project.name,
                 project.created,
                 project.completed,
                 project.duration,
                 project.leader,
+                `<div class="flex items-center gap-2">
+                    <div class="progress-bar" style="width: 80px;">
+                        <div class="progress-bar-fill ${progressClass}" style="width: ${progress}%"></div>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600">${progress}%</span>
+                </div>`,
                 `<div class="dropdown-menu">
                     <button class="three-dot-btn" onclick="toggleDropdown(event, ${index})" title="Aksi">
                         <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
@@ -503,7 +548,7 @@
                 },
                 order: [[0, 'asc']],
                 columnDefs: [
-                    { orderable: false, targets: 3 }
+                    { orderable: false, targets: [5, 6] }
                 ]
             });
         });
