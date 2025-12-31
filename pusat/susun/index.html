@@ -523,6 +523,7 @@
             return 0;
         }
 
+
         // RTKN Projects Data - One RTK per period (newest first)
         const projectsData = [
             { name: 'RTKN 2025-2029', period: '2025-2029', leader: 'Dr. Ahmad Wijaya', created: '2024-01-15', completed: '2029-12-31', duration: '60 bulan' },
@@ -581,6 +582,7 @@
                 data: tableData,
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                order: [[1, 'desc']], // Sort by Proyek Dibuat (column 1) descending - newest first
                 language: {
                     search: "Cari:",
                     lengthMenu: "Tampilkan _MENU_ data per halaman",
@@ -596,7 +598,6 @@
                     zeroRecords: "Tidak ada project yang ditemukan",
                     emptyTable: "Tidak ada project tersedia"
                 },
-                order: [[0, 'asc']],
                 columnDefs: [
                     { orderable: false, targets: [5, 6] }
                 ],

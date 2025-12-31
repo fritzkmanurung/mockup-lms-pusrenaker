@@ -327,14 +327,14 @@
             <!-- Data Table Section from list.html -->
             <div class="bg-white rounded-lg shadow-sm p-4 md:p-6 mt-6">
                 <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Laporan RTK</h2>
+                    <h2 class="text-lg font-semibold text-gray-900">Daftar RTK Kab/Kota - Provinsi DKI Jakarta</h2>
                 </div>
                 <div class="table-responsive">
                     <table id="rtkTable" class="display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Instansi (Provinsi)</th>
+                                <th>Instansi (Kab/Kota)</th>
                                 <th>Tahun Berlaku</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -347,7 +347,27 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- PDF Viewer Modal -->
+        <div id="pdfModal"
+            class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-6xl h-5/6 flex flex-col">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900" id="pdfModalTitle">Dokumen RTK</h3>
+                    <button onclick="closePDFModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- PDF Viewer -->
+                <div class="flex-1 overflow-hidden">
+                    <iframe id="pdfViewer" class="w-full h-full" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery -->
@@ -643,65 +663,32 @@
             }
         });
 
-        // RTK Data for 38 Provinces (for Table)
-        const provinceData = [
-            { name: 'Nanggroe Aceh Darussalam', validUntil: 2023 },
-            { name: 'Sumatera Utara', validUntil: 2026 },
-            { name: 'Sumatera Selatan', validUntil: 2025 },
-            { name: 'Sumatera Barat', validUntil: 2027 },
-            { name: 'Bengkulu', validUntil: 2022 },
-            { name: 'Riau', validUntil: 2026 },
-            { name: 'Kepulauan Riau', validUntil: 2024 },
-            { name: 'Jambi', validUntil: 2025 },
-            { name: 'Lampung', validUntil: 2027 },
-            { name: 'Bangka Belitung', validUntil: 2023 },
-            { name: 'Kalimantan Barat', validUntil: 2026 },
-            { name: 'Kalimantan Timur', validUntil: 2028 },
-            { name: 'Kalimantan Selatan', validUntil: 2025 },
-            { name: 'Kalimantan Tengah', validUntil: 2024 },
-            { name: 'Kalimantan Utara', validUntil: 2023 },
-            { name: 'Banten', validUntil: 2027 },
-            { name: 'DKI Jakarta', validUntil: 2028 },
-            { name: 'Jawa Barat', validUntil: 2029 },
-            { name: 'Jawa Tengah', validUntil: 2027 },
-            { name: 'Daerah Istimewa Yogyakarta', validUntil: 2026 },
-            { name: 'Jawa Timur', validUntil: 2028 },
-            { name: 'Bali', validUntil: 2027 },
-            { name: 'Nusa Tenggara Timur', validUntil: 2024 },
-            { name: 'Nusa Tenggara Barat', validUntil: 2026 },
-            { name: 'Gorontalo', validUntil: 2023 },
-            { name: 'Sulawesi Barat', validUntil: 2024 },
-            { name: 'Sulawesi Tengah', validUntil: 2025 },
-            { name: 'Sulawesi Utara', validUntil: 2027 },
-            { name: 'Sulawesi Tenggara', validUntil: 2025 },
-            { name: 'Sulawesi Selatan', validUntil: 2028 },
-            { name: 'Maluku Utara', validUntil: 2023 },
-            { name: 'Maluku', validUntil: 2024 },
-            { name: 'Papua Barat', validUntil: 2022 },
-            { name: 'Papua', validUntil: 2023 },
-            { name: 'Papua Tengah', validUntil: 2022 },
-            { name: 'Papua Pegunungan', validUntil: 2023 },
-            { name: 'Papua Selatan', validUntil: 2024 },
-            { name: 'Papua Barat Daya', validUntil: 2023 }
+        // RTK Data for Kab/Kota in DKI Jakarta Province
+        const kabkotaData = [
+            { name: 'Jakarta Pusat', validUntil: 2027 },
+            { name: 'Jakarta Utara', validUntil: 2028 },
+            { name: 'Jakarta Barat', validUntil: 2026 },
+            { name: 'Jakarta Selatan', validUntil: 2029 },
+            { name: 'Jakarta Timur', validUntil: 2027 },
+            { name: 'Kepulauan Seribu', validUntil: 2024 }
         ];
 
         // Transform data for DataTable
-        const tableData = provinceData.map((province, index) => {
-            const isValid = province.validUntil >= currentYear;
+        const tableData = kabkotaData.map((kabkota, index) => {
+            const isValid = kabkota.validUntil >= currentYear;
             const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
             const statusClass = isValid ? 'status-valid' : 'status-expired';
 
             return [
                 index + 1,
-                province.name,
-                province.validUntil,
+                kabkota.name,
+                kabkota.validUntil,
                 `<span class="status-badge ${statusClass}">${status}</span>`,
-                `<button onclick="viewFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                `<button onclick="viewRTK('${kabkota.name}')" class="px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-colors inline-flex items-center">
                     <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
-                    View
+                    Lihat RTK
                 </button>`
             ];
         });
@@ -715,7 +702,7 @@
                     {
                         extend: 'excel',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                        title: 'Laporan RTK Provinsi',
+                        title: 'Laporan RTK Kab/Kota - DKI Jakarta',
                         exportOptions: {
                             columns: [0, 1, 2, 3]
                         }
@@ -723,7 +710,7 @@
                     {
                         extend: 'pdf',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                        title: 'Laporan RTK Provinsi',
+                        title: 'Laporan RTK Kab/Kota - DKI Jakarta',
                         exportOptions: {
                             columns: [0, 1, 2, 3]
                         }
@@ -731,7 +718,7 @@
                     {
                         extend: 'print',
                         text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                        title: 'Laporan RTK Provinsi',
+                        title: 'Laporan RTK Kab/Kota - DKI Jakarta',
                         exportOptions: {
                             columns: [0, 1, 2, 3]
                         }
@@ -761,10 +748,40 @@
             });
         });
 
-        // View file function
-        function viewFile(provinceName) {
-            alert(`Membuka file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan membuka halaman preview dokumen RTK.`);
+        // View RTK function - shows PDF in modal
+        function viewRTK(kabkotaName) {
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+            const modalTitle = document.getElementById('pdfModalTitle');
+
+            // Update modal title
+            modalTitle.textContent = `Dokumen RTK - ${kabkotaName}`;
+
+            // Set PDF source (using relative path from provinsi/laporan/ to assets/)
+            pdfViewer.src = '../../assets/UU Nomor 13 Tahun 2003.pdf';
+
+            // Show modal
+            modal.classList.remove('hidden');
         }
+
+        // Close PDF Modal
+        function closePDFModal() {
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+
+            // Hide modal
+            modal.classList.add('hidden');
+
+            // Clear PDF source to stop loading
+            pdfViewer.src = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('pdfModal')?.addEventListener('click', function (e) {
+            if (e.target === this) {
+                closePDFModal();
+            }
+        });
     </script>
 </body>
 
