@@ -321,8 +321,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Instansi (Provinsi)</th>
-                                <th>Tahun Berlaku</th>
+                                <th>Dokumen RTK</th>
+                                <th>Periode Berlaku</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -402,67 +402,30 @@
                 }
             });
 
-            // RTK Data for 38 Provinces
-            const provinceData = [
-                { name: 'Nanggroe Aceh Darussalam', validUntil: 2023 },
-                { name: 'Sumatera Utara', validUntil: 2026 },
-                { name: 'Sumatera Selatan', validUntil: 2025 },
-                { name: 'Sumatera Barat', validUntil: 2027 },
-                { name: 'Bengkulu', validUntil: 2022 },
-                { name: 'Riau', validUntil: 2026 },
-                { name: 'Kepulauan Riau', validUntil: 2024 },
-                { name: 'Jambi', validUntil: 2025 },
-                { name: 'Lampung', validUntil: 2027 },
-                { name: 'Bangka Belitung', validUntil: 2023 },
-                { name: 'Kalimantan Barat', validUntil: 2026 },
-                { name: 'Kalimantan Timur', validUntil: 2028 },
-                { name: 'Kalimantan Selatan', validUntil: 2025 },
-                { name: 'Kalimantan Tengah', validUntil: 2024 },
-                { name: 'Kalimantan Utara', validUntil: 2023 },
-                { name: 'Banten', validUntil: 2027 },
-                { name: 'DKI Jakarta', validUntil: 2028 },
-                { name: 'Jawa Barat', validUntil: 2029 },
-                { name: 'Jawa Tengah', validUntil: 2027 },
-                { name: 'Daerah Istimewa Yogyakarta', validUntil: 2026 },
-                { name: 'Jawa Timur', validUntil: 2028 },
-                { name: 'Bali', validUntil: 2027 },
-                { name: 'Nusa Tenggara Timur', validUntil: 2024 },
-                { name: 'Nusa Tenggara Barat', validUntil: 2026 },
-                { name: 'Gorontalo', validUntil: 2023 },
-                { name: 'Sulawesi Barat', validUntil: 2024 },
-                { name: 'Sulawesi Tengah', validUntil: 2025 },
-                { name: 'Sulawesi Utara', validUntil: 2027 },
-                { name: 'Sulawesi Tenggara', validUntil: 2025 },
-                { name: 'Sulawesi Selatan', validUntil: 2028 },
-                { name: 'Maluku Utara', validUntil: 2023 },
-                { name: 'Maluku', validUntil: 2024 },
-                { name: 'Papua Barat', validUntil: 2022 },
-                { name: 'Papua', validUntil: 2023 },
-                { name: 'Papua Tengah', validUntil: 2022 },
-                { name: 'Papua Pegunungan', validUntil: 2023 },
-                { name: 'Papua Selatan', validUntil: 2024 },
-                { name: 'Papua Barat Daya', validUntil: 2023 }
+            // Historical RTK Data for National (newest first)
+            const rtkHistory = [
+                { document: 'RTKN Nasional 2025-2030', period: '2025 - 2030', year: 2025, status: 'Berlaku' },
+                { document: 'RTKN Nasional 2020-2025', period: '2020 - 2025', year: 2020, status: 'Tidak Berlaku' },
+                { document: 'RTKN Nasional 2015-2020', period: '2015 - 2020', year: 2015, status: 'Tidak Berlaku' },
+                { document: 'RTKN Nasional 2010-2015', period: '2010 - 2015', year: 2010, status: 'Tidak Berlaku' },
+                { document: 'RTKN Nasional 2005-2010', period: '2005 - 2010', year: 2005, status: 'Tidak Berlaku' }
             ];
 
-            const currentYear = 2025;
-
             // Transform data for DataTable
-            const tableData = provinceData.map((province, index) => {
-                const isValid = province.validUntil >= currentYear;
-                const status = isValid ? 'Berlaku' : 'Tidak Berlaku';
+            const tableData = rtkHistory.map((rtk, index) => {
+                const isValid = rtk.status === 'Berlaku';
                 const statusClass = isValid ? 'status-valid' : 'status-expired';
 
                 return [
                     index + 1,
-                    province.name,
-                    province.validUntil,
-                    `<span class="status-badge ${statusClass}">${status}</span>`,
-                    `<button onclick="viewFile('${province.name}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
+                    rtk.document,
+                    rtk.period,
+                    `<span class="status-badge ${statusClass}">${rtk.status}</span>`,
+                    `<button onclick="downloadFile('${rtk.document}')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center">
                     <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
-                    View
+                    Download
                 </button>`
                 ];
             });
@@ -476,7 +439,7 @@
                         {
                             extend: 'excel',
                             text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                            title: 'Laporan RTK Provinsi',
+                            title: 'Riwayat RTKN Nasional',
                             exportOptions: {
                                 columns: [0, 1, 2, 3]
                             }
@@ -522,11 +485,11 @@
                 });
             });
 
-            // View file function
-            function viewFile(provinceName) {
-                alert(`Membuka file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan membuka halaman preview dokumen RTK.`);
-                // In real implementation, this would redirect to view page
-                // window.location.href = `/pusat/laporan/view.html?province=${encodeURIComponent(provinceName)}`;
+            // Download file function
+            function downloadFile(documentName) {
+                alert(`Mengunduh file ${documentName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
+                // In real implementation, this would trigger actual file download
+                // window.location.href = `/api/download-rtk/${encodeURIComponent(documentName)}`;
             }
         </script>
 </body>

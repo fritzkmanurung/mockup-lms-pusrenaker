@@ -103,6 +103,68 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        /* Three-dot menu dropdown */
+        .dropdown-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.25rem;
+            background-color: white;
+            min-width: 120px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #374151;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f3f4f6;
+        }
+
+        .dropdown-content a svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .three-dot-btn {
+            padding: 0.5rem;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .three-dot-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .three-dot-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+        }
+
         /* Action buttons responsive */
         @media (max-width: 640px) {
 
@@ -110,17 +172,6 @@
             table.dataTable tbody td {
                 padding: 8px 12px;
                 font-size: 0.8125rem;
-            }
-
-            .action-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
-            .action-buttons button {
-                width: 100%;
-                justify-content: center;
             }
 
             .dataTables_filter,
@@ -132,6 +183,10 @@
             .dataTables_paginate {
                 margin-top: 1rem;
                 text-align: center;
+            }
+
+            .dropdown-content {
+                min-width: 100px;
             }
         }
     </style>
@@ -445,23 +500,27 @@
                 project.completed,
                 project.duration,
                 project.leader,
-                `<div class="flex gap-2 action-buttons">
-                    <button onclick="viewProject('${project.name}')" class="px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center" title="Lihat Detail">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `<div class="dropdown-menu">
+                    <button class="three-dot-btn" onclick="toggleDropdown(event, ${index})" title="Aksi">
+                        <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
                         </svg>
                     </button>
-                    <button onclick="editProject(${index + 1}, '${project.name}')" class="px-3 py-2 bg-amber-500 text-white text-sm rounded-lg hover:bg-amber-600 transition-colors inline-flex items-center" title="Edit">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                        </svg>
-                    </button>
-                    <button onclick="deleteProject(${index + 1}, '${project.name}')" class="px-3 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors inline-flex items-center" title="Hapus">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                    </button>
+                    <div class="dropdown-content" id="dropdown-${index}">
+                        <a href="javascript:void(0)" onclick="viewProject('${project.name}')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            Lihat
+                        </a>
+                        <a href="javascript:void(0)" onclick="editProject(${index + 1}, '${project.name}')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            Edit
+                        </a>
+                    </div>
                 </div>`
             ];
         });
@@ -513,12 +572,30 @@
             alert(`Edit Project:\nID: ${id}\nNama: ${projectName}\n\nFungsi ini akan mengarah ke halaman edit.`);
         }
 
-        // Delete project function
-        function deleteProject(id, projectName) {
-            if (confirm(`Apakah Anda yakin ingin menghapus project:\n"${projectName}"?\n\nTindakan ini tidak dapat dibatalkan.`)) {
-                alert(`Project "${projectName}" berhasil dihapus!`);
-            }
+        // Toggle dropdown menu
+        function toggleDropdown(event, index) {
+            event.stopPropagation();
+            const dropdown = document.getElementById(`dropdown-${index}`);
+
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-content').forEach(d => {
+                if (d.id !== `dropdown-${index}`) {
+                    d.classList.remove('show');
+                }
+            });
+
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
         }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.dropdown-menu')) {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+            }
+        });
 
         // Close modal function
         function closeModal() {

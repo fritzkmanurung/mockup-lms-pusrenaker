@@ -121,10 +121,10 @@
             border-color: #9ca3af !important;
         }
 
-        .dt-button:hover {
-            background-color: #15803d !important;
+        .paginate_button.current {
+            background-color: #6366f1 !important;
             color: white !important;
-            border-color: #15803d !important;
+            border-color: #6366f1 !important;
         }
 
         /* Responsive table wrapper */
@@ -160,10 +160,10 @@
         <div class="px-3 py-3 lg:px-5">
             <div class="flex justify-between">
                 <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
-                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class=" w-6 h-6"
+                        class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class="w-6 h-6"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="../index.html" class="flex items-center ms-2">
+                        </svg></button><a href="./index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
                     </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
@@ -189,7 +189,7 @@
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
-            <a href="../index.html" class="flex items-center ps-2.5 mb-5">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
                 <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                 <span class="self-center text-lg font-semibold whitespace-nowrap ms-2"
                     style="color: #13416B;">SIRENATA</span>
@@ -251,15 +251,15 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="../rekapitulasi/index.html"
+                    <a href="../report/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi SDM</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Report User</span>
                     </a>
                 </li>
                 <li>
@@ -407,13 +407,13 @@
                 }
             });
 
-            // Historical RTK Data for DKI Jakarta Province (newest first)
+            // Historical RTK Data for Jakarta Timur (newest first)
             const rtkHistory = [
-                { document: 'RTK Provinsi DKI Jakarta 2024-2029', period: '2024 - 2029', year: 2024, status: 'Berlaku' },
-                { document: 'RTK Provinsi DKI Jakarta 2019-2024', period: '2019 - 2024', year: 2019, status: 'Tidak Berlaku' },
-                { document: 'RTK Provinsi DKI Jakarta 2014-2019', period: '2014 - 2019', year: 2014, status: 'Tidak Berlaku' },
-                { document: 'RTK Provinsi DKI Jakarta 2009-2014', period: '2009 - 2014', year: 2009, status: 'Tidak Berlaku' },
-                { document: 'RTK Provinsi DKI Jakarta 2004-2009', period: '2004 - 2009', year: 2004, status: 'Tidak Berlaku' }
+                { document: 'RTK Jakarta Timur 2024-2029', period: '2024 - 2029', year: 2024, status: 'Berlaku' },
+                { document: 'RTK Jakarta Timur 2019-2024', period: '2019 - 2024', year: 2019, status: 'Tidak Berlaku' },
+                { document: 'RTK Jakarta Timur 2014-2019', period: '2014 - 2019', year: 2014, status: 'Tidak Berlaku' },
+                { document: 'RTK Jakarta Timur 2009-2014', period: '2009 - 2014', year: 2009, status: 'Tidak Berlaku' },
+                { document: 'RTK Jakarta Timur 2004-2009', period: '2004 - 2009', year: 2004, status: 'Tidak Berlaku' }
             ];
 
             // Transform data for DataTable
@@ -444,7 +444,7 @@
                         {
                             extend: 'excel',
                             text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Excel',
-                            title: 'Riwayat RTK Provinsi DKI Jakarta',
+                            title: 'Riwayat RTK Jakarta Timur',
                             exportOptions: {
                                 columns: [0, 1, 2, 3]
                             }
@@ -452,7 +452,7 @@
                         {
                             extend: 'pdf',
                             text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg> PDF',
-                            title: 'Laporan RTK Kab/Kota',
+                            title: 'Riwayat RTK Jakarta Timur',
                             exportOptions: {
                                 columns: [0, 1, 2, 3]
                             }
@@ -460,7 +460,7 @@
                         {
                             extend: 'print',
                             text: '<svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg> Print',
-                            title: 'Laporan RTK Kab/Kota',
+                            title: 'Riwayat RTK Jakarta Timur',
                             exportOptions: {
                                 columns: [0, 1, 2, 3]
                             }
@@ -491,10 +491,10 @@
             });
 
             // Download file function
-            function downloadFile(documentName) {
-                alert(`Mengunduh file ${documentName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
+            function downloadFile(provinceName) {
+                alert(`Mengunduh file RTK untuk ${provinceName}.\n\nCatatan: Dalam implementasi nyata, ini akan mengunduh file dokumen RTK yang sebenarnya.`);
                 // In real implementation, this would trigger actual file download
-                // window.location.href = `/api/download-rtk/${encodeURIComponent(documentName)}`;
+                // window.location.href = `/api/download-rtk/${provinceName}`;
             }
         </script>
 </body>
