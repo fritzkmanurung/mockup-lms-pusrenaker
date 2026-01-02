@@ -16,46 +16,42 @@
 </head>
 
 <body class="bg-gray-50">
+    <!-- Navbar -->
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
-        <div class="px-3 py-3 lg:px-5 lg:pl-3">
-            <div class="flex items-center justify-between">
+        <div class="px-3 py-3 lg:px-5 h-16 flex items-center">
+            <div class="flex justify-between items-center w-full">
                 <div class="flex items-center"><button data-drawer-toggle="sidebar"
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                        </svg></button><a href="../../superadmin/index.html" class="flex items-center ms-2">
+                        </svg></button><a href="../index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div>
-                <div class="relative"><button class="flex bg-gray-800 rounded-full"
-                        data-dropdown-toggle="dropdown-user"><img class="w-8 h-8 rounded-full"
-                            src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
-                            alt="user"></button>
-                    <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44"
-                        id="dropdown-user">
-                        <div class="px-4 py-3 border-b">
-                            <p class="text-sm font-medium">Budi Santoso</p>
-                        </div>
-                        <ul class="p-2 text-sm">
-                            <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
-                            </li>
-                            <li><a href="../user/settings.html"
-                                    class="block p-2 hover:bg-purple-200 rounded">Pengaturan</a>
-                            </li>
-                            <li><a href="../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
-                            </li>
-                        </ul>
+                    </a></div><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
+                        class="w-8 h-8 rounded-full"
+                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
+                        alt="user"></button>
+                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                    id="dropdown-user">
+                    <div class="px-4 py-3 border-b">
+                        <p class="text-sm font-medium">Budi Santoso</p>
                     </div>
+                    <ul class="p-2 text-sm">
+                        <!-- Menu Profile -->
+                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
+                        <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- Sidebar -->
+
+        <!-- Sidebar -->
     <aside id="top-bar-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-e border-gray-200">
-            <a href="../../superadmin/index.html" class="flex items-center ps-2.5 mb-5">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
                 <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                 <span class="self-center text-lg font-semibold whitespace-nowrap ms-2"
                     style="color: #13416B;">SIRENATA</span>
@@ -64,9 +60,8 @@
                 <li>
                     <a href="../index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 transition duration-75 group-hover:text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -82,17 +77,16 @@
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Manajemen Admin</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Admin Pusat</span>
                     </a>
                 </li>
                 <li>
-                    <a href="../support/help.html"
-                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                    <a href="./help.html"
+                        class="flex items-center px-2 py-1.5 text-indigo-600 bg-purple-100 rounded-lg transition-colors group">
+                        <svg class="shrink-0 w-5 h-5 text-indigo-600" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
@@ -104,13 +98,34 @@
     </aside>
     <div class="p-4 sm:ml-64 mt-14">
         <div class="p-6">
-            <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">Pusat Bantuan 💬</h1>
-                <p class="text-gray-500">Temukan jawaban atau hubungi tim support kami</p>
-            </div>
+            <!-- Breadcrumb -->
+            <nav class="flex mb-6" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html"
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2">Bantuan</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
             <div class="mb-6"><input type="text" placeholder="Cari bantuan..."
                     class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div
                     class="bg-white rounded-lg p-6 shadow-sm border hover:border-indigo-500 transition-all cursor-pointer">
                     <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4"><svg
@@ -120,16 +135,6 @@
                         </svg></div>
                     <h3 class="font-bold text-gray-900 mb-2">FAQ</h3>
                     <p class="text-sm text-gray-600">Pertanyaan yang sering ditanyakan</p>
-                </div>
-                <div
-                    class="bg-white rounded-lg p-6 shadow-sm border hover:border-indigo-500 transition-all cursor-pointer">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4"><svg
-                            class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                        </svg></div>
-                    <h3 class="font-bold text-gray-900 mb-2">Live Chat</h3>
-                    <p class="text-sm text-gray-600">Chat langsung dengan support</p>
                 </div>
                 <div
                     class="bg-white rounded-lg p-6 shadow-sm border hover:border-indigo-500 transition-all cursor-pointer">
@@ -173,7 +178,19 @@
             </div>
         </div>
     </div>
-    <script>document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', () => document.getElementById('dropdown-user').classList.toggle('hidden')); document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full')); document.addEventListener('click', (e) => { const d = document.getElementById('dropdown-user'), b = document.querySelector('[data-dropdown-toggle="dropdown-user"]'); if (d && b && !b.contains(e.target) && !d.contains(e.target)) d.classList.add('hidden'); });</script>
+    <script>
+        document.querySelector('[data-dropdown-toggle="dropdown-user"]')?.addEventListener('click', () => document.getElementById('dropdown-user').classList.toggle('hidden'));
+        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full'));
+        document.addEventListener('click', (e) => { const d = document.getElementById('dropdown-user'), b = document.querySelector('[data-dropdown-toggle="dropdown-user"]'); if (d && b && !b.contains(e.target) && !d.contains(e.target)) d.classList.add('hidden'); });
+
+        // Toggle Pelaporan dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-pelaporan"]')?.addEventListener('click', function () {
+            const dropdown = document.getElementById('dropdown-pelaporan');
+            const arrow = this.querySelector('.dropdown-arrow');
+            dropdown.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-180');
+        });
+    </script>
 </body>
 
 </html>
