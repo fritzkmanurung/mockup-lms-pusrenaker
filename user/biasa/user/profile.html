@@ -19,8 +19,8 @@
 <body class="bg-gray-50">
     <!-- Navbar -->
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
-        <div class="px-3 py-3 lg:px-5">
-            <div class="flex justify-between">
+        <div class="px-3 py-3 lg:px-5 h-16 flex items-center">
+            <div class="flex justify-between items-center w-full">
                 <div class="flex items-center"><button data-drawer-toggle="top-bar-sidebar"
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"><svg class="w-6 h-6"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,10 +157,10 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6 max-w-7xl mx-auto">
-                        <!-- Breadcrumb -->
-            <nav class="flex mb-6" aria-label="Breadcrumb">
+    <div class="p-2 sm:p-3 sm:ml-64 mt-10">
+        <div class="p-4 sm:p-6">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
                         <a href="../../index.html"
@@ -185,8 +185,8 @@
                 </ol>
             </nav>
 
-            <!-- Profile Card -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+            <!-- Profile Card - No card styling on mobile for more content space -->
+            <div class="sm:bg-white sm:rounded-2xl sm:shadow-lg overflow-hidden sm:border sm:border-gray-100">
                 <!-- Banner with Profile Picture -->
                 <div class="relative h-48">
                     <!-- Background Image - Replace src with your image -->
@@ -207,7 +207,7 @@
                 </div>
 
                 <!-- Form Content -->
-                <div class="pt-24 px-6 md:px-12 pb-10">
+                <div class="pt-24 px-2 sm:px-6 md:px-12 pb-10">
                     <!-- Row 1: Nama & NIK -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
 

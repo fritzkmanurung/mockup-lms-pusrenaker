@@ -99,10 +99,10 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6 max-w-7xl mx-auto">
+    <div class="p-2 sm:p-3 sm:ml-64 mt-10">
+        <div class="p-4 sm:p-6">
             <!-- Breadcrumb -->
-            <nav class="flex mb-3 aria-label=" Breadcrumb">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
@@ -127,8 +127,8 @@
                 </ol>
             </nav>
 
-            <!-- Profile Card -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+            <!-- Profile Card - No card styling on mobile for more content space -->
+            <div class="sm:bg-white sm:rounded-2xl sm:shadow-lg overflow-hidden sm:border sm:border-gray-100">
                 <!-- Banner with Profile Picture -->
                 <div class="relative h-48">
                     <!-- Background Image - Replace src with your image -->
@@ -344,9 +344,7 @@
         });
 
         // Sidebar toggle
-        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
-        });
+        // Old sidebar toggle removed
 
         // Toggle password visibility
         function togglePassword(inputId) {
@@ -447,7 +445,56 @@
             console.log('Form submitted:', { nama, nik, password });
             alert('Profil berhasil diperbarui!');
         }
+
     </script>
+
+    <script>
+        // Mobile Sidebar Toggle with Backdrop
+        (function () {
+            const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="sidebar"]');
+            const sidebar = document.getElementById('top-bar-sidebar');
+
+            if (!sidebarToggleBtn || !sidebar) {
+                console.warn('Sidebar elements not found');
+                return;
+            }
+
+            // Create backdrop element
+            const backdrop = document.createElement('div');
+            backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+            backdrop.id = 'sidebar-backdrop';
+            document.body.appendChild(backdrop);
+
+            // Toggle sidebar and backdrop
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                backdrop.classList.toggle('hidden');
+            }
+
+            sidebarToggleBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleSidebar();
+            });
+
+            // Close sidebar when clicking backdrop
+            backdrop.addEventListener('click', function () {
+                toggleSidebar();
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function (event) {
+                if (window.innerWidth < 640) {
+                    const isClickInsideSidebar = sidebar.contains(event.target);
+                    const isClickOnToggleBtn = sidebarToggleBtn.contains(event.target);
+
+                    if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                        toggleSidebar();
+                    }
+                }
+            });
+        })();
+    </script>
+
 </body>
 
 </html>

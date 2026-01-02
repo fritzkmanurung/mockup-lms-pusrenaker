@@ -143,10 +143,10 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-6 max-w-7xl mx-auto">
+    <div class="p-2 sm:p-3 sm:ml-64 mt-10">
+        <div class="p-4 sm:p-6">
             <!-- Breadcrumb -->
-            <nav class="flex mb-3 aria-label=" Breadcrumb">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
@@ -165,14 +165,14 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Profile</span>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Profil </span>
                         </div>
                     </li>
                 </ol>
             </nav>
 
-            <!-- Profile Card -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+            <!-- Profile Card - No card styling on mobile for more content space -->
+            <div class="sm:bg-white sm:rounded-2xl sm:shadow-lg overflow-hidden sm:border sm:border-gray-100">
                 <!-- Banner with Profile Picture -->
                 <div class="relative h-48">
                     <!-- Background Image - Replace src with your image -->
@@ -387,9 +387,42 @@
             }
         });
 
-        // Sidebar toggle
-        document.querySelector('[data-drawer-toggle="sidebar"]')?.addEventListener('click', function () {
-            document.getElementById('top-bar-sidebar').classList.toggle('-translate-x-full');
+        // Sidebar toggle with backdrop
+        const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="sidebar"]');
+        const sidebar = document.getElementById('top-bar-sidebar');
+
+        // Create backdrop element
+        const backdrop = document.createElement('div');
+        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
+        backdrop.id = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Toggle sidebar and backdrop
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        sidebarToggleBtn?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking backdrop
+        backdrop.addEventListener('click', function () {
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            if (window.innerWidth < 640) { // sm breakpoint
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggleBtn = sidebarToggleBtn?.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
+                    toggleSidebar();
+                }
+            }
         });
 
         // Toggle Pelaporan dropdown
