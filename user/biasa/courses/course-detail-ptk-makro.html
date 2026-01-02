@@ -46,45 +46,48 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
+    <div class="pt-16 sm:pt-20 px-2 sm:px-4 lg:px-8 pb-6 sm:pb-8">
         <div class="max-w-6xl mx-auto">
             <!-- Back Button -->
-            <a href="my-courses.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="my-courses.html"
+                class="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-4 sm:mb-6 text-sm sm:text-base">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
-                Kembali ke Kursus Saya
+                <span class="hidden sm:inline">Kembali ke Kursus Saya</span>
+                <span class="sm:hidden">Kembali</span>
             </a>
 
             <!-- Course Header -->
-            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-8 text-white mb-6">
-                <div class="flex items-start justify-between">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-4 sm:p-8 text-white mb-4 sm:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div class="flex-1">
                         <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-white/20 mb-3">
+                            class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-white/20 mb-2 sm:mb-3">
                             ✅ Selesai
                         </span>
-                        <h1 class="text-3xl font-bold mb-4">Perencanaan Tenaga Kerja Makro</h1>
-                        <div class="flex items-center gap-6 text-sm">
+                        <h1 class="text-xl sm:text-3xl font-bold mb-2 sm:mb-4">Perencanaan Tenaga Kerja Makro</h1>
+                        <div class="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
                             <span>📚 8 Modul</span>
                             <span>🎓 Sertifikat Tersedia</span>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 text-center min-w-[120px]">
-                            <div class="text-4xl font-bold">100%</div>
-                            <div class="text-sm">Selesai</div>
+                    <div class="self-end sm:self-auto sm:ml-4">
+                        <div
+                            class="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[120px]">
+                            <div class="text-2xl sm:text-4xl font-bold">100%</div>
+                            <div class="text-xs sm:text-sm">Selesai</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                 <!-- Left Column - Certificate & Stats -->
-                <div class="lg:col-span-1 space-y-6">
+                <div class="lg:col-span-1 space-y-4 sm:space-y-6">
                     <!-- Certificate Card -->
-                    <div class="bg-white rounded-lg shadow-sm border p-6">
-                        <h2 class="text-lg font-bold text-gray-900 mb-4">🏆 Sertifikat Anda</h2>
+                    <div class="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+                        <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">🏆 Sertifikat Anda</h2>
                         <div class="relative mb-4">
                             <img src="https://picsum.photos/seed/cert-macro/400/300" alt="Certificate"
                                 class="w-full rounded-lg border-4 border-emerald-100">
@@ -114,8 +117,8 @@
                     </div>
 
                     <!-- Stats Card -->
-                    <div class="bg-white rounded-lg shadow-sm border p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">📊 Statistik</h3>
+                    <div class="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+                        <h3 class="font-bold text-gray-900 mb-3 sm:mb-4">📊 Statistik</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center pb-3 border-b">
                                 <span class="text-gray-600">Modul Selesai</span>
@@ -135,9 +138,9 @@
 
                 <!-- Right Column - Modules List -->
                 <div class="lg:col-span-2">
-                    <div class="bg-white rounded-lg shadow-sm border p-6">
-                        <h2 class="text-xl font-bold text-gray-900 mb-4">📚 Daftar Modul</h2>
-                        <p class="text-gray-600 mb-6">Semua modul telah diselesaikan.</p>
+                    <div class="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">📚 Daftar Modul</h2>
+                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Semua modul telah diselesaikan.</p>
 
                         <div class="space-y-3">
                             <!-- Module 1 -->
@@ -299,7 +302,7 @@
                 dropdown.classList.add('hidden');
             }
         });
-    
+
         // Sidebar toggle with backdrop
         const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
         const sidebar = document.getElementById('top-bar-sidebar');
