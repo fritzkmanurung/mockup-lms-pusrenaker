@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project RTK | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
+    <title>Proyek RTK | SIRENATA - Sistem Informasi Rencana Tenaga Kerja Nasional</title>
     <link rel="icon" type="image/png" href="../../assets/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -244,7 +244,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Proyek</span>
                     </a>
                 </li>
                 <li>
@@ -307,12 +307,12 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="sm:ml-64 mt-14">
-        <div class="p-4 md:p-6">
+    <div class="p-4 sm:ml-64 mt-14">
+        <div class="p-6">
 
             <!-- Breadcrumb -->
             <nav class="flex mb-4 md:mb-6 overflow-x-auto" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
@@ -321,7 +321,7 @@
                                     d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                                 </path>
                             </svg>
-                            Home
+
                         </a>
                     </li>
                     <li>
@@ -331,7 +331,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Project</span>
+                            <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2">Proyek</span>
                         </div>
                     </li>
                 </ol>
@@ -340,16 +340,16 @@
             <!-- DataTable Card -->
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold text-gray-900">Daftar Project RTKD</h2>
+                    <h2 class="text-lg font-semibold text-gray-900">Daftar Proyek RTKD</h2>
                     <a href="./create.html"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
-                        Create Project
+                        Tambah Proyek
                     </a>
                 </div>
-                <table id="projectsTable" class="display" style="width:100%">
+                <table id="proyekTable" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -474,8 +474,8 @@
         }
 
 
-        // RTKD Projects Data - One RTKD per period (newest first)
-        const projectsData = [
+        // RTKD Proyek Data - One RTKD per period (newest first)
+        const proyekData = [
             { name: 'RTKD Provinsi DKI Jakarta 2025-2029', period: '2025-2029', leader: 'Dr. Ahmad Suryadi', created: '2024-02-01', completed: '2029-12-31', duration: '60 bulan' },
             { name: 'RTKD Provinsi DKI Jakarta 2020-2024', period: '2020-2024', leader: 'Ir. Siti Rahayu', created: '2019-03-15', completed: '2024-12-31', duration: '60 bulan' },
             { name: 'RTKD Provinsi DKI Jakarta 2015-2019', period: '2015-2019', leader: 'Prof. Dewi Kartini', created: '2014-04-01', completed: '2019-12-31', duration: '60 bulan' },
@@ -485,7 +485,7 @@
         ];
 
         // Transform data for DataTable
-        const tableData = projectsData.map((project, index) => {
+        const tableData = proyekData.map((project, index) => {
             const progress = calculateProgress(project.period);
             const progressClass = progress === 100 ? '' : 'incomplete';
 
@@ -508,14 +508,14 @@
                         </svg>
                     </button>
                     <div class="dropdown-content" id="dropdown-${index}">
-                        <a href="javascript:void(0)" onclick="viewProject('${project.name}')">
+                        <a href="javascript:void(0)" onclick="lihatProyek('${project.name}')">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                             </svg>
                             Lihat
                         </a>
-                        <a href="javascript:void(0)" onclick="editProject(${index + 1}, '${project.name}')">
+                        <a href="javascript:void(0)" onclick="editProyek(${index + 1}, '${project.name}')">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
@@ -528,7 +528,7 @@
 
         // Initialize DataTable
         $(document).ready(function () {
-            $('#projectsTable').DataTable({
+            $('#proyekTable').DataTable({
                 data: tableData,
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
@@ -536,17 +536,17 @@
                 language: {
                     search: "Cari:",
                     lengthMenu: "Tampilkan _MENU_ data per halaman",
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ project",
-                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 project",
-                    infoFiltered: "(difilter dari _MAX_ total project)",
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ proyek",
+                    infoEmpty: "Menampilkan _START_ sampai _END_ dari _TOTAL_ proyek",
+                    infoFiltered: "(difilter dari _MAX_ total proyek)",
                     paginate: {
                         first: "Pertama",
                         last: "Terakhir",
                         next: "Selanjutnya",
                         previous: "Sebelumnya"
                     },
-                    zeroRecords: "Tidak ada project yang ditemukan",
-                    emptyTable: "Tidak ada project tersedia"
+                    zeroRecords: "Tidak ada proyek yang ditemukan",
+                    emptyTable: "Tidak ada proyek tersedia"
                 },
                 columnDefs: [
                     { orderable: false, targets: [5, 6] }
@@ -554,21 +554,21 @@
             });
         });
 
-        // View project function - opens modal with PDF
-        function viewProject(projectName) {
+        // Lihat proyek function - opens modal with PDF
+        function lihatProyek(proyekName) {
             const modal = document.getElementById('pdfModal');
             const modalTitle = document.getElementById('modalTitle');
             const pdfFrame = document.getElementById('pdfFrame');
 
-            modalTitle.textContent = projectName;
+            modalTitle.textContent = proyekName;
             pdfFrame.src = '../../assets/UU Nomor 13 Tahun 2003.pdf';
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        // Edit project function
-        function editProject(id, projectName) {
-            alert(`Edit Project:\nID: ${id}\nNama: ${projectName}\n\nFungsi ini akan mengarah ke halaman edit.`);
+        // Edit proyek function
+        function editProyek(id, proyekName) {
+            alert(`Edit Proyek:\nID: ${id}\nNama: ${proyekName}\n\nFungsi ini akan mengarah ke halaman edit.`);
         }
 
         // Toggle dropdown menu

@@ -37,7 +37,7 @@
                         <p class="text-sm font-medium">Budi Santoso</p>
                     </div>
                     <ul class="p-2 text-sm">
-                        <!-- Menu Profile -->
+                        <!-- Menu Profil -->
                         <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
                         <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
                     </ul>
@@ -79,7 +79,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Proyek</span>
                     </a>
                 </li>
                 <li>
@@ -122,7 +122,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Report User</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Laporan Pengguna</span>
                     </a>
                 </li>
                 <li>
@@ -143,16 +143,15 @@
         <div class="p-6">
             <!-- Breadcrumb -->
             <nav class="flex mb-6" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
-                        <a href="/pusat/index.html"
+                        <a href="../index.html"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                                 </path>
                             </svg>
-                            Home
                         </a>
                     </li>
                     <li>
@@ -162,7 +161,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Help</span>
+                            <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2">Bantuan</span>
                         </div>
                     </li>
                 </ol>
@@ -228,7 +227,7 @@
         const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
         const sidebar = document.getElementById('top-bar-sidebar');
 
-        // Create backdrop element
+        // Tambah backdrop element
         const backdrop = document.createElement('div');
         backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
         backdrop.id = 'sidebar-backdrop';

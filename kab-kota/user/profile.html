@@ -37,7 +37,7 @@
                         <p class="text-sm font-medium">Budi Santoso</p>
                     </div>
                     <ul class="p-2 text-sm">
-                        <!-- Menu Profile -->
+                        <!-- Menu Profil -->
                         <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
                         <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
                     </ul>
@@ -79,7 +79,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-5m-4 0V5a2 2 0 1 1 4 0v1m-4 0a2 2 0 1 0 4 0m-5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 0 0-2.83 2M15 11h3m-3 4h2" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Project</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Proyek</span>
                     </a>
                 </li>
                 <li>
@@ -122,7 +122,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Report User</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Laporan Pengguna</span>
                     </a>
                 </li>
                 <li>
@@ -145,8 +145,8 @@
     <div class="p-4 sm:ml-64 mt-14">
         <div class="p-6 max-w-7xl mx-auto">
             <!-- Breadcrumb -->
-            <nav class="flex mb-3 aria-label=" Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <nav class="flex mb-3" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
                         <a href="../index.html"
                             class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
@@ -155,7 +155,6 @@
                                     d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                                 </path>
                             </svg>
-                            Home
                         </a>
                     </li>
                     <li>
@@ -165,26 +164,26 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Profile</span>
+                            <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2">Profil</span>
                         </div>
                     </li>
                 </ol>
             </nav>
 
-            <!-- Profile Card -->
+            <!-- Profil Card -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                <!-- Banner with Profile Picture -->
+                <!-- Banner with Profil Picture -->
                 <div class="relative h-48">
                     <!-- Background Image - Replace src with your image -->
-                    <img src="/auth/assets/login.jpg" alt="Profile Banner" class="w-full h-full object-cover">
+                    <img src="/auth/assets/login.jpg" alt="Profil Banner" class="w-full h-full object-cover">
                     <!-- Overlay untuk membuat text lebih readable jika diperlukan -->
                     <div class="absolute inset-0 bg-black/10"></div>
 
-                    <!-- Profile Picture -->
+                    <!-- Profil Picture -->
                     <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
                         <div class="relative">
                             <img src="https://ui-avatars.com/api/?name=BS&background=6366f1&color=fff&size=160"
-                                alt="Profile" class="w-40 h-40 rounded-full border-4 border-white shadow-xl">
+                                alt="Profil" class="w-40 h-40 rounded-full border-4 border-white shadow-xl">
                             <div
                                 class="absolute bottom-3 right-3 w-7 h-7 bg-green-500 border-2 border-white rounded-full">
                             </div>
@@ -348,7 +347,7 @@
                     <div class="mt-10 flex justify-end">
                         <button onclick="handleSubmit()"
                             class="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
-                            Submit
+                            Simpan
                         </button>
                     </div>
                 </div>
@@ -376,7 +375,7 @@
         const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
         const sidebar = document.getElementById('top-bar-sidebar');
 
-        // Create backdrop element
+        // Tambah backdrop element
         const backdrop = document.createElement('div');
         backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden';
         backdrop.id = 'sidebar-backdrop';
