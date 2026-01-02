@@ -90,6 +90,51 @@
             border-color: #6366f1 !important;
         }
 
+        /* Mobile responsive DataTables - only table scrolls, not controls */
+        @media (max-width: 768px) {
+
+            .dataTables_wrapper .dataTables_length,
+            .dataTables_wrapper .dataTables_filter,
+            .dataTables_wrapper .dataTables_info,
+            .dataTables_wrapper .dataTables_paginate {
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+
+            .dataTables_wrapper .dataTables_filter {
+                margin-bottom: 1rem;
+            }
+
+            .dataTables_wrapper .dataTables_filter input {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            table.dataTable {
+                min-width: 800px;
+            }
+        }
+
+        /* Make header and body scroll together */
+        .dataTables_scrollHead {
+            overflow-x: auto !important;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: auto !important;
+        }
+
+        /* Sync header scroll with body scroll */
+        .dataTables_scroll {
+            overflow: hidden;
+        }
+
+        /* Table scroll wrapper */
+        .table-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         /* Three-dot menu dropdown */
         .dropdown-menu {
             position: relative;
@@ -349,22 +394,25 @@
                         Tambah Proyek
                     </a>
                 </div>
-                <table id="projectsTable" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Proyek Dibuat</th>
-                            <th>Proyek Selesai</th>
-                            <th>Durasi</th>
-                            <th>Ketua Tim</th>
-                            <th>Persentase Pengerjaan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
+                <!-- Table with scroll wrapper -->
+                <div class="table-scroll-wrapper">
+                    <table id="projectsTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Proyek Dibuat</th>
+                                <th>Proyek Selesai</th>
+                                <th>Durasi</th>
+                                <th>Ketua Tim</th>
+                                <th>Persentase Pengerjaan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -531,6 +579,8 @@
             $('#projectsTable').DataTable({
                 data: tableData,
                 pageLength: 10,
+                scrollX: true,
+                autoWidth: false,
                 order: [[1, 'desc']], // Sort by Proyek Dibuat (column 1) descending - newest first
                 language: {
                     search: "Cari:",
@@ -550,6 +600,20 @@
                     { orderable: false, targets: 6 } // Disable sorting on the last column (Aksi)
                 ]
             });
+
+            // Sync scroll between header and body
+            const scrollBody = document.querySelector('.dataTables_scrollBody');
+            const scrollHead = document.querySelector('.dataTables_scrollHead');
+
+            if (scrollBody && scrollHead) {
+                scrollBody.addEventListener('scroll', function () {
+                    scrollHead.scrollLeft = scrollBody.scrollLeft;
+                });
+
+                scrollHead.addEventListener('scroll', function () {
+                    scrollBody.scrollLeft = scrollHead.scrollLeft;
+                });
+            }
         });
 
         // View proyek function - opens modal with PDF

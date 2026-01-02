@@ -224,10 +224,11 @@
             </nav>
 
             <!-- Form Card -->
-            <div class="bg-white rounded-lg shadow-sm p-8 max-w-2xl mx-auto">
-                <div class="mb-6">
-                    <h1 class="text-2xl font-bold text-gray-900">Tambah New RTK Proyek</h1>
-                    <p class="text-gray-600 mt-1">Buat proyek RTK baru dengan mengisi form di bawah ini</p>
+            <div class="bg-white rounded-lg shadow-sm p-4 sm:p-8 max-w-2xl mx-auto">
+                <div class="mb-4 sm:mb-6">
+                    <h1 class="text-lg sm:text-2xl font-bold text-gray-900">Tambah Proyek RTKD Baru</h1>
+                    <p class="text-gray-600 mt-1 text-sm sm:text-base">Buat proyek RTKD baru dengan mengisi form di
+                        bawah ini</p>
                 </div>
 
                 <form id="createProyekForm" class="space-y-6">
@@ -267,15 +268,48 @@
                         </select>
                     </div>
 
+                    <!-- Anggota Tim (Multiple Select) -->
+                    <div>
+                        <label for="teamMembers" class="block text-sm font-medium text-gray-700 mb-2">
+                            Anggota Tim <span class="text-gray-500 text-xs">(Opsional, bisa pilih lebih dari
+                                satu)</span>
+                        </label>
+                        <select id="teamMembers" name="teamMembers[]" multiple
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            style="min-height: 400px;">
+                            <option value="Dr. Ahmad Wijaya">Dr. Ahmad Wijaya</option>
+                            <option value="Ir. Siti Nurhaliza">Ir. Siti Nurhaliza</option>
+                            <option value="Budi Santoso, S.E.">Budi Santoso, S.E.</option>
+                            <option value="Dr. Rina Kusuma">Dr. Rina Kusuma</option>
+                            <option value="dr. Hendra Pratama">dr. Hendra Pratama</option>
+                            <option value="Prof. Dewi Lestari">Prof. Dewi Lestari</option>
+                            <option value="Ir. Bambang Suryanto">Ir. Bambang Suryanto</option>
+                            <option value="Andi Firmansyah, S.T.">Andi Firmansyah, S.T.</option>
+                            <option value="Dr. Rudi Hartono">Dr. Rudi Hartono</option>
+                            <option value="Maya Sari, M.M.">Maya Sari, M.M.</option>
+                            <option value="Dr. Agus Setiawan">Dr. Agus Setiawan</option>
+                            <option value="Ir. Lina Marlina">Ir. Lina Marlina</option>
+                            <option value="Prof. Dr. Budi Utomo">Prof. Dr. Budi Utomo</option>
+                            <option value="Dra. Sari Indah">Dra. Sari Indah</option>
+                            <option value="M. Rizki Pratama, S.T.">M. Rizki Pratama, S.T.</option>
+                            <option value="Ir. Diana Putri">Ir. Diana Putri</option>
+                            <option value="Dr. Eko Wahyudi">Dr. Eko Wahyudi</option>
+                            <option value="Ir. Fitri Handayani">Ir. Fitri Handayani</option>
+                        </select>
+                        <p class="mt-1 text-xs text-gray-500">Gunakan fitur pencarian untuk menemukan anggota tim dengan
+                            cepat</p>
+                    </div>
+
                     <!-- Action Buttons -->
-                    <div class="flex gap-4 pt-4">
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                         <a href="./index.html"
-                            class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors text-center">
+                            class="flex-1 bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors text-center text-sm sm:text-base">
                             Batal
                         </a>
                         <button type="submit"
-                            class="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
-                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="flex-1 bg-indigo-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors text-sm sm:text-base">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7" />
                             </svg>
@@ -356,6 +390,12 @@
                 $(document).ready(function () {
                     $('#teamLeader').select2({
                         placeholder: 'Pilih Ketua Tim',
+                        allowClear: true,
+                        width: '100%'
+                    });
+
+                    $('#teamMembers').select2({
+                        placeholder: 'Pilih Anggota Tim',
                         allowClear: true,
                         width: '100%'
                     });
