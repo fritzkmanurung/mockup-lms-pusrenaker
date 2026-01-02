@@ -187,9 +187,9 @@
             </nav>
 
             <!-- Line Chart: RTK Aktif per Tahun -->
-            <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Tahun</h2>
+            <div class="bg-white rounded-lg p-3 sm:p-6 shadow-sm mb-4 sm:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Tahun</h2>
                     <div class="flex items-center gap-3">
                         <label for="fromYear" class="text-sm font-medium text-gray-700">Dari Tahun:</label>
                         <input type="number" id="fromYear" value="2021" min="2015" max="2025"
@@ -203,7 +203,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="h-96">
+                <div class="h-64 sm:h-96">
                     <canvas id="rtkLineChart"></canvas>
                 </div>
             </div>
@@ -212,16 +212,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Left Card: Gender Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Jenis Kelamin</h2>
-                    <div class="h-80 flex items-center justify-center">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Jenis Kelamin</h2>
+                    <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="genderPieChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Right Card: Module Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Modul yang Diambil</h2>
-                    <div class="h-80 flex items-center justify-center">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Modul yang Diambil</h2>
+                    <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="modulePieChart"></canvas>
                     </div>
                 </div>

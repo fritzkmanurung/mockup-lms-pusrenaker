@@ -182,37 +182,37 @@
             </nav>
 
             <!-- Course Header -->
-            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-6 text-white mb-6">
-                <div class="flex items-start justify-between">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-4 sm:p-6 text-white mb-4 sm:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-0">
                     <div class="flex-1">
-                        <h1 class="text-2xl font-bold mb-2">Indeks Pembangunan Ketenagakerjaan</h1>
-                        <div class="flex items-center gap-6 text-sm">
+                        <h1 class="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">Indeks Pembangunan Ketenagakerjaan</h1>
+                        <div class="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
                             <span>📚 3 Modul</span>
                             <span>🎯 Progress: 45%</span>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 text-center min-w-[100px]">
-                            <div class="text-3xl font-bold">45%</div>
+                    <div class="self-end sm:self-auto sm:ml-4">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[100px]">
+                            <div class="text-xl sm:text-3xl font-bold">45%</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Filter Tabs -->
-            <div class="mb-6">
+            <div class="mb-4 sm:mb-6">
                 <div class="border-b border-gray-200">
-                    <nav class="flex space-x-4 sm:space-x-8 overflow-x-auto pb-2 scrollbar-hide">
+                    <nav class="flex space-x-2 sm:space-x-4 overflow-x-auto pb-2 scrollbar-hide -mx-2 px-2">
                         <button onclick="filterModules('all')" id="filter-all"
-                            class="filter-tab border-b-2 border-indigo-600 text-indigo-600 py-3 px-1 text-sm font-semibold">
+                            class="filter-tab border-b-2 border-indigo-600 text-indigo-600 py-2 sm:py-3 px-1 text-xs sm:text-sm font-semibold whitespace-nowrap">
                             Semua (3)
                         </button>
                         <button onclick="filterModules('incomplete')" id="filter-incomplete"
-                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-3 px-1 text-sm font-medium">
+                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-2 sm:py-3 px-1 text-xs sm:text-sm font-medium whitespace-nowrap">
                             Belum Selesai (2)
                         </button>
                         <button onclick="filterModules('completed')" id="filter-completed"
-                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-3 px-1 text-sm font-medium">
+                            class="filter-tab border-b-2 border-transparent text-gray-500 hover:text-gray-700 py-2 sm:py-3 px-1 text-xs sm:text-sm font-medium whitespace-nowrap">
                             Selesai (1)
                         </button>
                     </nav>
@@ -220,11 +220,11 @@
             </div>
 
             <!-- Modules List -->
-            <div class="space-y-4" id="modules-container">
+            <div class="space-y-3 sm:space-y-4" id="modules-container">
                 <!-- Module 1 - Completed -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-emerald-500"
+                <div class="module-card bg-white rounded-lg p-4 sm:p-6 shadow-sm border-l-4 border-emerald-500"
                     data-status="completed">
-                    <div class="flex items-start justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
                                 <span
@@ -233,9 +233,9 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 1</span>
                             </div>
-                            <h3 class="font-bold text-gray-900 text-lg mb-2">Definisi Indeks Pembangunan Ketenagakerjaan
+                            <h3 class="font-bold text-gray-900 text-base sm:text-lg mb-1 sm:mb-2">Definisi Indeks Pembangunan Ketenagakerjaan
                             </h3>
-                            <p class="text-sm text-gray-600 mb-3">Memahami konsep dasar dan definisi dari Indeks
+                            <p class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">Memahami konsep dasar dan definisi dari Indeks
                                 Pembangunan Ketenagakerjaan serta pentingnya dalam perencanaan tenaga kerja.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-500">
                                 <span>• 6 Video</span>
@@ -243,16 +243,16 @@
                             </div>
                         </div>
                         <button onclick="viewModule(1)"
-                            class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                            class="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium text-center text-sm">
                             Lihat Modul
                         </button>
                     </div>
                 </div>
 
                 <!-- Module 2 - Terbuka (unlocked after Module 1) -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-blue-500"
+                <div class="module-card bg-white rounded-lg p-4 sm:p-6 shadow-sm border-l-4 border-blue-500"
                     data-status="terbuka">
-                    <div class="flex items-start justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
                                 <span
@@ -261,8 +261,8 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 2</span>
                             </div>
-                            <h3 class="font-bold text-gray-900 text-lg mb-2">Indikator Pembangunan Ketenagakerjaan</h3>
-                            <p class="text-sm text-gray-600 mb-3">Mempelajari berbagai indikator yang digunakan untuk
+                            <h3 class="font-bold text-gray-900 text-base sm:text-lg mb-1 sm:mb-2">Indikator Pembangunan Ketenagakerjaan</h3>
+                            <p class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">Mempelajari berbagai indikator yang digunakan untuk
                                 mengukur pembangunan ketenagakerjaan di suatu wilayah.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-500">
                                 <span>• 7 Video</span>
@@ -270,16 +270,16 @@
                             </div>
                         </div>
                         <button onclick="viewModule(2)"
-                            class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                            class="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium text-center text-sm">
                             Lihat Modul
                         </button>
                     </div>
                 </div>
 
                 <!-- Module 3 - Locked (requires Module 2) -->
-                <div class="module-card bg-white rounded-lg p-6 shadow-sm border-l-4 border-gray-300 opacity-60"
+                <div class="module-card bg-white rounded-lg p-4 sm:p-6 shadow-sm border-l-4 border-gray-300 opacity-60"
                     data-status="terkunci">
-                    <div class="flex items-start justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
                                 <span
@@ -288,8 +288,8 @@
                                 </span>
                                 <span class="text-xs text-gray-500">Modul 3</span>
                             </div>
-                            <h3 class="font-bold text-gray-700 text-lg mb-2">Evaluasi Pembangunan Ketenagakerjaan</h3>
-                            <p class="text-sm text-gray-500 mb-3">Teknik evaluasi dan analisis terhadap pembangunan
+                            <h3 class="font-bold text-gray-700 text-base sm:text-lg mb-1 sm:mb-2">Evaluasi Pembangunan Ketenagakerjaan</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">Teknik evaluasi dan analisis terhadap pembangunan
                                 ketenagakerjaan menggunakan data indeks yang telah dipelajari.</p>
                             <div class="flex items-center gap-4 text-sm text-gray-400">
                                 <span>• 8 Video</span>
@@ -297,7 +297,7 @@
                             </div>
                         </div>
                         <button disabled
-                            class="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium">
+                            class="w-full sm:w-auto px-4 py-2 bg-gray-300 text-gray-500 rounded-lg cursor-not-allowed font-medium text-center text-sm">
                             Terkunci
                         </button>
                     </div>

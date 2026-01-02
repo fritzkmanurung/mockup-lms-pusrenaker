@@ -187,11 +187,11 @@
             </nav>
 
             <!-- Bar Chart: SDM per Kab/Kota -->
-            <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Kabupaten/Kota</h2>
+            <div class="bg-white rounded-lg p-3 sm:p-6 shadow-sm mb-4 sm:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Kabupaten/Kota</h2>
                     <div class="flex items-center gap-2">
-                        <label for="yearFilter" class="text-sm font-medium text-gray-700">Tahun:</label>
+                        <label for="yearFilter" class="hidden sm:inline text-sm font-medium text-gray-700">Tahun:</label>
                         <select id="yearFilter"
                             class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="2025" selected>2025</option>
@@ -201,7 +201,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="h-96">
+                <div class="h-64 sm:h-96">
                     <canvas id="sdmBarChart"></canvas>
                 </div>
             </div>
@@ -210,16 +210,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Left Card: Gender Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Jenis Kelamin</h2>
-                    <div class="h-80 flex items-center justify-center">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Jenis Kelamin</h2>
+                    <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="genderPieChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Right Card: Module Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Perbandingan Modul yang Diambil</h2>
-                    <div class="h-80 flex items-center justify-center">
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Modul yang Diambil</h2>
+                    <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="modulePieChart"></canvas>
                     </div>
                 </div>
