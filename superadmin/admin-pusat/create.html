@@ -14,6 +14,12 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Custom width class */
+        .w-33 {
+            width: 15.25rem;
+            /* 132px */
+        }
+
         /* Breadcrumb */
         .breadcrumb-item:not(:last-child)::after {
             content: "/";
@@ -119,22 +125,24 @@
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
                     </a></div>
-                <div class="relative"><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
-                        class="w-8 h-8 rounded-full"
-                        src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
-                        alt="user"></button>
+                <div class="relative"><button class="rounded-full p-0 overflow-hidden"
+                        data-dropdown-toggle="dropdown-user"><img class="w-8 h-8 rounded-full"
+                            src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                            alt="user"></button>
                     <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
-                    id="dropdown-user">
-                    <div class="px-4 py-3 border-b">
-                        <p class="text-sm font-medium">Super Admin</p>
+                        id="dropdown-user">
+                        <div class="px-4 py-3 border-b">
+                            <p class="text-sm font-medium">Super Admin</p>
+                        </div>
+                        <ul class="p-2 text-sm">
+                            <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                            </li>
+                            <li><a href="../../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="p-2 text-sm">
-                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
-                        <li><a href="../../auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
-                        </li>
-                    </ul>
                 </div>
-                </div></div>
+            </div>
         </div>
     </nav>
 
@@ -195,7 +203,7 @@
     <div class="p-2 sm:p-4 sm:ml-64 mt-14">
         <div class="p-2 sm:p-6">
 
-                        <!-- Breadcrumb Navigation -->
+            <!-- Breadcrumb Navigation -->
             <nav class="flex mb-4 sm:mb-6" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
@@ -215,7 +223,9 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <a href="./index.html" class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">Manajemen Admin</a>
+                            <a href="./index.html"
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">Manajemen
+                                Admin</a>
                         </div>
                     </li>
                     <li>
@@ -230,28 +240,6 @@
                     </li>
                 </ol>
             </nav>
-
-            <!-- Header -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 form-header">
-                <div class="flex items-center gap-3">
-                    <a href="../admin-pusat/index.html"
-                        class="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Tambah Admin Pusat Baru</h1>
-                        <p class="text-gray-500">Isi formulir di bawah untuk menambahkan admin baru</p>
-                    </div>
-                </div>
-
-                <!-- Progress Indicator -->
-                <div class="flex items-center gap-2">
-                    <div class="h-2 w-24 bg-gray-200 rounded-full overflow-hidden">
-                        <div class="h-full bg-indigo-600 rounded-full" style="width: 100%"></div>
-                    </div>
-                    <span class="text-sm text-gray-600">1/1</span>
-                </div>
-            </div>
 
             <!-- Form Section -->
             <div class="bg-white rounded-xl shadow-sm border p-4 md:p-6 mb-6 card-hover">
@@ -370,21 +358,20 @@
                                 <label for="admin_id" class="block text-sm font-medium text-gray-700 mb-2">
                                     ID Admin
                                 </label>
-                                <div class="flex gap-3">
+                                <div class="flex gap-1 sm:gap-3">
                                     <input type="text" id="admin_id" name="admin_id"
-                                        class="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
+                                        class="w-33 sm:flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 form-input"
                                         placeholder="ADM-001" readonly>
                                     <button type="button" id="generate-id"
                                         class="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-                                        <i class="fas fa-sync-alt mr-2"></i> Generate ID
+                                        <i class="fas fa-sync-alt sm:mr-2"></i> <span class="hidden sm:inline">Generate
+                                            ID</span>
                                     </button>
                                 </div>
                                 <p class="text-xs text-gray-500 mt-2">ID akan digenerate otomatis</p>
                             </div>
                         </div>
                     </div>
-
-
 
                     <!-- Informasi Role -->
                     <div class="mb-8">
@@ -749,7 +736,7 @@
 
     <script>
         // Mobile Sidebar Toggle with Backdrop
-        (function() {
+        (function () {
             const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="sidebar"]');
             const sidebar = document.getElementById('top-bar-sidebar');
 
