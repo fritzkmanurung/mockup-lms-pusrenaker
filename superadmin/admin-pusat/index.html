@@ -205,8 +205,8 @@
 
     <!-- Navbar -->
     <nav class="fixed top-0 z-50 w-full bg-white border-b">
-        <div class="px-3 py-3 lg:px-5">
-            <div class="flex justify-between">
+        <div class="px-3 py-3 lg:px-5 h-16 flex items-center">
+            <div class="flex justify-between items-center w-full">
                 <div class="flex items-center"><button data-drawer-toggle="sidebar"
                         class="sm:hidden p-2 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -214,20 +214,23 @@
                         </svg></button><a href="../../superadmin/index.html" class="flex items-center ms-2">
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
-                    </a></div><button class="flex bg-gray-800 rounded-full" data-dropdown-toggle="dropdown-user"><img
-                        class="w-8 h-8 rounded-full"
-                        src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
-                        alt="user"></button>
-                <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
-                    id="dropdown-user">
-                    <div class="px-4 py-3 border-b">
-                        <p class="text-sm font-medium">Super Admin</p>
+                    </a></div>
+                <div class="relative"><button class="rounded-full p-0 overflow-hidden"
+                        data-dropdown-toggle="dropdown-user"><img class="w-8 h-8 rounded-full"
+                            src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                            alt="user"></button>
+                    <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
+                        id="dropdown-user">
+                        <div class="px-4 py-3 border-b">
+                            <p class="text-sm font-medium">Super Admin</p>
+                        </div>
+                        <ul class="p-2 text-sm">
+                            <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                            </li>
+                            <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="p-2 text-sm">
-                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
-                        <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -290,7 +293,7 @@
     <div class="p-2 sm:p-4 sm:ml-64 mt-14">
         <div class="p-2 sm:p-6">
 
-                        <!-- Breadcrumb Navigation -->
+            <!-- Breadcrumb Navigation -->
             <nav class="flex mb-4 sm:mb-6" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
@@ -310,7 +313,9 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <a href="./index.html" class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">Manajemen Admin</a>
+                            <a href="./index.html"
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">Manajemen
+                                Admin</a>
                         </div>
                     </li>
                 </ol>
@@ -1139,7 +1144,7 @@
 
     <script>
         // Mobile Sidebar Toggle with Backdrop
-        (function() {
+        (function () {
             const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="sidebar"]');
             const sidebar = document.getElementById('top-bar-sidebar');
 
