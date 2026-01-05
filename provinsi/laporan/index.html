@@ -338,7 +338,7 @@
                 <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                     <h2 class="text-lg font-semibold text-gray-900">Daftar RTK Kab/Kota - Provinsi DKI Jakarta</h2>
                 </div>
-                <div class="table-responsive">
+                <div class="table-scroll-wrapper">
                     <table id="rtkTable" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -706,6 +706,8 @@
         $(document).ready(function () {
             $('#rtkTable').DataTable({
                 data: tableData,
+                    scrollX: true,
+                    autoWidth: false,
                 dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',
                 buttons: [
                     {
@@ -755,6 +757,20 @@
                     { orderable: false, targets: 4 }
                 ]
             });
+
+        // Sync scroll between header and body
+        const scrollBody = document.querySelector('.dataTables_scrollBody');
+        const scrollHead = document.querySelector('.dataTables_scrollHead');
+        
+        if (scrollBody && scrollHead) {
+            scrollBody.addEventListener('scroll', function() {
+                scrollHead.scrollLeft = scrollBody.scrollLeft;
+            });
+            
+            scrollHead.addEventListener('scroll', function() {
+                scrollBody.scrollLeft = scrollHead.scrollLeft;
+            });
+        }
         });
 
         // View RTK function - shows PDF in modal

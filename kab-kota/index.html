@@ -188,19 +188,18 @@
 
             <!-- Line Chart: RTK Aktif per Tahun -->
             <div class="bg-white rounded-lg p-3 sm:p-6 shadow-sm mb-4 sm:mb-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
                     <h2 class="text-base sm:text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Tahun</h2>
-                    <div class="flex items-center gap-3">
-                        <label for="fromYear" class="text-sm font-medium text-gray-700">Dari Tahun:</label>
-                        <input type="number" id="fromYear" value="2021" min="2015" max="2025"
-                            class="px-3 py-2 w-24 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <label for="toYear" class="text-sm font-medium text-gray-700">Sampai:</label>
-                        <input type="number" id="toYear" value="2025" min="2015" max="2025"
-                            class="px-3 py-2 w-24 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <button id="applyFilter"
-                            class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
-                            Terapkan
-                        </button>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                        <label for="periodSelect" class="text-sm font-medium text-gray-700 whitespace-nowrap">Pilih Periode:</label>
+                        <select id="periodSelect"
+                            class="px-3 py-2 w-full sm:w-auto border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="2005-2009">2005 - 2009</option>
+                            <option value="2010-2014">2010 - 2014</option>
+                            <option value="2015-2019">2015 - 2019</option>
+                            <option value="2020-2024">2020 - 2024</option>
+                            <option value="2025-2029" selected>2025 - 2029</option>
+                        </select>
                     </div>
                 </div>
                 <div class="h-64 sm:h-96">
@@ -227,7 +226,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script>
@@ -291,27 +289,42 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTK data by year (2015-2025)
+        // RTK data by year (extended data untuk 5 periode)
         const rtkDataByYear = {
+            2005: 645,
+            2006: 698,
+            2007: 756,
+            2008: 812,
+            2009: 875,
+            2010: 934,
+            2011: 998,
+            2012: 1067,
+            2013: 1142,
+            2014: 1215,
             2015: 1245,
             2016: 1356,
             2017: 1478,
             2018: 1598,
             2019: 1734,
-            2020: 1656,  // Slight decrease due to pandemic
+            2020: 1656,
             2021: 1789,
             2022: 1923,
             2023: 2087,
             2024: 2234,
-            2025: 2398
+            2025: 2398,
+            2026: 2567,
+            2027: 2745,
+            2028: 2932,
+            2029: 3128
         };
 
-        // Function to get filtered data based on year range
-        function getFilteredData(fromYear, toYear) {
+        // Function to get data based on selected period
+        function getDataByPeriod(period) {
+            const [startYear, endYear] = period.split('-').map(Number);
             const labels = [];
             const data = [];
 
-            for (let year = fromYear; year <= toYear; year++) {
+            for (let year = startYear; year <= endYear; year++) {
                 if (rtkDataByYear[year] !== undefined) {
                     labels.push(year.toString());
                     data.push(rtkDataByYear[year]);
@@ -321,8 +334,8 @@
             return { labels, data };
         }
 
-        // Initialize with default range (2021-2025)
-        const initialData = getFilteredData(2021, 2025);
+        // Initialize with default period (2025-2029)
+        const initialData = getDataByPeriod('2025-2029');
 
         // Line Chart: RTK Aktif per Tahun
         const lineCtx = document.getElementById('rtkLineChart').getContext('2d');
@@ -376,7 +389,7 @@
                         },
                         callbacks: {
                             label: function (context) {
-                                return `RTK Aktif: ${context.parsed.y.toLocaleString()}`;
+                                return `Jumlah SDM: ${context.parsed.y.toLocaleString()}`;
                             }
                         }
                     }
@@ -410,19 +423,13 @@
             }
         });
 
-        // Year range filter handler
-        document.getElementById('applyFilter').addEventListener('click', function () {
-            const fromYear = parseInt(document.getElementById('fromYear').value);
-            const toYear = parseInt(document.getElementById('toYear').value);
-
-            if (fromYear > toYear) {
-                alert('Tahun awal tidak boleh lebih besar dari tahun akhir!');
-                return;
-            }
-
-            const filteredData = getFilteredData(fromYear, toYear);
-            rtkLineChart.data.labels = filteredData.labels;
-            rtkLineChart.data.datasets[0].data = filteredData.data;
+        // Period filter handler
+        document.getElementById('periodSelect').addEventListener('change', function () {
+            const selectedPeriod = this.value;
+            const periodData = getDataByPeriod(selectedPeriod);
+            
+            rtkLineChart.data.labels = periodData.labels;
+            rtkLineChart.data.datasets[0].data = periodData.data;
             rtkLineChart.update();
         });
 

@@ -59,6 +59,109 @@
                             <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
                         </a>
                     </div>
+
+                    <!-- Notification & User Section -->
+                    <div class="flex items-center gap-2 sm:gap-4">
+                        <!-- Notification Icon -->
+                        <div class="relative">
+                            <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors relative"
+                                data-dropdown-toggle="dropdown-notifications">
+                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                    </path>
+                                </svg>
+                                <span class="absolute top-1 right-1 flex h-5 w-5 items-center justify-center">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span
+                                        class="relative inline-flex rounded-full h-5 w-5 bg-red-500 text-white text-xs items-center justify-center font-semibold">2</span>
+                                </span>
+                            </button>
+
+                            <div class="hidden absolute right-0 top-full mt-2 bg-white border rounded-lg shadow-lg w-80 sm:w-96 z-50"
+                                id="dropdown-notifications">
+                                <div class="px-4 py-3 border-b bg-gradient-to-r from-indigo-50 to-purple-50">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-sm font-semibold text-gray-900">Notifikasi</h3>
+                                        <span class="text-xs text-indigo-600 font-medium">2 baru</span>
+                                    </div>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto">
+                                    <div
+                                        class="px-4 py-3 hover:bg-gray-50 transition-colors border-b cursor-pointer group">
+                                        <div class="flex gap-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                                                    <svg class="w-6 h-6 text-emerald-600" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-start justify-between">
+                                                    <p
+                                                        class="text-sm font-semibold text-gray-900 group-hover:text-indigo-600">
+                                                        Kursus Selesai</p>
+                                                    <span
+                                                        class="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0 ml-2"></span>
+                                                </div>
+                                                <p class="text-xs text-gray-600 mt-1 line-clamp-2">Selamat! Anda telah
+                                                    menyelesaikan kursus 'Perencanaan Tenaga Kerja Mikro'</p>
+                                                <p class="text-xs text-gray-400 mt-1">2 jam yang lalu</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="px-4 py-3 hover:bg-gray-50 transition-colors border-b cursor-pointer group">
+                                        <div class="flex gap-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                                                    <svg class="w-6 h-6 text-amber-600" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-start justify-between">
+                                                    <p
+                                                        class="text-sm font-semibold text-gray-900 group-hover:text-indigo-600">
+                                                        Pengangkatan Ketua Tim</p>
+                                                    <span
+                                                        class="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0 ml-2"></span>
+                                                </div>
+                                                <p class="text-xs text-gray-600 mt-1 line-clamp-2">Admin Kab/Kota
+                                                    mengangkat Anda menjadi Ketua Tim RTK</p>
+                                                <p class="text-xs text-gray-400 mt-1">5 jam yang lalu</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 border-t bg-gray-50">
+                                    <button
+                                        class="text-xs text-indigo-600 hover:text-indigo-700 font-medium w-full text-center">Lihat
+                                        Semua Notifikasi</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Avatar -->
+                        <button class="rounded-full p-0 overflow-hidden">
+                            <img class="w-8 h-8 rounded-full"
+                                src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
+                                alt="user">
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -363,7 +466,7 @@
             // Redirect to index.html
             window.location.href = './index.html';
         });
-    
+
         // Sidebar toggle with backdrop
         const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="top-bar-sidebar"]');
         const sidebar = document.getElementById('top-bar-sidebar');
@@ -399,6 +502,23 @@
                 if (sidebar && !isClickInsideSidebar && !isClickOnToggleBtn && !sidebar.classList.contains('-translate-x-full')) {
                     toggleSidebar();
                 }
+            }
+        });
+
+        // Toggle notification dropdown
+        document.querySelector('[data-dropdown-toggle="dropdown-notifications"]')?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const notifDropdown = document.getElementById('dropdown-notifications');
+            notifDropdown?.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function (e) {
+            const notifDropdown = document.getElementById('dropdown-notifications');
+            const notifButton = document.querySelector('[data-dropdown-toggle="dropdown-notifications"]');
+
+            if (notifButton && !notifButton.contains(e.target) && notifDropdown && !notifDropdown.contains(e.target)) {
+                notifDropdown.classList.add('hidden');
             }
         });
 

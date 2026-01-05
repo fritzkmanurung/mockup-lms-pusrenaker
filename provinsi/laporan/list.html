@@ -321,7 +321,7 @@
                         Upload RTK
                     </a>
                 </div>
-                <div class="table-responsive">
+                <div class="table-scroll-wrapper">
                     <table id="rtkTable" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -439,6 +439,8 @@
             $(document).ready(function () {
                 $('#rtkTable').DataTable({
                     data: tableData,
+                    scrollX: true,
+                    autoWidth: false,
                     dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',  // Row1: length+search, Row2: buttons
                     buttons: [
                         {
@@ -488,6 +490,20 @@
                         { orderable: false, targets: 4 }
                     ]
                 });
+
+            // Sync scroll between header and body
+            const scrollBody = document.querySelector('.dataTables_scrollBody');
+            const scrollHead = document.querySelector('.dataTables_scrollHead');
+            
+            if (scrollBody && scrollHead) {
+                scrollBody.addEventListener('scroll', function() {
+                    scrollHead.scrollLeft = scrollBody.scrollLeft;
+                });
+                
+                scrollHead.addEventListener('scroll', function() {
+                    scrollBody.scrollLeft = scrollHead.scrollLeft;
+                });
+            }
             });
 
             // Download file function
