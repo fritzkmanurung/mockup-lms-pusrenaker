@@ -143,11 +143,13 @@
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Rekapitulasi SDM</span>
                     </a>
-                </li>                <li>
+                </li>
+                <li>
                     <a href="./notifikasi/index.html"
                         class="flex items-center px-2 py-1.5 text-gray-500 rounded-lg hover:bg-purple-100 hover:text-indigo-600 transition-colors group">
                         <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-indigo-600"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 5.365V3m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175 0 .593 0 1.292-.538 1.292H5.538C5 18 5 17.301 5 16.708c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 12 5.365ZM8.733 18c.094.852.306 1.54.944 2.112a3.48 3.48 0 0 0 4.646 0c.638-.572 1.236-1.26 1.33-2.112h-6.92Z" />
                         </svg>
@@ -204,9 +206,11 @@
             <!-- Bar Chart: SDM per Provinsi -->
             <div class="bg-white rounded-lg p-3 sm:p-6 shadow-sm mb-4 sm:mb-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
-                    <h2 class="text-base sm:text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per Provinsi</h2>
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900">Jumlah SDM yang Mengambil Kursus per
+                        Provinsi</h2>
                     <div class="flex items-center gap-2">
-                        <label for="yearFilter" class="hidden sm:inline text-sm font-medium text-gray-700">Tahun:</label>
+                        <label for="yearFilter"
+                            class="hidden sm:inline text-sm font-medium text-gray-700">Tahun:</label>
                         <select id="yearFilter"
                             class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="2025" selected>2025</option>
@@ -221,11 +225,42 @@
                 </div>
             </div>
 
+            <!-- Bar Chart: Masa Aktif RTK per Provinsi -->
+            <div class="bg-white rounded-lg p-4 md:p-6 shadow-sm mb-4 md:mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 md:mb-6">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900">Masa Aktif RTK per Provinsi</h2>
+                    <div class="text-sm text-gray-600">
+                        <span class="font-medium">Tahun Sekarang:</span> 2025
+                        <span class="mx-2">|</span>
+                        <span class="font-medium">Masa Berlaku:</span> 5 Tahun
+                    </div>
+                </div>
+                <div class="h-96">
+                    <canvas id="rtkValidityBarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- RTK Validity Status Pie Chart -->
+            <div class="flex justify-center mb-4 sm:mb-6">
+                <div class="bg-white rounded-lg p-4 md:p-6 shadow-sm w-full lg:w-2/3">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">Status Masa Berlaku
+                        RTK Provinsi (2025)
+                    </h2>
+                    <p class="text-sm text-gray-600 mb-4 md:mb-6 text-center">
+                        RTK yang sudah tidak berlaku <span class="font-semibold text-red-600">harus segera diurus</span>
+                    </p>
+                    <div class="h-96 flex items-center justify-center">
+                        <canvas id="rtkStatusPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
             <!-- Pie Charts Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Left Card: Gender Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Jenis Kelamin</h2>
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Jenis Kelamin
+                    </h2>
                     <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="genderPieChart"></canvas>
                     </div>
@@ -233,7 +268,8 @@
 
                 <!-- Right Card: Module Distribution Pie Chart -->
                 <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Modul yang Diambil</h2>
+                    <h2 class="text-base sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Perbandingan Modul yang
+                        Diambil</h2>
                     <div class="h-60 sm:h-80 flex items-center justify-center">
                         <canvas id="modulePieChart"></canvas>
                     </div>
@@ -560,6 +596,222 @@
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
                                 return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // RTK Validity Data for 38 Provinces
+        const provinceLabelsRTK = ['Aceh', 'Sumut', 'Sumsel', 'Sumbar', 'Bengkulu', 'Riau', 'Kep. Riau', 'Jambi', 'Lampung', 'Babel',
+            'Kalbar', 'Kaltim', 'Kalsel', 'Kalteng', 'Kaltara', 'Banten', 'DKI Jakarta', 'Jabar', 'Jateng', 'DIY',
+            'Jatim', 'Bali', 'NTT', 'NTB', 'Gorontalo', 'Sulbar', 'Sulteng', 'Sulut', 'Sultra', 'Sulsel',
+            'Malut', 'Maluku', 'Papua Barat', 'Papua', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan', 'Papua Barat Daya'];
+
+        const rtkExpiryYears = [
+            2023, 2026, 2025, 2027, 2022, 2026, 2024, 2025, 2027, 2023,
+            2026, 2028, 2025, 2024, 2023, 2027, 2028, 2029, 2027, 2026,
+            2028, 2027, 2024, 2026, 2023, 2024, 2025, 2027, 2025, 2028,
+            2023, 2024, 2022, 2023, 2022, 2023, 2024, 2023
+        ];
+
+        let validCountRTK = 0;
+        let expiredCountRTK = 0;
+        const currentYearRTK = 2025;
+
+        rtkExpiryYears.forEach(year => {
+            if (year >= currentYearRTK) {
+                validCountRTK++;
+            } else {
+                expiredCountRTK++;
+            }
+        });
+
+        const colorsRTK = [
+            { bg: 'rgba(59, 130, 246, 0.8)', border: 'rgba(59, 130, 246, 1)' },
+            { bg: 'rgba(239, 68, 68, 0.8)', border: 'rgba(239, 68, 68, 1)' },
+            { bg: 'rgba(34, 197, 94, 0.8)', border: 'rgba(34, 197, 94, 1)' }
+        ];
+
+        const backgroundColorsRTK = rtkExpiryYears.map((year, index) => colorsRTK[index % 3].bg);
+        const borderColorsRTK = rtkExpiryYears.map((year, index) => colorsRTK[index % 3].border);
+
+        // Bar Chart: RTK Validity Period per Province
+        const barCtxRTK = document.getElementById('rtkValidityBarChart').getContext('2d');
+        const rtkValidityBarChart = new Chart(barCtxRTK, {
+            type: 'bar',
+            data: {
+                labels: provinceLabelsRTK,
+                datasets: [{
+                    label: 'Tahun Berlaku (Kadaluarsa)',
+                    data: rtkExpiryYears,
+                    backgroundColor: backgroundColorsRTK,
+                    borderColor: borderColorsRTK,
+                    borderWidth: 1,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 13,
+                                weight: '500'
+                            },
+                            generateLabels: function () {
+                                return [
+                                    {
+                                        text: 'Masih Berlaku (≥ 2025)',
+                                        fillStyle: 'rgba(16, 185, 129, 0.8)',
+                                        strokeStyle: 'rgba(16, 185, 129, 1)',
+                                        lineWidth: 1
+                                    },
+                                    {
+                                        text: 'Sudah Tidak Berlaku (< 2025)',
+                                        fillStyle: 'rgba(239, 68, 68, 0.8)',
+                                        strokeStyle: 'rgba(239, 68, 68, 1)',
+                                        lineWidth: 1
+                                    }
+                                ];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
+                        padding: 12,
+                        cornerRadius: 8,
+                        titleFont: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function (context) {
+                                const year = context.parsed.y;
+                                const status = year >= currentYearRTK ? 'Masih Berlaku' : 'Sudah Tidak Berlaku';
+                                return `Berlaku sampai: ${year} (${status})`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 2020,
+                        max: 2030,
+                        ticks: {
+                            font: {
+                                size: 12
+                            },
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(229, 231, 235, 0.8)'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Tahun Berlaku',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 10
+                            },
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Provinsi',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Pie Chart: RTK Validity Status
+        const pieCtxRTK = document.getElementById('rtkStatusPieChart').getContext('2d');
+        const rtkStatusPieChart = new Chart(pieCtxRTK, {
+            type: 'pie',
+            data: {
+                labels: ['Masih Berlaku', 'Sudah Tidak Berlaku (Perlu Diurus)'],
+                datasets: [{
+                    data: [validCountRTK, expiredCountRTK],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            },
+                            generateLabels: function (chart) {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => ({
+                                    text: `${label}: ${data.datasets[0].data[i]} provinsi`,
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    strokeStyle: data.datasets[0].borderColor[i],
+                                    lineWidth: 2,
+                                    hidden: false,
+                                    index: i
+                                }));
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
+                        padding: 15,
+                        cornerRadius: 8,
+                        titleFont: {
+                            size: 15,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 14
+                        },
+                        callbacks: {
+                            label: function (context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${label}: ${value} provinsi (${percentage}%)`;
                             }
                         }
                     }

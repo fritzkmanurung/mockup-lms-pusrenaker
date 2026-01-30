@@ -304,35 +304,6 @@
                 </ol>
             </nav>
 
-            <!-- Bar Chart: Masa Aktif RTK per Provinsi -->
-            <div class="bg-white rounded-lg p-6 shadow-sm mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Masa Aktif RTK per Kab/Kota</h2>
-                    <div class="text-sm text-gray-600">
-                        <span class="font-medium">Tahun Sekarang:</span> 2025
-                        <span class="mx-2">|</span>
-                        <span class="font-medium">Masa Berlaku:</span> 5 Tahun
-                    </div>
-                </div>
-                <div class="h-96">
-                    <canvas id="rtkValidityBarChart"></canvas>
-                </div>
-            </div>
-
-            <!-- RTK Validity Status Pie Chart -->
-            <div class="flex justify-center">
-                <div class="bg-white rounded-lg p-6 shadow-sm w-full lg:w-2/3">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">Status Masa Berlaku RTK Kab/Kota (2025)
-                    </h2>
-                    <p class="text-sm text-gray-600 mb-6 text-center">
-                        RTK yang sudah tidak berlaku <span class="font-semibold text-red-600">harus segera diurus</span>
-                    </p>
-                    <div class="h-96 flex items-center justify-center">
-                        <canvas id="rtkStatusPieChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
             <!-- Data Table Section from list.html -->
             <div class="bg-white rounded-lg shadow-sm p-4 md:p-6 mt-6">
                 <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
@@ -454,223 +425,8 @@
             arrow?.classList.toggle('rotate-180');
         });
 
-        // RTK Validity Data for Jakarta Kab/Kota
-        // Current year is 2025, RTK validity is 5 years
-        // If expiry year < 2025, it's expired and needs renewal
-        const provinceLabels = ['Jakarta Pusat', 'Jakarta Barat', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Utara', 'Kep. Seribu'];
-
-        // Year when RTK expires for each kab/kota (some expired, some still valid)
-        const rtkExpiryYears = [
-            2027, 2028, 2026, 2029, 2027, 2025
-        ];
-
-        // Calculate valid vs expired
-        let validCount = 0;
-        let expiredCount = 0;
+        // Current year for RTK validity check
         const currentYear = 2025;
-
-        rtkExpiryYears.forEach(year => {
-            if (year >= currentYear) {
-                validCount++;
-            } else {
-                expiredCount++;
-            }
-        });
-
-        // Create 3-color alternating pattern for bar chart (Blue-Red-Green)
-        const colors = [
-            { bg: 'rgba(59, 130, 246, 0.8)', border: 'rgba(59, 130, 246, 1)' },   // Blue
-            { bg: 'rgba(239, 68, 68, 0.8)', border: 'rgba(239, 68, 68, 1)' },     // Red
-            { bg: 'rgba(34, 197, 94, 0.8)', border: 'rgba(34, 197, 94, 1)' }      // Green
-        ];
-
-        const backgroundColors = rtkExpiryYears.map((year, index) => colors[index % 3].bg);
-        const borderColors = rtkExpiryYears.map((year, index) => colors[index % 3].border);
-
-        // Bar Chart: RTK Validity Period per Province
-        const barCtx = document.getElementById('rtkValidityBarChart').getContext('2d');
-        const rtkValidityBarChart = new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: provinceLabels,
-                datasets: [{
-                    label: 'Tahun Berlaku (Kadaluarsa)',
-                    data: rtkExpiryYears,
-                    backgroundColor: backgroundColors,
-                    borderColor: borderColors,
-                    borderWidth: 1,
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            generateLabels: function () {
-                                return [
-                                    {
-                                        text: 'Masih Berlaku (≥ 2025)',
-                                        fillStyle: 'rgba(16, 185, 129, 0.8)',
-                                        strokeStyle: 'rgba(16, 185, 129, 1)',
-                                        lineWidth: 1
-                                    },
-                                    {
-                                        text: 'Sudah Tidak Berlaku (< 2025)',
-                                        fillStyle: 'rgba(239, 68, 68, 0.8)',
-                                        strokeStyle: 'rgba(239, 68, 68, 1)',
-                                        lineWidth: 1
-                                    }
-                                ];
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 12,
-                        cornerRadius: 8,
-                        titleFont: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function (context) {
-                                const year = context.parsed.y;
-                                const status = year >= currentYear ? 'Masih Berlaku' : 'Sudah Tidak Berlaku';
-                                return `Berlaku sampai: ${year} (${status})`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 2020,
-                        max: 2030,
-                        ticks: {
-                            font: {
-                                size: 12
-                            },
-                            stepSize: 1,
-                            callback: function (value) {
-                                return value; // Display year as-is without formatting
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(229, 231, 235, 0.8)'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Tahun Berlaku',
-                            font: {
-                                size: 13,
-                                weight: 'bold'
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 10
-                            },
-                            maxRotation: 45,
-                            minRotation: 45
-                        },
-                        grid: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: 'Kab/Kota',
-                            font: {
-                                size: 13,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Pie Chart: RTK Validity Status
-        const pieCtx = document.getElementById('rtkStatusPieChart').getContext('2d');
-        const rtkStatusPieChart = new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Masih Berlaku', 'Sudah Tidak Berlaku (Perlu Diurus)'],
-                datasets: [{
-                    data: [validCount, expiredCount],
-                    backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(239, 68, 68, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(16, 185, 129, 1)',
-                        'rgba(239, 68, 68, 1)'
-                    ],
-                    borderWidth: 2,
-                    hoverOffset: 15
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            },
-                            generateLabels: function (chart) {
-                                const data = chart.data;
-                                return data.labels.map((label, i) => ({
-                                    text: `${label}: ${data.datasets[0].data[i]} kab/kota`,
-                                    fillStyle: data.datasets[0].backgroundColor[i],
-                                    strokeStyle: data.datasets[0].borderColor[i],
-                                    lineWidth: 2,
-                                    hidden: false,
-                                    index: i
-                                }));
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                        padding: 15,
-                        cornerRadius: 8,
-                        titleFont: {
-                            size: 15,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 14
-                        },
-                        callbacks: {
-                            label: function (context) {
-                                const label = context.label || '';
-                                const value = context.parsed || 0;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(1);
-                                return `${label}: ${value} kab/kota (${percentage}%)`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
 
         // RTK Data for Kab/Kota in DKI Jakarta Province
         const kabkotaData = [
@@ -706,8 +462,8 @@
         $(document).ready(function () {
             $('#rtkTable').DataTable({
                 data: tableData,
-                    scrollX: true,
-                    autoWidth: false,
+                scrollX: true,
+                autoWidth: false,
                 dom: '<"row mb-3"<"col-sm-6"l><"col-sm-6"f>><"row mb-3"<"col-sm-12"B>>rtip',
                 buttons: [
                     {
@@ -758,19 +514,19 @@
                 ]
             });
 
-        // Sync scroll between header and body
-        const scrollBody = document.querySelector('.dataTables_scrollBody');
-        const scrollHead = document.querySelector('.dataTables_scrollHead');
-        
-        if (scrollBody && scrollHead) {
-            scrollBody.addEventListener('scroll', function() {
-                scrollHead.scrollLeft = scrollBody.scrollLeft;
-            });
-            
-            scrollHead.addEventListener('scroll', function() {
-                scrollBody.scrollLeft = scrollHead.scrollLeft;
-            });
-        }
+            // Sync scroll between header and body
+            const scrollBody = document.querySelector('.dataTables_scrollBody');
+            const scrollHead = document.querySelector('.dataTables_scrollHead');
+
+            if (scrollBody && scrollHead) {
+                scrollBody.addEventListener('scroll', function () {
+                    scrollHead.scrollLeft = scrollBody.scrollLeft;
+                });
+
+                scrollHead.addEventListener('scroll', function () {
+                    scrollBody.scrollLeft = scrollHead.scrollLeft;
+                });
+            }
         });
 
         // View RTK function - shows PDF in modal
