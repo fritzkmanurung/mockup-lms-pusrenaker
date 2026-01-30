@@ -28,26 +28,28 @@
                         <img src="../../assets/logo.png" alt="SIRENATA Logo" class="h-8 w-auto">
                         <span class="text-lg font-semibold ms-2" style="color: #13416B;">SIRENATA</span>
                     </a></div>
-                <div class="relative"><button class="rounded-full p-0 overflow-hidden" data-dropdown-toggle="dropdown-user"><img
-                        class="w-8 h-8 rounded-full"
-                        src="https://ui-avatars.com/api/?name=Budi+Santoso&background=6366f1&color=fff"
-                        alt="user"></button>
+                <div class="relative"><button class="rounded-full p-0 overflow-hidden"
+                        data-dropdown-toggle="dropdown-user"><img class="w-8 h-8 rounded-full"
+                            src="https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff"
+                            alt="user"></button>
                     <div class="hidden absolute right-0 top-full mt-2 bg-gray-50 border rounded-lg shadow-lg w-44 z-50"
-                    id="dropdown-user">
-                    <div class="px-4 py-3 border-b">
-                        <p class="text-sm font-medium">Budi Santoso</p>
+                        id="dropdown-user">
+                        <div class="px-4 py-3 border-b">
+                            <p class="text-sm font-medium">Super Admin</p>
+                        </div>
+                        <ul class="p-2 text-sm">
+                            <!-- Menu Profile -->
+                            <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a>
+                            </li>
+                            <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
+                        </ul>
                     </div>
-                    <ul class="p-2 text-sm">
-                        <!-- Menu Profile -->
-                        <li><a href="../user/profile.html" class="block p-2 hover:bg-purple-200 rounded">Profil</a></li>
-                        <li><a href="/auth/login.html" class="block p-2 hover:bg-purple-200 rounded">Keluar</a></li>
-                    </ul>
                 </div>
-                </div></div>
+            </div>
         </div>
     </nav>
 
-        <!-- Sidebar -->
+    <!-- Sidebar -->
     <aside id="top-bar-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
@@ -196,7 +198,7 @@
 
     <script>
         // Mobile Sidebar Toggle with Backdrop
-        (function() {
+        (function () {
             const sidebarToggleBtn = document.querySelector('[data-drawer-toggle="sidebar"]');
             const sidebar = document.getElementById('top-bar-sidebar');
 
